@@ -1,0 +1,485 @@
+Day 6:
+Date : 8th Feb 2025
+
+Morning Session
+
+
+custom Exception :
+
+NameError:
+ZeroDivisionError
+FileNotFoundError
+
+More than 10,000 erros are there  . These are called Built-in-Errors.
+
+some times we define our own errors.
+
+ this is we called CustomErrors
+
+
+ IF age < 0:
+
+    Raise CustomException
+
+
+
+The following example defines a CustomException class that inherits from the Exception class:
+
+class CustomException(Exception):
+
+    """ my custom exception class """
+
+=======================================================================
+
+class TooManyPizzasError(Exception):
+      pass
+
+def order_pizza(number):
+    if number > 100:
+        raise TooManyPizzasError("Whoa! That's too many pizzas to handle!")
+    
+
+try:
+    order_pizza(101)
+except TooManyPizzasError as e:
+    print(f"Order failed: {e}")
+
+=========================================================================
+
+class InvalidProdCode(Exception):
+      pass
+def order_prod(x):
+    if x <= 0 :
+        raise InvalidProdCode("Prod code can not be negative ")
+try:
+    order_prod(-5)
+except InvalidProdCode  as e:
+    print(e)
+
+============================================================================
+
+Write Custom Exception  if entered age is negative , rais the error saying that
+
+age can not be negative
+
+
+===============================================================================================
+
+Python ValueError is raised when a function receives an argument of the correct type
+        but an inappropriate value.
+
+
+===================================================================================
+
+def get_integer_input(prompt):
+    try:
+        value = int(input(prompt))
+        return value
+    except ValueError:
+        print("Error: Invalid input, input a valid integer.")
+
+n = get_integer_input("Input an integer: ")
+print("Input value:", n)
+======================================================================================
+
+marks=[1,2,3]
+
+print(marks[5])
+
+Write a  Python program that executes an operation on a list and handles an IndexError
+
+exception if the index is out of range.
+
+# Define a function named test_index that takes 'data' and 'index' as parameters.
+
+def test_index(data, index):
+
+    try:
+        result = data[index]
+        print("Result:", result)
+    except IndexError:
+        print("Error: Index out of range.")
+
+# Define a list of numbers 'nums'.
+nums = [1, 2, 3, 4, 5, 6, 7]
+index = int(input("Input the index: "))
+test_index(nums, index)
+
+===========================================================================
+
+def get_numeric_input(prompt):
+    while True:
+        try:
+            value = float(input(prompt))
+            return value
+        except ValueError:
+            print("Error: Invalid input. Please Input a valid number.")
+
+n1 = get_numeric_input("Input the first number: ")
+n2 = get_numeric_input("Input the second number: ")
+result = n1 * n2
+print("Product of the said two numbers:", result)
+
+===========================================================================
+def test_list_operation(nums):
+    try:
+        r = len(nums)  # Trying to access the length attribute
+        print("Length of the list:", r)
+    except AttributeError:
+        print("Error: The list does not have a 'length' attribute.")
+nums = [1, 2, 3, 4, 5]
+test_list_operation(nums)
+
+=====================================================================
+
+Examples  Using sys and Os Modules
+
+
+The OS module in Python provides a way to interact with the operating system.
+
+It's like a magical bridge between your Python code and the underlying system, 
+
+allowing you to perform various operations on files and directories.
+
+To use the OS module, we first need to import it:
+
+import os
+
+Now that we have our trusty OS module imported, let's explore some of its most useful methods 
+
+for working with files and directories.
+
+
+import os
+
+file_path = "C:/wiprolabs/doss1.txt"
+
+if os.path.exists(file_path):
+
+    print("The file exists!")
+
+else:
+    print("The file does not exist.")
+
+
+=========================Break from 11.00 am to 11.15 am =====================================
+import re
+
+s = "GeeksforGeeks"
+res = s.startswith("for")
+print(res)
+
+============================================
+txt = "Hello, welcome to my world"
+x = txt.endswith("world")
+print(x)
+========================================
+
+python regex finditer() function to find all matches in a string and 
+
+return an iterator that yields match objects.
+
+The following example uses the finditer() function to search for all vowels in a string:
+
+import re
+
+s = 'Readability counts.'
+
+pattern = r'[aeoui]'
+
+matches = re.finditer(pattern, s)
+for match in matches:
+    print(match)
+=======================================================================
+In the RE 
+
+1.search
+2.findall
+3.startsWith
+4.endsWith
+5.finditer
+==================================================================================================================
+
+
+In Python, you can use the startswith() method for strings to check if a string starts with a specified prefix.
+
+
+string.startswith(prefix[, start[, end]])
+
+prefix: The string or tuple of strings to check.
+
+start (optional): The starting index to check from.
+
+end (optional): The ending index to check up to (exclusive)
+
+
+
+text = "Hello, world!"
+
+# Basic usage
+print(text.startswith("Hello"))  # Output: True
+print(text.startswith("world"))  # Output: False
+
+# Using start index
+print(text.startswith("world", 7))  # Output: True
+
+# Using start and end index
+print(text.startswith("Hello", 0, 5))  # Output: True
+
+# Checking multiple prefixes
+print(text.startswith(("Hi", "Hello")))  # Output: True
+
+=============================================================================
+
+In Python, you can use the endswith() method to check if a string ends with a specified suffix.
+
+
+string.endswith(suffix[, start[, end]])
+suffix: The string or a tuple of strings to check.
+start (optional): The starting index to check from.
+end (optional): The ending index to check up to (exclusive).
+
+
+text = "hello.py"
+
+# Basic usage
+print(text.endswith(".py"))  # Output: True
+print(text.endswith(".txt"))  # Output: False
+
+# Using start and end index
+print(text.endswith("lo", 0, 5))  # Output: True
+
+# Checking multiple suffixes
+print(text.endswith((".py", ".txt", ".java")))  # Output: True
+
+=====================================================================================
+
+The finditer() method in the re (regular expressions) module returns 
+
+an iterator yielding match objects for all non-overlapping matches of
+
+a pattern in a string. This is useful when you need to find multiple
+ 
+occurrences and work with them efficiently.
+
+import re
+
+re.finditer(pattern, string, flags=0)
+
+pattern: The regex pattern to search for.
+
+string: The input string where the search is performed.
+
+flags (optional): Modifiers like re.IGNORECASE.
+
+
+import re
+
+text = "apple 123 banana 456 cherry 789"
+
+# Regular expression to match numbers
+pattern = r"\d+"
+
+# Using finditer
+matches = re.finditer(pattern, text)
+
+# Iterating over matches
+for match in matches:
+    print(f"Match: {match.group()}, Start: {match.start()}, End: {match.end()}")
+
+==============================================================================================
+
+After noon:
+
+
+lab :
+
+ we create folder  rpslabs in c drive
+ navigate to this folder
+
+ c> cd rpslabs
+
+ rpslabs> git init 
+
+
+ rpslabs
+ 
+  
+
+1. git and gub
+
+2. modules left in OOPS
+
+
+==========================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://w3schools.tech/tutorial/python/python_method_overloading
+
+======================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://w3schools.tech/tutorial/python/os_file_methods
+=========================================================================
+
+
+
+
+
+
+
+0. DSA [ Queue ]
+
+What is the Queue?
+
+A queue is a linear type of data structure used to store the data in a sequentially.
+
+The concept of queue is based on the FIFO, which means "First in First Out". 
+
+It is also known as "first come first severed". The queue has the two ends front and rear. 
+
+The next element is inserted from the rear end and removed from the front end.
+
+
+We can implement a queue in Python using a list in multiple ways. 
+
+The most common approach is using the append() and pop(0) methods, but this is inefficient 
+
+
+Basic Queue Implementation Using List
+
+
+class Queue:
+    def __init__(self):
+        self.queue = []
+
+    def enqueue(self, item):
+        """Add an item to the rear of the queue"""
+        self.queue.append(item)
+
+    def dequeue(self):
+        """Remove and return an item from the front of the queue"""
+        if self.is_empty():
+            raise IndexError("Dequeue from an empty queue")
+        return self.queue.pop(0)
+
+    def peek(self):
+        """Return the front item without removing it"""
+        if self.is_empty():
+            raise IndexError("Peek from an empty queue")
+        return self.queue[0]
+
+    def is_empty(self):
+        """Check if the queue is empty"""
+        return len(self.queue) == 0
+
+    def size(self):
+        """Return the size of the queue"""
+        return len(self.queue)
+
+# Example Usage:
+q = Queue()
+q.enqueue(1)
+q.enqueue(2)
+q.enqueue(3)
+print(q.dequeue())  # Output: 1
+print(q.peek())     # Output: 2
+print(q.size())     # Output: 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Queue can be implemented using class
+
+
+class Queue:                               # Queue is class name
+ 
+  def __init__(self):
+      self.queue = list()                  # queue is an instance variable
+ 
+  def addToQueue(self,value):
+
+# Insert method to add element
+
+      if value not in self.queue:
+          self.queue.insert(0,value)
+          return True
+      return False
+ 
+  def size(self):
+      return len(self.queue)
+ 
+MySuperHero = Queue()
+MySuperHero.addToQueue("Thor")
+MySuperHero.addToQueue("Iron man")
+MySuperHero.addToQueue("Hulk")
+MySuperHero.addToQueue("Doctor Strange")
+MySuperHero.addToQueue("Vision")
+print(MySuperHero.size())
+
+=======================================================================================================
+
+1. File Format Handling
+
+2. Database Connectivity
+
+ Afternoon Session:
+ 
+
+3. final,startsWith , endsWith
+
+4. Custom Exception
+
+5. sys and os modules
+
+==============================================
+

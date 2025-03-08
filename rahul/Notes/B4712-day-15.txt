@@ -1,0 +1,456 @@
+
+Day : 15th 
+
+Date : 19th Feb 2025
+
+1. continuation from Pytest Framework [ 1 hour ]
+
+Fixtures:
+
+Fixtures are functions, which will run before each test function to which it is applied. 
+
+Fixtures are used to feed some data to the tests such as database connections, 
+
+URLs to test and some sort of input data. Therefore, instead of running the same code for every test,
+
+we can attach fixture function to the tests and it will run and return the data to the test before executing each test.
+
+A function is marked as a fixture by −
+
+@pytest.fixture
+
+
+we have around n number of  files to be tested. [ n=200 ]
+
+pytest f1.py -p   [ time consuming ]
+
+we create folder say f1  , then navigate to that folder f1
+
+f1>pytest -v
+
+all the 200 files are tested  [ files names must have either test_.py or  xxxx_test.py , collected items and tested]
+
+regular expression
+
+1. search  return True or False
+
+2.find all [ returns all items matching the condition  in the form List ] 
+
+===================================================================================================================
+
+Task: [ Assignment-1 ]
+
+Move to that automation folder list all files that either test at the begining or at the end  of python files
+
+
+==================================================================================================================
+
+
+import pytest
+
+@pytest.fixture
+def input_value():
+   input = 39
+   return input
+
+def test_divisible_by_3(input_value):
+   assert input_value % 3 == 0
+
+def test_divisible_by_6(input_value):
+   assert input_value % 6 == 0
+
+
+===========================================================================================
+
+However, the approach comes with its own limitation.
+
+ A fixture function defined inside a test file has a scope within the test file only.
+
+ We cannot use that fixture in another test file. To make a fixture available to multiple test files, 
+
+we have to define the fixture function in a file called conftest.py. conftest.py 
+
+Pytest - Conftest.py
+==================
+We can define the fixture functions in this file to make them accessible across multiple test files.
+
+Create a new file conftest.py and add the below code into it .
+
+
+import pytest
+@pytest.fixture
+def input_value():
+   input = 39
+   return input
+=====================================================================================================
+test_div_by_3_6.py 
+
+import pytest
+def test_divisible_by_3(input_value):
+   assert input_value % 3 == 0
+def test_divisible_by_6(input_value):
+   assert input_value % 6 == 0
+==================================================================================================
+
+Create a new file test_div_by_13.py 
+
+import pytest
+def test_divisible_by_13(input_value):
+   assert input_value % 13 == 0
+====================================================================================================
+pytest -k divisible -v
+==================================================================================================
+
+Task: 2 [ Assignment-2 ]
+
+Move to that automation folder 
+
+1. list all files that either test at the begining or at the end  of python files
+
+2. from the list of files obtained from 1 , list all the files that contains word "divisible" as a
+
+   part of the file name
+
+===========================Break from 10.45 am to 11.00 am==========================================
+
+#There are some circumstances when you want to skip tests or run the tests,
+
+#but not count them during PyTest run, then you can use skip and Xfail tests respectively. 
+
+
+# Importing the math and pytest libraries
+import math
+import pytest
+
+# Creating first test case
+@pytest.mark.skip
+def test_floor():
+   num = 7
+   assert num==math.floor(6.34532)
+
+# Creating second test case
+def test_equal():
+   assert 50 == 49
+
+# Creating third test case
+@pytest.mark.xfail
+def test_difference():
+   assert 99-43==57
+
+# Creating fourth test case
+def test_square_root():
+   val=8
+   assert val==math.sqrt(81)
+
+====================End of Testing [ UnitTest and Pytest framework============================
+
+2. Double Linked List 
+
+What is a Doubly Linked List?
+
+Doubly Linked List (DLL) is a special type of linked list in which each node contains a pointer to the previous node
+
+as well as the next node of the linked list.
+
+ In a Doubly Linked List, we can traverse in forward and backward direction 
+
+using the next and previous pointer respectively.
+
+=================================================================================================
+How to Create a Doubly Linked List in Python?
+
+To create a doubly linked list in python, we will first create a node for a doubly linked list as shown below.
+
+class Node:
+    def __init__(self, value):
+        self.previous = None
+        self.data = value
+        self.next = None
+
+======================================================================================
+class DoublyLinkedList:    #dll is a collection of Nodes
+    def __init__(self):
+        self.head = None
+==================================================================================================================
+Check if a Doubly Linked List Is Empty in Python
+
+def isEmpty(self):
+        if self.head is None:
+            return True
+        return False
+==============================================================================================
+Find the Length of a Doubly Linked List in Python
+
+def length(self):
+        temp = self.head    #always points to first node
+        count = 0
+        while temp is not None:
+            temp = temp.next
+            count += 1
+        return count
+==================================================================================================
+Search an Element in a Doubly Linked List in Python:
+
+def search(self, value):
+        temp = self.head
+        isFound = False
+        while temp is not None:
+            if temp.data == value:
+                isFound = True
+                break
+            temp = temp.next
+        return isFound
+=====================================================================================================
+
+Task 1:
+
+1. create  class node for the Dll  Data, prev ,next
+
+2. create class   for Dll  head is None and Tail is None
+
+3. Add a Node.   dll1.append(10)  
+
+4. Find the length of Dll
+
+5. Search an Element in a Doubly Linked List in Python:
+
+
+==============Before Lunch=========================
+
+class Node:
+   def __init__(self, data):
+      self.prev = None
+      self.data = data
+      self.next = None
+
+class double_list:
+   def __init__(self):
+      self.head = None
+      self.tail = None
+
+   def add_data(self, data):
+
+      new_node = Node(data)
+
+      if(self.head == None):
+         self.head = self.tail = new_node
+         self.head.previous = None
+         self.tail.next = None
+
+      else:
+         self.tail.next = new_node
+         new_node.previous = self.tail
+         self.tail = new_node;
+         self.tail.next = None;
+   def print_it(self):
+      curr = self.head
+      if (self.head == None):
+         print("The list is empty")
+         return
+      print("The nodes in the doubly linked list are :")
+      while curr != None:
+         print(curr.data)
+         curr = curr.next
+my_instance = double_list()
+print("Elements are being added to the doubly linked list")
+my_instance.add_data(10)
+my_instance.add_data(24)
+my_instance.add_data(54)
+my_instance.add_data(77)
+my_instance.add_data(92)
+my_instance.print_it()
+
+============================================================
+
+
+3. Tree, Pre , post and inoder
+
+
+Pre-Order Binary Tree Traversal:
+
+In pre-order traversal, the node is visited first, followed by its left child and then its right child. 
+
+This can be visualized as Root - Left - Right.
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def pre_order_traversal(root):
+    if root is None:
+        return
+
+    # Visit the root node
+    print(root.data, end=" ")
+
+    # Traverse the left subtree
+    pre_order_traversal(root.left)
+
+    # Traverse the right subtree
+    pre_order_traversal(root.right)
+
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+print("Pre-Order Traversal: ", end="")
+pre_order_traversal(root)
+print()
+
+==============================================================
+InOrder 
+======
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+
+def in_order_traversal(root):
+    if root is None:
+        return
+
+    # Traverse the left subtree
+    in_order_traversal(root.left)
+
+    # Visit the root node
+    print(root.data, end=" ")
+
+    # Traverse the right subtree
+    in_order_traversal(root.right)
+
+
+root = Node(2)
+root.left = Node(1)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+print("In-Order Traversal: ", end="")
+in_order_traversal(root)
+print()
+
+============================================================================
+Post Order
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def post_order_traversal(root):
+    if root is None:
+        return
+
+    # Traverse the left subtree
+    post_order_traversal(root.left)
+
+    # Traverse the right subtree
+    post_order_traversal(root.right)
+
+    # Visit the root node
+    print(root.data, end=" ")
+
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+root.left.left = Node(4)
+root.left.right = Node(5)
+print("Post-Order Traversal: ", end="")
+post_order_traversal(root)
+print()
+
+===========================Break time 3.15 pm to 3.30 pm===================
+
+
+Pre order Algorithm
+
+1. Visit Root First
+2. Left sub tree
+3. right sub tree
+
+=========================================================
+Inorder:
+
+1.left subtree
+2.Root
+3.RIght 
+========================================================
+
+Post Order:
+
+1. Left subtree
+
+2. Right subtree
+
+======================Presentation =========================================
+
+
+Graph:
+
+Vertex
+
+Edge
+
+weighted graph - each edge has been assigned some values
+
+Directed graph - has got direction
+
+
+Spanning Tree
+
+Minimum Spanning Tree(MST)
+
+algorithms 
+
+Circular Tree
+
+sorting { thursday ]
+
+Friday :
+
+Json and api 
+
+===================saturday 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://pyprogramming.org/circular-linked-list-in-python/
+
+https://pyprogramming.org/doubly-linked-list-in-python/
+
+https://medium.com/karuna-sehgal/a-quick-explanation-of-quick-sort-7d8e2563629b
+
+https://medium.com/karuna-sehgal/a-simplified-explanation-of-merge-sort-77089fe03bb2
+
+==============================================================================
+
+=========================================================

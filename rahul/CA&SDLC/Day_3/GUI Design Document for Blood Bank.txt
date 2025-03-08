@@ -1,0 +1,152 @@
+GUI Design Document for Blood Bank Management System
+1. Introduction
+The Blood Bank Management System (BBMS) aims to provide a user-friendly, intuitive interface catering to three main user roles: Admins, Patients, and Donors. This document outlines the GUI design for each module, emphasizing user experience, accessibility, and efficiency.
+________________________________________
+2. GUI Design for Modules
+2.1 Admin Module
+Functional Requirements
+1.	Manage blood inventory (add, update, delete stock).
+2.	Perform CRUD operations for donor and patient profiles.
+3.	Generate reports and analytics on donations, stock, and requests.
+GUI Design
+1.	Dashboard:
+o	Design Features: 
+	Blood inventory statistics displayed via bar and pie charts.
+	Notifications for low stock or urgent blood requests with red/yellow alerts.
+	Quick links for inventory management, user management, and reports.
+o	User Actions: 
+	Admin can click on inventory stats to view detailed stock data.
+	Dismiss or act on notifications directly.
+2.	User Management:
+o	Design Features: 
+	Table layout with sortable columns (Name, Role, Blood Group, Contact).
+	Search bar for filtering by name, role, or blood type.
+	Action buttons for Add, Edit, and Delete users.
+o	User Actions: 
+	Add or update donor/patient profiles via pop-up forms.
+	Delete records with confirmation prompts.
+3.	Reports:
+o	Design Features: 
+	Dropdown for selecting report types (e.g., "Donor Report," "Inventory Report").
+	Date range selector for filtering reports.
+	Export options for PDF or Excel formats.
+o	User Actions: 
+	Generate and download custom reports based on filters.
+________________________________________
+2.2 Donor Module
+Functional Requirements
+1.	Register and manage personal/medical profiles.
+2.	Schedule donation appointments.
+3.	View donation history and notifications.
+GUI Design
+1.	Donor Dashboard:
+o	Design Features: 
+	Cards for donation history and eligibility status (e.g., “Eligible to donate after 90 days”).
+	List of upcoming donation camps with Google Maps integration for locations.
+o	User Actions: 
+	View past donations and confirm upcoming donation reminders.
+	Navigate to the camp page for scheduling.
+2.	Profile Management:
+o	Design Features: 
+	Editable fields for name, address, medical history, and notification preferences.
+	Save and cancel buttons for user updates.
+o	User Actions: 
+	Update and save personal and medical details.
+	Toggle between notification options (e.g., SMS, Email).
+3.	Donation Booking:
+o	Design Features: 
+	Calendar view for selecting available donation dates.
+	Dropdown for selecting a nearby blood donation camp.
+o	User Actions: 
+	Choose a preferred date and location for donation.
+	Confirm booking with a success message.
+________________________________________
+2.3 Patient Module
+Functional Requirements
+1.	Search for available blood and submit requests.
+2.	Manage personal profiles.
+3.	Track request status and receive notifications.
+GUI Design
+1.	Search and Request:
+o	Design Features: 
+	Search bar with dropdowns for blood type and quantity.
+	Results displayed in a table showing available stock with visual indicators (green for available, red for unavailable).
+o	User Actions: 
+	Submit a blood request form with details like type, quantity, and urgency.
+	View confirmation of the submitted request.
+2.	Profile Management:
+o	Design Features: 
+	Simple form layout for managing contact and personal details.
+	Save button with success/error messages upon update.
+o	User Actions: 
+	Edit and save profile details.
+3.	Notifications:
+o	Design Features: 
+	Notification panel with real-time updates (e.g., “Your request for A+ blood is approved”).
+	Visual status indicators (green for approved, yellow for pending).
+o	User Actions: 
+	Click notifications to view request details.
+________________________________________
+3. General Design Principles
+Consistency
+Maintain uniform color schemes, typography, and button styles across all modules for a cohesive experience.
+Feedback Mechanisms
+Provide immediate feedback for user actions such as successful submissions, errors, or loading statuses.
+Accessibility
+Incorporate ARIA labels, high-contrast modes, and responsive designs for mobile and desktop users.
+________________________________________
+4. Validation and Error Handling
+Input Validation
+1.	Ensure required fields are filled (e.g., blood type, quantity).
+2.	Validate email and phone number formats.
+Error Messages
+•	Clear, user-friendly messages: 
+o	“Invalid email address.”
+o	“Blood type cannot be empty.”
+Server-Side Validation
+•	Prevent duplicate records and sanitize inputs to avoid SQL injection.
+________________________________________
+5. Tools and Technologies
+Frontend
+•	React.js or Angular for interactive UIs.
+Backend
+•	Node.js or Django for APIs and server-side logic.
+Database
+•	MySQL or MongoDB for secure and efficient storage.
+Styling
+•	Tailwind CSS or Bootstrap for responsive designs.
+Icons
+•	FontAwesome or Material Icons for intuitive navigation.
+________________________________________
+6. Implementation Timeline
+Phase	Duration	Activities
+Requirements Gathering	2 Weeks	Stakeholder meetings, analysis of needs, and defining project scope.
+Design	3 Weeks	Wireframe creation, mock ups, and iterative feedback from stakeholders.
+Implementation	4 Weeks	Development of frontend and backend, integration of modules.
+Testing	2 Weeks	Usability testing, debugging, and performance optimization.
+Deployment	1 Week	Launch system, provide user training, and gather feedback for improvements.
+Maintenance	Ongoing	Address bugs, add features, and improve usability based on feedback.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

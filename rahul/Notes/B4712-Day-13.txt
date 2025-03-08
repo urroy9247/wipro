@@ -1,0 +1,692 @@
+Day : 13th
+Date: 17-Feb-2025
+
+
+hash Table:
+-----------
+
+A hash table in Python is typically implemented using a dictionary (dict), which is an efficient data structure
+
+for storing key-value pairs. It uses hashing to allow for fast lookups, insertions, and deletions
+
+(on average, O(1) time complexity).
+
+
+
+1: Creating a Hash Table (Dictionary)
+
+hash_table = {}  # Empty dictionary
+
+hash_table["name"] = "Alice"
+hash_table["age"] = 25
+hash_table["city"] = "New York"
+
+print(hash_table)  # {'name': 'Alice', 'age': 25, 'city': 'New York'}
+
+2. Accessing Values
+print(hash_table["name"])  # Alice
+Using a non-existent key raises a KeyError. Use .get() to avoid this:
+print(hash_table.get("country", "Not Found"))  # Not Found
+
+3. Removing Elements
+
+del hash_table["age"]  # Removes key 'age'
+print(hash_table)  # {'name': 'Alice', 'city': 'New York'}
+
+# Using pop()
+city = hash_table.pop("city")
+print(city)  # New York
+
+4. Checking if a Key Exists
+if "name" in hash_table:
+    print("Key exists!")
+
+5. Iterating Over a Hash Table
+for key, value in hash_table.items():
+    print(f"{key}: {value}")
+
+6. Handling Collisions with collections.defaultdict
+
+If multiple values need to be stored under the same key, use defaultdict:
+
+from collections import defaultdict
+
+hash_table = defaultdict(list)
+hash_table["fruits"].append("Apple")
+hash_table["fruits"].append("Banana")
+
+print(hash_table)  # {'fruits': ['Apple', 'Banana']}
+
+                   # { 'osma':['aparna', 'swetha']}
+
+
+==================================================================================================
+
+Implementing a Custom Hash Table Class
+
+
+
+class HashTable:
+    def __init__(self, size=10):
+        self.size = size
+        self.table = [[] for _ in range(size)]
+
+    def _hash(self, key):
+        return hash(key) % self.size
+
+    def insert(self, key, value):
+        index = self._hash(key)
+        for pair in self.table[index]:
+            if pair[0] == key:
+                pair[1] = value
+                return
+        self.table[index].append([key, value])
+
+    def get(self, key):
+        index = self._hash(key)
+        for pair in self.table[index]:
+            if pair[0] == key:
+                return pair[1]
+        return None  # Key not found
+
+    def remove(self, key):
+        index = self._hash(key)
+        self.table[index] = [pair for pair in self.table[index] if pair[0] != key]
+
+# Example Usage
+ht = HashTable()
+ht.insert("name", "Alice")
+ht.insert("age", 25)
+print(ht.get("name"))  # Alice
+ht.remove("name")
+print(ht.get("name"))  # None
+
+
+
+
+
+When to Use a Hash Table?
+
+When you need fast lookups, inserts, and deletions.
+
+When working with key-value mappings.
+
+
+
+===============================================================================================
+
+
+A linked list is a sequence of data elements, which are connected together via links. 
+
+Each data element contains a connection to another data element in form of a pointer.
+
+ Python does not have linked lists in its standard library. 
+
+We implement the concept of linked lists using the concept of nodes  In this type of data structure
+
+there is only one link between any two data elements. We create such a list and create additional
+
+methods to insert, update and remove elements from the list.
+
+================================================================================
+
+List is faster as we access its elements by its index.
+
+list takes continous memory location
+
+but Linked List is faster when we want to access sequentially.
+    linked list does not take continous memory location
+    Linked list is better Efficient memory usage
+
+=========================10.30 am to 10.45 am=====================
+
+0. How to create node with attributes data and next
+   [ attribute data contains some value and attribute next contains either ref of  next node or None if it last node]
+
+1. creating  linked list
+
+2. adding elements to the linked list
+
+3. insert at the begining
+
+4. insert at the end
+
+5. insert after the given node
+
+6. print all the elements from the list
+
+same all tasks we will do doubly  linked list and circular list
+
+
+================================================================
+
+
+Task 1 :
+
+1. create 4 nodes n1 , n2, n3 and n4 with the values "Sun" ,"Mon" , "Tue" , "Wed"  and "Thu"  respectively.
+
+2. create simple linked list with these four  nodes
+
+3. print these nodes data from head to end
+
+-----------------------------------------------------------------------------------------------------------
+
+
+inserting nodes  and traversal
+==============================
+class Node:
+    def __init__(self, data):
+      self.data = data
+      self.next = None
+
+class SLinkedList:     #linked is a collection of nodes , connecting to each other. One way traversal is allowed , not two way
+    def __init__(self):
+      self.head = None
+
+    def listprint(self):
+      a = self.head
+      while a is not None:
+         print(a.data)
+         a=a.next
+
+list = SLinkedList()
+e1 = Node("1")
+list.head=e1
+e2 = Node("2")
+e3 = Node("3")
+# Link first Node to second node
+e1.next= e2
+# Link second Node to third node
+e2.next= e3
+list.listprint()  
+=====================================================================================================
+class Node:
+    def __init__(self, data):
+      self.data = data
+      self.next = None
+
+class SLinkedList:
+    def __init__(self):
+      self.head = None
+    def listprint(self):
+      a = self.head
+      while a is not None:
+         print (a.data)
+         a=a.next
+
+    def AtBegining(self,data):
+      nb = Node(data)
+      # Update the new nodes next val to existing node
+      nb.next = self.head
+      self.head = nb
+
+list = SLinkedList()
+e1 = Node("1")
+list.head=e1
+e2 = Node("2")
+e3 = Node("3")
+# Link first Node to second node
+e1.next= e2
+# Link second Node to third node
+e2.next= e3
+list.listprint()  
+list.AtBegining("0")
+list.listprint()
+
+======================================1.00 pm to 2.00 pm lunch time===========================================================
+
+class Node:
+    def __init__(self, dataval=None):
+      self.data = dataval
+      self.next = None
+
+class SLinkedList:
+    def __init__(self):
+      self.head = None
+    def listprint(self):
+      a = self.head
+      while a is not None:
+         print (a.data)
+         a=a.next
+    def AtBegining(self,data):
+      nb = Node(data)
+      # Update the new nodes next val to existing node
+      nb.next = self.head
+      self.head = nb
+
+    def AtEnd(self, data):
+      ne=Node(data)
+      last = self.head
+      while(last.next):
+         last = last.next
+      last.next=ne
+
+
+list = SLinkedList()
+e1 = Node("1")
+list.head=e1
+e2 = Node("2")
+e3 = Node("3")
+# Link first Node to second node
+e1.next= e2
+# Link second Node to third node
+e2.next= e3
+list.listprint()  
+print("Printing after insert at the begining")
+list.AtBegining("0")
+list.listprint()
+print("Printing after insert at the End")
+list.AtEnd("4")
+list.listprint()
+
+=====================================================================================
+
+Insering node after the given  node:
+====================================
+
+class Node:
+    def __init__(self, dataval=None):
+      self.data = dataval
+      self.next = None
+class SLinkedList:
+    def __init__(self):
+      self.head = None
+    def listprint(self):
+      a = self.head
+      while a is not None:
+         print (a.data)
+         a=a.next
+    def AtBegining(self,data):
+      nb = Node(data)
+      # Update the new nodes next val to existing node
+      nb.next = self.head
+      self.head = nb
+
+    def Inbetween(self,mn,data):
+         nn = Node(data)
+         nn.next = mn.next
+         mn.next= nn
+
+    def AtEnd(self, data):
+      ne=Node(data)
+      last = self.head
+      while(last.next):
+         last = last.next
+      last.next=ne
+list = SLinkedList()
+e1 = Node("1")
+list.head=e1
+e2 = Node("2")
+e3 = Node("3")
+# Link first Node to second node
+e1.next= e2
+# Link second Node to third node
+e2.next= e3
+list.listprint()  
+print("Printing after insert at the begining")
+list.AtBegining("0")
+list.listprint()
+print("Printing after insert at the End")
+list.AtEnd("4")
+list.listprint()
+print("Printing after inserting ")
+list.Inbetween(e3,"2.5")
+list.listprint()
+
+================================================================================================================
+Updating Node in a Singly Linked List 
+======================================
+
+A Singly Linked List (SLL) consists of nodes where each node has:
+
+Data (value)
+
+Pointer to the next node
+
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class SinglyLinkedList:
+    def __init__(self):
+        self.head = None
+
+    # Insert at the end
+    def append(self, data):
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+            return
+        temp = self.head
+        while temp.next:
+            temp = temp.next
+        temp.next = new_node
+
+    # Update a node's value
+    def update(self, old_value, new_value):
+        temp = self.head
+        while temp:
+            if temp.data == old_value:
+                temp.data = new_value
+                return
+            temp = temp.next
+        print(f"Value {old_value} not found in list.")
+
+    
+
+    # Print the linked list
+    def print_list(self):
+        temp = self.head
+        while temp:
+            print(temp.data, end=" -> ")
+            temp = temp.next
+        print("None")
+
+# Example Usage
+sll = SinglyLinkedList()
+sll.append(10)
+sll.append(20)
+sll.append(30)
+sll.append(40)
+
+print("Original List:")
+sll.print_list()
+
+sll.update(20, 25)
+print("\nAfter Updating 20 to 25:")
+sll.print_list()
+
+==========================================================================================
+
+Assignment-1 :
+
+create linked list with nodes  with data 10 ,20 , 30 and 40.
+
+we need to add a new node after given node , lets say 35 after 30
+
+data must be obtained from console , we must add new node after given the node
+
+lets say
+
+  10  20   30   40   50
+
+  read value from console lets say x=30 and new data node with data 35
+
+ so new list is
+
+  10  20  30   35  40  50
+
+==============================Break time 3.10 pm to 3.25 pm===========================================================
+
+Tree :
+
+
+
+Tomorrow 
+
+1.  deleting a node from the linked list
+
+2.  Doubly  linked list [ node , dll, insert , insertAtbeg , insertAtEnd, insertBetween , update , delete a node ]
+
+3.  Cicular Linked List 
+
+
+Binary Tree:
+
+A binary tree is a tree data structure in which each parent node can have at most two children. 
+
+Each node of a binary tree consists of three items:
+
+data item
+
+address of left child
+
+address of right child
+
+Traversal  of a binary Tree: [Visting all nodes of a Binary Tree can be done in three ways , they  are given  below]
+
+1.Preorder
+2.Inorder
+3.Postorder
+
+
+=====================================================================================================================
+
+we can start 3.55 pm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A Doubly Linked List (DLL) is a type of linked list where each node has two pointers:
+
+One pointing to the next node in the sequence.
+
+One pointing to the previous node in the sequence.
+
+Implementation of a Doubly Linked List in Python:
+
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+
+    # Insert at the end
+    def append(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+            return
+        temp = self.head
+        while temp.next:
+            temp = temp.next
+        temp.next = new_node
+        new_node.prev = temp
+
+   
+# Example Usage
+dll = DoublyLinkedList()
+dll.append(10)
+dll.append(20)
+dll.append(30)
+print("Forward Traversal:")
+dll.print_forward()
+==================================================================================================
+
+
+=====================================================================================================
+
+
+
+
+
+
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+
+    # Insert at the end
+    def append(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+            return
+        temp = self.head
+        while temp.next:
+            temp = temp.next
+        temp.next = new_node
+        new_node.prev = temp
+
+    # Insert at the beginning
+    def prepend(self, data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+            return
+        new_node.next = self.head
+        self.head.prev = new_node
+        self.head = new_node
+
+        # Print list forward
+    def print_forward(self):
+        temp = self.head
+        while temp:
+            print(temp.data, end="  ")
+            temp = temp.next
+        print("None")
+
+    # Print list backward
+    def print_backward(self):
+        temp = self.head
+        if temp is None:
+            return
+        while temp.next:  # Move to the last node
+            temp = temp.next
+        while temp:  # Traverse backward
+            print(temp.data, end=" <-> ")
+            temp = temp.prev
+        print("None")
+
+
+# Example Usage
+dll = DoublyLinkedList()
+dll.append(10)
+dll.append(20)
+dll.append(30)
+dll.prepend(5)
+
+print("\nForward Traversal:\n")
+dll.print_forward()
+
+print("Backward Traversal:")
+dll.print_backward()
+
+===============================================================================================================
+
+A Circular Linked List (CLL) is a variation of a linked list where the last node points back to the first node,
+
+forming a loop. There are two types:
+
+Singly Circular Linked List: Each node has a pointer to the next node, and the last node points back to the first node.
+
+Doubly Circular Linked List: Each node has pointers to both the next and previous nodes, and the last node connects back to the first.
+
+
+circular Linked List:
+
+Key Features of Circular Linked List
+
+✅ Efficient Traversal: No need to check for None, as it loops back.
+
+✅ Good for Buffer Management: Used in CPU scheduling, multimedia apps, etc.
+
+✅ Insertion and Deletion are O(1) at the head compared to O(n) in arrays.
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class CircularLinkedList:
+    def __init__(self):
+        self.head = None
+
+
+============================================================================================================================
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+class BinaryTree:
+    def __init__(self, root):
+        self.root = Node(root)
+
+    # Preorder Traversal (Root -> Left -> Right)
+    def preorder(self, node):
+        if node:
+            print(node.data, end=" ")  # Visit root
+            self.preorder(node.left)   # Recur on left subtree
+            self.preorder(node.right)  # Recur on right subtree
+
+    # Inorder Traversal (Left -> Root -> Right)
+    def inorder(self, node):
+        if node:
+            self.inorder(node.left)    # Recur on left subtree
+            print(node.data, end=" ")  # Visit root
+            self.inorder(node.right)   # Recur on right subtree
+
+    # Postorder Traversal (Left -> Right -> Root)
+    def postorder(self, node):
+        if node:
+            self.postorder(node.left)  # Recur on left subtree
+            self.postorder(node.right) # Recur on right subtree
+            print(node.data, end=" ")  # Visit root
+
+# Example Usage
+tree = BinaryTree(1)
+tree.root.left = Node(2)
+tree.root.right = Node(3)
+tree.root.left.left = Node(4)
+tree.root.left.right = Node(5)
+tree.root.right.left = Node(6)
+tree.root.right.right = Node(7)
+
+print("Preorder Traversal:")
+tree.preorder(tree.root)
+
+print("\nInorder Traversal:")
+tree.inorder(tree.root)
+
+print("\nPostorder Traversal:")
+tree.postorder(tree.root)
+
+==============================================================
+
+Preorder Traversal:
+1 2 4 5 3 6 7 
+
+Inorder Traversal:
+4 2 5 1 6 3 7 
+
+Postorder Traversal:
+4 5 2 6 7 3 1
+
+============================================================================================================================
+
+
+https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/BinaryTreeTraversal.html
+
+==========================================================================================================================
+

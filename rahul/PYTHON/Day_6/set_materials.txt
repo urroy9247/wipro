@@ -1,0 +1,15 @@
+remove()	
+To remove a single item from a set. This method will take one parameter, which is the item to be removed from the set. 
+Throws a keyerror if an item not present in the original set
+
+
+discard()	
+To remove a single item that may or may not be present in the set. This method also takes one parameter, which is the item to be removed. If that item is present, it will remove it. 
+It will not throw any error if it is not present.
+
+pop()	
+To remove any random item from a set
+
+clear()	
+To remove all items from the Set. The output will be an empty set
+del set	Delete the entire set

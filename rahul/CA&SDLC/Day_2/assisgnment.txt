@@ -1,0 +1,58 @@
+------------------------------------day@2---------------------------------------
+1.Describe the difference between Level 1 (L1), Level 2 (L2), and Level 3 (L3) caches in terms of location, size, and speed.
+
+2. Explain what is meant by a cache miss and list the three main types of cache misses.
+
+3. Differentiate between data-level parallelism (DLP) and task-level parallelism (TLP).(with example)
+
+4. Choose any two smartphones from different manufacturers.
+Compare their processors in terms of architecture (e.g., ARM), clock speed, number of cores, and energy efficiency.Discuss how these characteristics influence the smartphone’s performance and battery life.
+
+5. Design a simple  flowchart demonstrating how a CPU executes instructions (fetch-decode-execute cycle).
+
+------------------------------------------------ANSWERS-------------------------------
+
+1. Differences Between Level 1 (L1), Level 2 (L2), and Level 3 (L3) Caches
+Aspect	Level 1 (L1)	Level 2 (L2)	Level 3 (L3)
+Location	Closest to the CPU core	Between L1 and L3 (shared or per-core)	Shared among multiple cores
+Size	Smallest (16-128 KB)	Moderate (128 KB-2 MB)	Largest (2-32 MB)
+Speed	Fastest (low latency)	Slower than L1	Slowest among all caches
+Purpose	Stores frequently used data and instructions per core.	Acts as a bridge, storing data not in L1.	Stores shared data for all cores.
+
+2. Cache Miss and Its Types
+A cache miss occurs when the CPU requests data that is not present in the cache, requiring a fetch from lower memory levels (e.g., RAM or storage).
+Three Main Types of Cache Misses:
+
+Compulsory Miss: Occurs when data is accessed for the first time and is not in the cache.
+
+Conflict Miss: Happens due to limited cache associativity, where multiple memory blocks map to the same cache line.
+
+Capacity Miss: Arises when the cache is too small to hold all the required data, leading to data eviction.
+
+3. Data-Level Parallelism (DLP) vs. Task-Level Parallelism (TLP)
+Aspect	Data-Level Parallelism (DLP)	Task-Level Parallelism (TLP)
+Definition	Parallelism achieved by performing the same operation on multiple pieces of data simultaneously.	Parallelism by executing independent tasks or threads simultaneously.
+Example	Vectorized operations in GPUs, e.g., adding two arrays.	Multithreading in CPUs, e.g., running a web server handling multiple client requests.
+Use Cases	Suitable for scientific computing, machine learning, graphics rendering.	Suitable for multitasking, server applications, and task scheduling.
+
+4. Comparison of Smartphone Processors
+Example: Apple A17 Pro (iPhone 15 Pro) vs. Qualcomm Snapdragon 8 Gen 3 (Android flagship devices)
+Aspect	Apple A17 Pro	Snapdragon 8 Gen 3
+Architecture	ARM (customized by Apple)	ARM (standard design with optimizations)
+Clock Speed	~3.77 GHz peak	~3.3 GHz peak
+Number of Cores	6 cores (2 high-performance + 4 efficiency)	8 cores (1 prime + 5 performance + 2 efficiency)
+Energy Efficiency	Industry-leading efficiency due to TSMC 3nm process.	Competitive efficiency with TSMC 4nm process.
+Performance and Battery Life Impact:
+Apple’s tightly integrated hardware-software optimizations lead to superior single-core performance and energy efficiency, ideal for smooth multitasking and gaming.
+Snapdragon offers better multitasking and gaming experiences on Android devices, with more cores and slightly higher power consumption.
+
+5. Flowchart for CPU Fetch-Decode-Execute Cycle
+The steps include:
+
+Fetch Instruction: Retrieve the next instruction from memory using the program counter.
+Decode Instruction: Interpret the instruction to understand the operation and operands.
+Memory Access: Access required data from memory if applicable.
+Execute Instruction: Perform the operation specified by the instruction.
+Write Back: Store results in registers or memory if required.
+Update Program Counter: Increment the program counter to point to the next instruction.
+Check for Next Instruction: If there is another instruction, repeat from step 1; otherwise, end.

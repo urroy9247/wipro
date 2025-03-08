@@ -1,0 +1,666 @@
+Topics : File Format Basics/Layout - JSON, XML, CSV, XLS ,Understanding different file formats 
+
+         Reading and writing JSON, XML, CSV, XLS files
+
+===========================================================================================
+Json : JavaScript Object Notation
+
+Data can be stored in json format:
+
+json file  can be opened thru NotePad.
+
+suppose we have table Emp from oracle .
+
+can we open Emp table thru NotePad . Defintely not.
+
+===========================================================================================
+
+Reading and Writing JSON Files in Python:
+
+
+Python provides the json module to handle JSON (JavaScript Object Notation)  data, 
+
+which is widely used for storing and exchanging data. 
+
+=======================================================================================
+1. Writing JSON to a File:
+
+we can  convert a Python dictionary to a JSON file using json.dump().
+
+Example: Writing JSON
+
+import json
+
+data = {
+    "name": "Alice",
+    "age": 25,
+    "city": "New York"
+}
+
+# Writing JSON to a file
+
+with open("data.json", "w") as file:
+
+    json.dump(data, file, indent=4)   # 'indent=4'   makes it readable
+
+
+This will create a data.json file 
+=============================================================================================
+# json.load(file) → Read JSON from a file.
+
+2. Reading JSON from a File
+
+You can read JSON from a file and convert it into a Python dictionary using json.load().
+
+Example: Reading JSON
+
+import json
+
+with open("data.json", "r") as file:
+    loaded_data = json.load(file)
+
+print(loaded_data)
+===========================================================================================
+
+Appending Data to an Existing JSON File
+
+
+with open("data.json", "r") as file:
+    existing_data = json.load(file)
+
+existing_data["email"] = "alice@example.com"  # Modify or add data
+
+with open("data.json", "w") as file:
+    json.dump(existing_data, file, indent=4)
+
+=========================================================================================
+json.dump(obj, file) → Write JSON to a file.
+json.load(file) → Read JSON from a file.
+json.dumps(obj) → Convert Python object to JSON string.
+json.loads(json_string) → Convert JSON string to Python object.
+=========================================================================================
+
+Difference Between JSON and XML Data:
+
+Both JSON (JavaScript Object Notation) and XML (eXtensible Markup Language) are widely 
+
+used formats for storing and exchanging data. However, they have key differences.
+
+
+Structure & Readability
+
+Feature			JSON				XML
+
+Syntax			Uses key-value pairs		Uses tags and attributes
+
+Readability		More human-readable		More verbose and harder to read
+
+Data Representation	Uses objects and arrays		Uses nested elements
+
+Json.data
+
+{
+  "person": {
+    "name": "Alice",
+    "age": 25,
+    "city": "New York"
+  }
+}
+
+
+xml data:
+
+<person>
+  <name>Alice</name>
+  <age>25</age>
+  <city>New York</city>
+</person>
+
+================================================================================
+
+Reading and Writing XML Files in Python
+
+Python provides several libraries for handling XML data, such as:
+
+xml.etree.ElementTree (built-in)
+
+lxml (third-party, more powerful)
+
+xml.dom.minidom (for pretty-printing)
+
+
+1. Writing XML to a File
+
+You can create and write XML using xml.etree.ElementTree.
+
+Example: Writing XML
+
+
+import xml.etree.ElementTree as ET
+
+# Create the root element
+root = ET.Element("person")
+
+# Create child elements
+name = ET.SubElement(root, "name")
+name.text = "Alice"
+
+age = ET.SubElement(root, "age")
+age.text = "25"
+
+city = ET.SubElement(root, "city")
+city.text = "New York"
+
+# Convert the tree to a string
+tree = ET.ElementTree(root)
+with open("data.xml", "wb") as file:
+    tree.write(file, encoding="utf-8", xml_declaration=True)
+
+=======================================================================
+Generated xml File:
+
+<?xml version='1.0' encoding='utf-8'?>
+<person>
+    <name>Alice</name>
+    <age>25</age>
+    <city>New York</city>
+</person>
+
+==================================break 10.40 am to 10.55 am=========================================
+
+2. Reading XML from a File:
+
+You can parse an XML file and extract data using ET.parse().
+
+Example: Reading XML
+
+import xml.etree.ElementTree as ET
+
+# Read and parse the XML file
+tree = ET.parse("data.xml")
+root = tree.getroot()
+
+# Extract data
+for child in root:
+    print(f"{child.tag}: {child.text}")
+
+===========================================================================
+
+3. Modifying an XML File
+
+You can update an existing XML file by modifying 
+
+import xml.etree.ElementTree as ET
+
+tree = ET.parse("data.xml")
+root = tree.getroot()
+
+# Update age
+for elem in root.iter("age"):
+    elem.text = "26"
+
+# Save changes
+tree.write("data.xml", encoding="utf-8", xml_declaration=True)
+
+===========================================================================
+
+Pretty-Printing XML:
+
+By default, ElementTree does not format XML nicely. 
+
+You can use xml.dom.minidom to make it readable.
+
+import xml.dom.minidom
+
+tree = ET.parse("data.xml")
+
+xml_str = ET.tostring(tree.getroot(), encoding="utf-8").decode()
+
+pretty_xml = xml.dom.minidom.parseString(xml_str).toprettyxml(indent="  ")
+
+# Save to file
+
+with open("pretty_data.xml", "w") as file:
+    file.write(pretty_xml)
+
+print(pretty_xml)  # Print formatted XML
+
+=================================================================================
+
+
+Writing Nested XML:
+
+For more complex structures with attributes:
+
+root = ET.Element("people")
+
+person = ET.SubElement(root, "person", attrib={"id": "1"})
+ET.SubElement(person, "name").text = "Alice"
+ET.SubElement(person, "age").text = "25"
+
+person2 = ET.SubElement(root, "person", attrib={"id": "2"})
+ET.SubElement(person2, "name").text = "Bob"
+ET.SubElement(person2, "age").text = "30"
+
+tree = ET.ElementTree(root)
+tree.write("nested_data.xml", encoding="utf-8", xml_declaration=True)
+===================================================================================
+Summary
+
+ET.Element() → Creates an XML element.
+
+ET.SubElement() → Adds child elements.
+
+ET.ElementTree(root).write(file) → Writes XML to a file.
+
+ET.parse(file) → Reads an XML file.
+
+xml.dom.minidom → Formats XML for readability.
+=================================================================================
+
+pip install  pandas -reading dataframes and writing data frames
+
+Dataframe is simiar to table in RDBMS , but it is stored in memory , having rows and columns
+
+pip install  numpy
+
+1. Writing CSV to a File
+
+You can write a CSV file using csv.writer().
+
+Example: Writing a CSV File
+
+import csv
+
+# Data to write
+data = [
+    ["Name", "Age", "City"],
+    ["Alice", 25, "New York"],
+    ["Bob", 30, "Los Angeles"],
+    ["Charlie", 35, "Chicago"]
+]
+
+# Writing to a CSV file
+with open("data.csv", "w", newline="") as file:
+    writer = csv.writer(file)
+    writer.writerows(data)  # Write multiple rows
+
+================================================================================
+
+2. Reading CSV from a File
+
+You can read a CSV file using csv.reader().
+
+Example: Reading a CSV File
+
+with open("data.csv", "r") as file:
+
+    reader = csv.reader(file)
+
+    for row in reader:
+
+        print(row)
+
+==============================================================================
+
+3. Writing CSV with Dictionary (DictWriter)
+
+If you prefer working with dictionaries:
+
+with open("data_dict.csv", "w", newline="") as file:
+
+    fieldnames = ["Name", "Age", "City"]
+
+    writer = csv.DictWriter(file, fieldnames=fieldnames)
+
+    writer.writeheader()  # Write header row
+
+    writer.writerow({"Name": "Alice", "Age": 25, "City": "New York"})
+
+    writer.writerow({"Name": "Bob", "Age": 30, "City": "Los Angeles"})
+
+==============================================================================
+
+Using Pandas for CSV Handling
+
+Pandas provides more flexibility.
+
+Writing CSV with Pandas
+
+import pandas as pd
+
+data = {
+    "Name": ["Alice", "Bob", "Charlie"],
+    "Age": [25, 30, 35],
+    "City": ["New York", "Los Angeles", "Chicago"]
+}
+
+df = pd.DataFrame(data)
+
+df.to_csv("data.csv", index=False)  # Save without index
+===================================================================================
+
+Reading CSV with Pandas
+
+df = pd.read_csv("pandas_data.csv")
+print(df)
+
+================================================================================
+
+Pandas DataFrame in Python
+
+A DataFrame is a 2D table-like data structure in pandas, similar to an Excel spreadsheet or SQL table. 
+
+It allows easy manipulation and analysis of structured data.
+
+
+
+import pandas as pd
+
+# Creating a DataFrame from a dictionary
+
+data = {
+    "Name": ["Alice", "Bob", "Charlie"],
+    "Age": [25, 30, 35],
+    "City": ["New York", "Los Angeles", "Chicago"]
+}
+
+df = pd.DataFrame(data)
+print(df)
+
+===============================================================================
+
+From a List of Lists:
+
+
+import pandas as pd
+
+data = [
+    ["Alice", 25, "New York" , 50000],
+    ["Bob", 30, "Los Angeles",45000],
+    ["Charlie", 35, "Chicago" , 10000]
+]
+
+df = pd.DataFrame(data, columns=["Name", "Age", "City","Salary"])
+
+df.to_csv("emp.csv", index=False)  # Save without index
+
+
+
+====================================================================
+
+
+import pandas as pd
+
+data = [
+    ["Alice", 25, "New York" , 50000],
+    ["Bob", 30, "Los Angeles",45000],
+    ["Charlie", 35, "Chicago" , 10000]
+]
+
+df = pd.DataFrame(data, columns=["Name", "Age", "City","Salary"])
+
+df.to_csv("emp.csv", index=False)  # Save without index
+
+================================================================
+reading this csv file using pandas
+
+ 
+import pandas as pd
+
+df = pd.read_csv("emp.csv")       # Reads CSV file into a DataFrame
+print(df)
+print("Columns " , df.columns)
+print("Size    " , df.shape)  # how many rows and columns
+
+print(df["Name"])  # Access single column
+
+print(df[ ["Name", "Age"]  ])  # Access multiple columns
+
+
+print(df.loc[0])        # Access first row using label-based indexing
+
+print(df.iloc[1])     # Access second row using index-based position
+
+print(df[df["Age"] > 25])     # Get rows where Age > 25
+
+print(df[df["Salary"] >40000) 
+
+df["Age"] = df["Age"] + 1  # Increment all ages by 1
+
+print(df)
+
+
+print(df.describe())          # Summary statistics
+print(df.mean())                   # Column-wise mean
+print(df["Age"].max())      # Max age
+
+
+df_sorted = df.sort_values(by="Age", ascending=False)  # Sort by Age (Descending)
+print(df_sorted)
+
+df_grouped = df.groupby("City")["Age"].mean()
+print(df_grouped)
+===================================================================================
+
+
+Summary
+Task	Code
+Create DataFrame from Dictionary	pd.DataFrame(data)
+Read CSV File	pd.read_csv("file.csv")
+Access Column	df["Column"]
+Filter Data	df[df["Age"] > 25]
+Add Column	df["Salary"] = [50000, 60000, 70000]
+Remove Column	df.drop(columns=["Salary"])
+Save to CSV	df.to_csv("file.csv")
+
+
+Summary
+
+csv.writer() → Writes CSV data.
+
+csv.reader() → Reads CSV data.
+
+csv.DictWriter() → Writes CSV using dictionaries.
+
+csv.DictReader() → Reads CSV into dictionaries.
+
+pandas.read_csv() → Reads CSV into a Pandas DataFrame.
+
+pandas.to_csv() → Writes a Pandas DataFrame to CSV.
+
+==============================================================================
+
+Reading and Writing XLS (Excel) Files in Python
+
+Python provides libraries like pandas and openpyxl to handle Excel files (.xls and .xlsx)
+
+
+1. Installing Required Libraries
+
+If not already installed, install pandas and openpyxl using:
+
+pip install pandas openpyxl xlrd
+
+Writing Data to an Excel File
+
+You can write an Excel file using pandas.DataFrame.to_excel().
+
+============================================================================
+Example: Writing to an Excel File
+
+
+import pandas as pd
+
+# Create sample data
+
+data = {
+    "Name": ["Alice", "Bob", "Charlie"],
+    "Age": [25, 30, 35],
+    "City": ["New York", "Los Angeles", "Chicago"]
+}
+
+df = pd.DataFrame(data)
+
+# Write to Excel file (without index)
+
+df.to_excel("data.xlsx", index=False, sheet_name="Sheet1")
+
+=====================================================================================
+
+3. Reading an Excel File
+
+You can read an Excel file using pandas.read_excel().
+
+Example: Reading from an Excel File
+
+df = pd.read_excel("data.xlsx")
+
+print(df)
+
+======================================================================================
+
+4. Writing to Multiple Sheets
+
+You can write data to multiple sheets in an Excel file using ExcelWriter.
+
+with pd.ExcelWriter("multi_sheet.xlsx") as writer:
+    df.to_excel(writer, sheet_name="People", index=False)
+    df.to_excel(writer, sheet_name="Contacts", index=False)
+
+
+===========================================================================================
+
+Reading from a Specific Sheet
+
+If your Excel file has multiple sheets, you can specify the sheet name.
+
+df = pd.read_excel("multi_sheet.xlsx", sheet_name="People")
+
+print(df)
+
+=========================================================================================
+
+Using openpyxl to Modify an Excel File
+
+If you need to update an existing Excel file without overwriting it, use openpyxl.
+
+
+from openpyxl import load_workbook
+
+# Load existing workbook
+wb = load_workbook("data.xlsx")
+sheet = wb.active
+
+# Modify a cell
+sheet["B2"] = 26  # Change age of Alice to 26
+
+# Save changes
+wb.save("data.xlsx")
+=============================================================================================
+
+ Reading and Writing .xls Files (Legacy Format)
+
+For older Excel files (.xls), use xlrd for reading and xlwt for writing.
+
+Reading .xls File
+
+df = pd.read_excel("data.xls", engine="xlrd")
+print(df)
+
+================================================================================================
+
+import xlwt
+
+# Create a workbook and add a sheet
+workbook = xlwt.Workbook()
+sheet = workbook.add_sheet("Sheet1")
+
+# Write data
+sheet.write(0, 0, "Name")
+sheet.write(0, 1, "Age")
+sheet.write(0, 2, "City")
+sheet.write(1, 0, "Alice")
+sheet.write(1, 1, 25)
+sheet.write(1, 2, "New York")
+
+# Save as .xls
+workbook.save("data.xls")
+==================================================================================================
+
+
+Task			Library		Function
+
+Write Excel file		pandas		df.to_excel("file.xlsx")
+
+Read Excel file		pandas		df = pd.read_excel("file.xlsx")
+
+Write Multiple Sheets	pandas		ExcelWriter
+
+Modify Excel file		openpyxl	load_workbook("file.xlsx")
+
+Read .xls file		pandas + xlrd	pd.read_excel("file.xls", engine="xlrd")
+
+Write .xls file		xlwt		workbook.save("file.xls")
+=======================================================================================================
+
+  Break Time 3.25 pm to 3.40 pm
+
+=====================================================================================================
+
+
+import pandas as pd
+
+df= pd.read_csv("data.csv")
+
+print(type(df))
+
+print(df.head())  # default it displays the top 5 rows
+
+print(df.tail())  # display last 5 rows 
+
+print(df.info())
+
+print(df.describe())
+
+print(df.isnull().sum())
+
+print(df.columns)
+
+print(df.shape)
+
+
+Assignment-1
+
+1. List rows  whose calories above 400
+
+2. List rows  whose calories between 400 and 450
+
+3. list columns Maxpluse and calories
+
+4. List rows in the ascending order of calories
+
+5. List rows whose Maxpulse are 120 and calories above 400.
+
+6. count rows whose Maxpulse are 120 and calories above 400.
+
+
+join of two data frames.
+
+inner  join
+left   join
+right  join
+self   join
+
+
+https://www.w3schools.com/python/pandas/pandas_cleaning_duplicates.asp
+
+===============================================================================================
+
+
+
+
+
+
+
+

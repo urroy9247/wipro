@@ -1,0 +1,688 @@
+Day-4:
+
+Date :6th Feb 2025
+
+Exceptional Handling
+
+======================================================================
+Regular Expression
+
+ It is used to match a pattern against a string .
+
+ A RegEx, or Regular Expression, is a sequence of characters that forms a search pattern.
+
+ RegEx can be used to check if a string contains the specified search pattern.
+
+
+RegEx Module
+
+Python has a built-in package called re, which can be used to work with Regular Expressions.
+
+Import the re module
+
+Pancard
+
+ARQPN 1929 B [ first 5 characters followed by 4 digits length  and finally one alphabt 
+
+
+
+Adharcard
+
+credit card
+
+AmericanExpress
+
+if Palm Oil Seed has got disease ,Its dna structure has got this pattern   
+
+[ASJDBASDSA121323]
+
+DNA structure of palmoil
+
+40 pages
+
+sdfopsdjf[spkfpasddsjsdafksdsd
+sdfsdfp[sdfkadsfl
+sfl
+dsfsdfjsd[fkdspf[sdpfsadpkf[sadpf[ads
+
+
+import re  
+
+
+^    : To match at the begining
+
+$    : To match at the end
+
+.    : Any character (except newline character) 
+
+[]   :	A set of characters
+
+{}   :	Exactly the specified number of occurrences
+
+*    :	Zero , one or  more occurrences  >=0
+
++    :  1 or more occurrences            >=1
+
+?    :  0 or 1                          
+
+
+==============================================================
+
+import re
+
+txt = "hello planet"
+
+#Check if the string starts with 'hello':
+
+x = re.search("^hello", txt)   # search method returns true if match , otherwise false
+
+if x:
+  print("Yes, the string starts with 'hello'")
+else:
+  print("No match")
+===========================================================================================
+import re
+txt = "Hi hello planet"
+#Check if the string starts with 'hello':
+x = re.search("^Hi hello", txt)   # search method returns true if match , otherwise false
+if x:
+  print("Yes, the string starts with 'hello'")
+else:
+  print("No match")
+======================================================================================
+import re
+txt = "hello planet"
+#Check if the string starts with 'hello':
+x = re.search("^hello", txt)   
+# search method returns true if match , otherwise false
+# ^ is used to match a string at the begining
+
+if x:
+  print("Yes, the string starts with 'hello'")
+else:
+  print("No match")
+=======================================================================================
+import re
+txt = "Muruga doss"
+#Check if the string if ends with doss :
+# $ symbol is used to match at the end
+x = re.search("doss$", txt)   
+# search method returns true if match , otherwise false
+if x:
+  print("Yes, the string ends  doss")
+else:
+  print("No  ")
+=======================================================================================
+import re
+txt = "welcome helo planet"
+#Search for a sequence that starts with "he", followed by two (any) characters,
+#and an "o":
+x = re.search("he..o", txt)
+if x:
+   print("Match")
+else:
+   print("No match")    
+========================================================================================
+
+The valid PAN Card number must satisfy the following conditions: 
+
+It should be ten characters long.
+
+The first five characters should be any upper case alphabets.
+
+The next four-characters should be any number from 0 to 9.
+
+The last(tenth) character should be any upper case alphabet.
+
+It should not contain any white spaces.
+
+
+import re
+panno=input("Enter your pandcard no without spaces ") 
+'''
+The valid PAN Card number must satisfy the following conditions: 
+It should be ten characters long.
+The first five characters should be any upper case alphabets.
+The next four-characters should be any number from 0 to 9.
+The last(tenth) character should be any upper case alphabet.
+It should not contain any white spaces.
+'''
+x = re.search("[A-Z]{5}[0-9]{4}[A-Z]{1}", panno)
+
+if x:
+   print("valid pandcard      ")
+else:
+   print("Invalid pancard     ")
+
+
+==================================================================================
+
+import re
+panno=input("Enter your pandcard no without spaces ") 
+'''
+The valid PAN Card number must satisfy the following conditions: 
+It should be ten characters long.
+The first five characters should be any upper case alphabets.
+The next four-characters should be any number from 0 to 9.
+The last(tenth) character should be any upper case alphabet.
+It  contains any white spaces.
+'''
+x = re.search("[A-Z]{5}\\s[0-9]{4}\\s[A-Z]{1}", panno)
+
+if x:
+   print("valid pandcard      ")
+else:
+   print("Invalid pancard     ")
+=====================================================================================
+import re
+
+panno=input("Enter your pandcard no without spaces ") 
+
+'''
+
+The valid PAN Card number must satisfy the following conditions: 
+
+It should be ten characters long.
+
+The first five characters should be any upper case alphabets.
+
+The next four-characters should be any number from 0 to 9.
+
+The last(tenth) character should be any upper case alphabet.
+
+It  contains - 
+
+'''
+x = re.search("[A-Z]{5}-[0-9]{4}-[A-Z]{1}", panno)
+
+if x:
+   print("valid pandcard      ")
+else:
+   print("Invalid pancard     ")
+
+=======================================================================================
+
+Adharcard validation :
+
+How to check Aadhaar number is valid or not using Regular Expression
+
+The valid Aadhaar number must satisfy the following conditions: 
+
+It should have 12 digits.
+It should not start with 0 and 1.
+It should not contain any alphabet and special characters.
+It should have white space after every 4 digits.
+
+import re
+adharno=input("Enter adhar no")
+'''
+It should have 12 digits.
+It should not start with 0 and 1.
+It should not contain any alphabet and special characters.
+It should have white space after every 4 digits.
+'''
+x=re.search("[2-9][0-9]{3}\\s[0-9]{4}\\s[0-9]{4}",adharno)
+if x:
+    print("valid Aharcard no")
+else:
+    print("Invalid Adharcard no")
+
+====================================================================================================
+
+import re
+
+txt = "hello planet"
+
+#Search for a sequence that starts with "he", followed by 1 or more  (any) characters, and an "o":
+
+x = re.search("he.+o", txt)
+
+if x:
+   print("There is a match ")
+else:
+   print("There is no match  ")
+
+=======================================================================================================
+
+?	Zero or one occurrences
+
+import re
+txt = "helo planet"
+#Search for a sequence that starts with "he", followed by 0 or 1  (any) character, 
+# and an "o":
+x = re.search("he.?o", txt)
+if x:
+   print("There is a match")
+else:
+   print("No Match  ")
+
+========================================================================================================
+
+|	Either or
+
+
+import re
+txt = "The rain in Spain falls mainly in the stays"
+#Check if the string contains either "falls" or "stays":
+x = re.findall("falls|stays", txt)
+print(x)
+if x:
+  print("Yes, there is at least one match!")
+else:
+  print("No match")
+
+============================Break time 11.00 am to 11.15 am=================================================
+
+Command line arguments
+
+
+The arguments that are given after the name of the program in the command line shell of the operating system
+
+ are known as Command Line Arguments.
+
+sys.argv which is a simple list structure. It’s main purpose are:
+
+It is a list of command line arguments.
+
+len(sys.argv) provides the number of command line arguments.
+
+sys.argv[0] is the name of the current Python script. 
+
+
+wiprolabs>py day1-1.py  4 5 6 7
+
+sys.argv[0] is day1-1.py
+sys.argv[1] is 4
+==========================================================
+
+# Python program to demonstrate
+# command line arguments
+
+
+import sys
+
+# total arguments
+n = len(sys.argv)
+print("Total arguments passed:", n)
+
+# Arguments passed
+print("\nName of Python script:", sys.argv[0])
+
+print("\nArguments passed:", end = " ")
+for i in range(1, n):
+    print(sys.argv[i], end = " ")
+
+
+    
+# Addition of numbers
+Sum = 0
+# Using argparse module
+for i in range(1, n):
+    Sum += int(sys.argv[i])
+    
+print("\n\nResult:", Sum)
+
+====================================================================================
+
+Task :
+
+Find the biggest of the arguments passed in the command line shell of the operating system
+
+Example  py Day4-3.py 12 45 67 9 8
+
+Ouput value :
+
+  Max is  : 67
+
+
+import sys
+# total arguments
+n = len(sys.argv)
+bigger=int(sys.argv[1])
+for i in range(2, n):
+    if bigger < int(sys.argv[i]):
+       bigger=int(sys.argv[i])
+print("\n\nBiggest :", bigger)
+===========================================================================================================
+
+Special Symbols Used for passing arguments in Python:
+
+*args (Non-Keyword Arguments)
+
+**kwargs (Keyword Arguments)
+
+
+In Python, *args and **kwargs are used to allow functions to accept an arbitrary number of arguments.
+
+These features provide great flexibility when designing functions that need to handle a varying number of inputs.
+
+# *args example
+
+def fun(*args):
+    return sum(args)
+
+print(fun(1, 2, 3, 4)) 
+print(fun(5, 10, 15))   
+
+===============================================================================
+
+# **kwargs example
+
+def fun(**kwargs):
+
+    for k, val in kwargs.items():
+        print(k, val)
+
+fun(a=1, b=2, c=3)
+
+=====================================================================================
+
+Set :
+
+it is a collection unordered set of elements.
+
+it does not allow duplicates
+
+elements are placed in  {  }
+
+weekdays={"Mon" ,"Tue" ,"Wed" ,"Thu" ,"Fri" }
+print(weekdays)
+weekends={"sat" ,"sun" ,"sat"}
+print(weekends)
+print(type(weekdays))
+
+=======================================================================================
+
+Union operation on Python Sets
+
+Two sets can be merged using union() function or | operator. 
+
+a={1,2,3,4}
+b={4,5,6}
+c=a.union(b)
+print(c)
+
+=============================================================
+
+a={1,2,3,4}
+b={4,5,6}
+c=a.union(b)  # union operator removes duplicates
+print(c)
+d =a | b    # union operator | removes duplicates
+print(d)
+
+===========================================================
+
+Intersection operation on Python Sets
+
+This can be done through intersection() or & operator.
+
+common elements are selected
+
+a={1,2,3,4}
+b={4,5,6}
+c=a.intersection(b)  # returns common elements 
+print(c)
+d =a & b             # returns common elements from both sets
+print(d)
+
+==============Lunch time 1.00 pm to 2.00 pm ==========================
+
+
+s1 – s2	the set of elements in s1 but not s2
+
+
+a={1,2,4,5}
+b={4,5,6}
+print(s1-s2)
+
+======================================================================
+
+s = set()  
+print("The length of set is:", len(s))
+
+# Adding element and tuple to the Set 
+s.add(8) 
+s.add(9) 
+print("The length of set is:", len(s))
+
+s.add((6, 7)) 
+print("The length of set is:", len(s))
+
+======================================================================
+
+Exceptional Handling - Error Handling - Debugging
+
+No one can claim that thier programs have zero errors.
+
+Each program has some bugs ,but not revelaed
+
+Example :
+
+IBM introduced main frame computers in late 1950's for their commericical applications
+
+it worked fine for 50 years 1960,1970,1980,1990 and late 1990s , they found that these machines will not work
+
+when year 2000 comes.
+
+The reason is they had date column dd--mm--yy
+
+01-01-00
+
+dd-mm-yyyy
+
+
+=======================================================================================
+
+our programs should not be terminated abnormally becaus of some bugs. 
+
+it should display proper error message and exits from the apps/s/w
+
+try :
+
+     block of statements to be executed . if any error
+
+     control is transfered into except block
+
+except :
+
+      block to handle the error
+
+else :
+
+      block of codes to be executed when there is no error:
+
+
+finally:
+
+      block of codes to be executed irrespective error or not
+
+=========================================================================================
+
+class and objects:
+
+class :
+
+It is a template 
+
+It is just like blueprint how does it look like
+
+It is an abstract defintion
+
+It contains data members and methods.
+
+Methods are executed on data members
+
+
+How to define class in  python
+
+class name must be like noun
+
+method name like adverb 
+
+int  x ;  declare x is a variable of type int
+   x=12;  define value 12 for x
+
+int x=12 ;
+
+============================================================================================================
+
+Lab 1 :
+
+class Person: 
+ 
+    def __init__(self, name, age):    # constructor is a method to initialize values 
+                                      # for the varibales at the time of creation
+                                      # self refers to current  object
+                                      # name and age are instance variables
+        self.name = name    
+        self.age = age  
+    
+    def greet(self):  
+        print("Hello, my name is " + self.name)  
+  
+# Create a new instance of the Person class and assign it to the variable person1  
+
+person1 = Person("Ayan", 25)  
+
+person1.greet()    
+
+======================================================================================================
+The self-parameter
+
+The self-parameter refers to the current instance of the class and accesses the class variables.
+
+We can use anything instead of self, but it must be the first parameter of any function which belongs to the class.
+
+
+class Person:  
+    company = "Wipro Bangalore"     # This is a class variable  
+  
+    def __init__(self, name, age):  
+
+        self.name = name    # This is an instance variable  
+        self.age = age  
+
+    def greet(self): 
+ 
+        print("Hello, my name is " + self.name) 
+        print("My age is          ", self.age)  
+        print("My company name    " , Person.company)
+
+person1 = Person("Ayan", 25)  
+person2 = Person("Bobby", 30)  
+person1.greet()
+person2.greet()
+
+==============================================================================================================
+class Circle:  
+    def __init__(self, rad):  
+         self.radius= rad  
+       
+    def findArea(self): 
+        area=3.14*self.radius*self.radius
+        print("Area of Circle " , area)
+        
+c1=Circle(5)
+c1.findArea()
+===================================================================================================================
+Assignment-1
+
+define a class Rectangle . Initialize width and breadth using constructor
+
+define two methos  findArea() and findCircum() to get area and circumference of rectangle.
+
+create an object say r1 with 5 and 6 as width and breadth.
+
+print its area and circumference
+
+============================================================================================================
+
+Task:
+
+create class staf with name  role , salary as instance variables. [ Role can be programmer, Developer etc ]
+def netSalry() based on salary and rules are given below
+hra=50% of basic
+cca = 25 % of basic
+totsalary = basic+hra+cca and create displayInfo() .
+
+The output is like this
+
+Name          :  ***************8
+Role          :  *********
+Salary        :  **********
+Hra           :  **********
+Cca           :  *********
+TotalSalary   :  *******
+==============================================break time 3.40 pm to 3.55 pm========================================
+
+Assignments
+
+a) An Adam number is a number for which the square of the number, when its digits are reversed and 
+
+is equal to the square of the number obtained by reversing the digits. For example the number 22 is an adam number because,
+
+the square of 22 is 484 and the reverse of 484 is also 484, So the reversed square and the square of the reversed number
+
+are equal thus making it an adam number.
+
+
+b) 
+
+Guessing Number Program :   
+
+You need to write a program that will generate a random number between 1 to 10 this number will have to be guessed 
+
+by the user and if they guess the number then print a message saying you guessed the number also print the number
+
+ of tries it took for the user to guess the number.
+
+Also give a limit of 5 guesses to the user if they don’t guess in 5 tries then print a message saying they 
+
+didn’t guess the number and print the actual number.
+
+
+Guess a number between 1 and 10: 1
+
+Your guess is too low you have 4 left
+
+Guess a number between 1 and 10: 3
+
+Your guess is too low you have 3 left
+
+Guess a number between 1 and 10: 9
+
+Your guess is too high you have 2 left
+
+Guess a number between 1 and 10: 9
+
+Your guess is too high you have 1 left
+
+Guess a number between 1 and 10: 9
+
+Your guess is too high you have 0 left
+
+You did not guess the number, The number was 5
+
+=============================================================================
+
+Count Number Of Zeros  for a given number  In Python 
+
+===========================================================================
+
+write python script to validate indian mobile phone nos
+
+===========================================================================
+
+
+Continuation of sets
+
+https://www.geeksforgeeks.org/sets-in-python/
+
+Exceptional handling
+
+Class and objects
+
+string formatting
+
+======================================================================================

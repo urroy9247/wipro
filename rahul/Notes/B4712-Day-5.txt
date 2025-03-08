@@ -1,0 +1,543 @@
+Day 5:
+
+Date : 7th Feb 2025
+
+Today:
+
+Continuation of classes and objects
+
+git and GitHub
+
+i give some 50 programs  based on what we covered , today night or Saturday morning
+
+
+class and objects:
+==================
+
+Python Constructor:
+
+A constructor is a special type of method (function) which is used to initialize the instance members of the class.
+
+
+It is used to create an object.
+
+Constructors can be of two types.
+
+a) Parameterized Constructor
+
+b) Non-parameterized Constructor
+
+
+Creating the constructor in python:
+===================================
+In Python, the method the __init__() simulates the constructor of the class. 
+
+This method is called when the class is instantiated. 
+
+It accepts the self-keyword as a first argument which allows accessing the attributes or method of the class.
+
+We can pass any number of arguments at the time of creating the class object,
+
+depending upon the __init__() definition. It is mostly used to initialize the class attributes. 
+
+Every class must have a constructor, even if it simply relies on the default constructor.
+
+Lab 1:
+
+class Employee: 
+ 
+    def __init__(self, name, id):  
+        self.id = id  
+        self.name = name  
+  
+    def display(self):  
+        print("\nID: %d \nName: %s" % (self.id, self.name))  
+  
+  
+emp1 = Employee("John", 101)  
+emp2 = Employee("David", 102)  
+  
+# accessing display() method to print employee 1 information  
+  
+emp1.display() 
+emp2.display()
+ 
+=================================================================================================
+Counting the number of objects of a class:
+
+The constructor is called automatically when we create the object of the class. Consider the following example.
+
+class Student:  
+  
+    count = 0          # count is a class variable 
+   
+    def __init__(self):    
+        Student.count = Student.count + 1   
+ 
+s1=Student()    
+s2=Student()    
+s3=Student()  
+  
+print("The number of students:",Student.count)  
+
+===================================================================================================== 
+
+Python Non-Parameterized Constructor:
+
+The non-parameterized constructor uses when we do not want to manipulate the value or the constructor
+
+that has only self as an argument. Consider the following example 
+
+class Student:  
+
+    # Constructor - non parameterized  
+
+    def __init__(self):  
+        print("This is non parametrized constructor") 
+ 
+    def show(self,name):  
+        print("Hello",name)  
+
+student = Student()  
+
+student.show("John")   
+
+============================================================================================================== 
+
+Python Default Constructor:
+
+When we do not include the constructor in the class or forget to declare it, then that becomes the default constructor. 
+
+It does not perform any task but initializes the objects. Consider the following example.
+
+
+class Student:  
+       pass
+    
+st1 = Student()  
+st2 = Student()
+print(st1)
+print(st2)
+
+====================================================================================================================
+class Student:  
+    roll_num = 101  
+    name = "Joseph"  
+    def display(self):  
+        print(self.roll_num,self.name)  
+  
+st = Student() 
+print(st)
+st.display()
+===================================================================================================================
+ 
+More than One Constructor in Single class:
+
+Let's have a look at another scenario, what happen if we declare the two same constructors in the class.
+
+class Student:  
+    def __init__(self):  
+        print("The First Constructor")  
+    def __init__(self):  
+        print("The second contructor")  
+  
+st = Student()  
+
+In the above code, the object st called the second constructor whereas both have the same configuration. 
+
+The first method is not accessible by the st object. Internally, the object of the class will always 
+
+call the last constructor if the class has multiple constructors.
+=====================================================================================================================
+
+Python built-in class functions:
+
+
+The built-in functions defined in the class are described in the following table.
+
+
+1 getattr(obj,name,default)       It is used to access the attribute of the object.
+
+2 setattr(obj, name,value)         It is used to set a particular value to the specific attribute of an object.
+
+3 delattr(obj, name)               It is used to delete a specific attribute.
+
+4 hasattr(obj, name)               It returns true if the object contains some specific attribute.
+
+
+
+class Student:  
+    def __init__(self, name, id, age):  
+        self.name = name  
+        self.id = id  
+        self.age = age  
+  
+    # creates the object of the class Student  
+s = Student("John", 101, 22)  
+
+  
+# prints the attribute name of the object s  
+print(getattr(s, 'name'))  
+  
+# reset the value of attribute age to 23  
+setattr(s, "age", 23)  
+  
+# prints the modified value of age  
+print(getattr(s, 'age'))  
+  
+# prints true if the student contains the attribute with name id  
+  
+print(hasattr(s, 'id'))  
+
+
+# deletes the attribute age  
+delattr(s, 'age')  
+  
+# this will give an error since the attribute age has been deleted  
+print(s.age)  
+=============================================================================================================================
+
+Built-in class attributes:
+
+Along with the other attributes, a Python class also contains some built-in class attributes
+
+which provide information about the class.
+
+1   __dict__      It provides the dictionary containing the information about the class namespace.
+
+class Student:    
+    def __init__(self,name,id,age):    
+        self.name = name;    
+        self.id = id;    
+        self.age = age  
+  
+    def display_details(self):    
+        print("Name:%s, ID:%d, age:%d"%(self.name,self.id))  
+  
+s1 = Student("John",101,22) 
+s2= Student("Doss" ,102,45)
+   
+print(s1.__dict__) 
+print(s2.__dict__)
+
+=======================================================================================================================
+    
+
+2 __doc__    It contains a string which has the class documentation
+
+class Student: 
+    """ This class Student stores name, id and age  """
+    def __init__(self,name,id,age):    
+        self.name = name;    
+        self.id = id;    
+        self.age = age  
+  
+    def display_details(self):    
+        print("Name:%s, ID:%d, age:%d"%(self.name,self.id))  
+  
+s = Student("John",101,22) 
+print(s.__doc__)    
+print(s.__dict__) 
+
+==========================Break 10.35 am to 10.50 pm======================================================
+
+What does the if __name__ == “__main__”: do?
+
+Before executing code, Python interpreter reads source file and define few special variables/global variables. 
+
+If the python interpreter is running that module (the source file) as the main program,
+
+ it sets the special __name__ variable to have a value “__main__”. If this file is being imported from another module,
+
+ __name__ will be set to the module’s name. Module’s name is available as value to __name__ global variable. 
+
+A module is a file containing Python definitions and statements. The file name is the module name with the suffix .py appended. 
+
+When we execute file as command to the python interpreter,  
+
+python script.py
+
+
+# Python program to execute 
+
+# main directly 
+
+print ("Always executed")
+
+if __name__ == "__main__": 
+	print ("Executed when invoked directly")
+else: 
+	print ("Executed when imported")
+
+===========================================================================================================================
+# Python program to use 
+# main for function call.
+if __name__ == "__main__":
+	my_function()
+
+import myscript
+
+myscript.my_function()
+
+
+Advantages : 
+
+Every Python module has it’s __name__ defined and if this is ‘__main__’, it implies that 
+
+the module is being run standalone by the user and we can do corresponding appropriate actions.
+
+If you import this script as a module in another script, the __name__ is set to the name of the script/module.
+
+Python files can act as either reusable modules, or as standalone programs.
+
+if __name__ == “__main__”: is used to execute some code only if the file was run directly, and not imported.
+
+==============================================================================================================================
+
+Example : Single level Inheritance
+
+
+class Animal:                                 #animal is base class
+    def speak(self):  
+        print("Animal Speaking")
+
+#child class Dog inherits the base class Animal 
+ 
+class Dog(Animal):                           # dog is derived class 
+    def bark(self):  
+        print("dog barking")  
+
+d = Dog()  
+d.bark()  
+d.speak()  
+
+
+# by default it is public access modifier . Meaning all base class resources can be accessed in the derived class
+
+==================================================================================================================================
+
+Multilevel Inheritance:
+
+
+class Animal:  
+    def speak(self):  
+        print("Animal Speaking")  
+
+#The child class Dog inherits the base class Animal  
+class Dog(Animal):  
+    def bark(self):  
+        print("dog barking")  
+
+#The child class Dogchild inherits another child class Dog  
+class DogChild(Dog):  
+    def eat(self):  
+        print("Eating bread...")  
+
+d = DogChild()  
+d.bark()  
+d.speak()  
+d.eat() 
+
+=========================================================================================
+Multiple Inheritance :
+
+
+Father(Indian)                  Mother(chinese)
+
+Nose ( sharp)                    Flat
+
+Eyes big                         Eyes Small
+
+Skin Black                       Skin Yellowish
+
+IQ(More)                         IQ(Moderate)
+
+Hair(Black/Curly)                Long not black
+
+ 
+girl baby is born
+
+1.Sharp
+
+2.Big
+
+3.yellowish
+
+4.IQ
+
+5.Curly and black
+
+=======================================================================
+
+class Calculation1:  
+    def Summation(self,a,b):  
+        return a+b  
+
+class Calculation2:  
+    def Multiplication(self,a,b):  
+        return a*b
+  
+class Derived(Calculation1,Calculation2):  
+    def Divide(self,a,b):  
+        return a/b
+
+  
+d = Derived()  
+print(d.Summation(10,20))  
+print(d.Multiplication(10,20))  
+print(d.Divide(10,20))
+
+==================================================================================================
+
+Access modifiers for attributes and methods are available only if we have inheritance
+
+1.public access  - Default
+
+2.private access  _ _ age  [ attributes age has private access modifier ]
+
+3.protected       _ age    [  age has protected access modifier ]
+
+
+
+class Animal:           #animal is base class
+    def _speak(self):   # _speak is protected method, can be accessed in the immediately derived class         
+        print("Animal Speaking")
+
+#child class Dog inherits the base class Animal 
+ 
+class Dog(Animal):                           # dog is derived class 
+    def bark(self):  
+        print("dog barking")  
+
+d = Dog()  
+d.bark()  
+d._speak()  
+
+========================if any questions let me  know=================================================================
+
+private access modifier 
+
+It can be accessed with in the class and not outside.
+
+class Animal:           #animal is base class
+    def __speak(self):   # _speak is private, can be accessed within the class in which it is defiend          
+        print("Animal Speaking")
+
+#child class Dog inherits the base class Animal 
+ 
+class Dog(Animal):                           # dog is derived class 
+    def bark(self):  
+        print("dog barking")  
+
+d = Dog()  
+d.bark()  
+d.__speak()  
+
+==========================================================================================================
+
+ABC company asked to create web site for its company. Sw company say X  agreed to do website/web app.
+
+software company took 1 month to create web app using HTML , CS3, Jquery and Python
+
+It works fine. ABC is happy .
+
+after few months  , ABC wants some changes .Hence SW X did some modification in HTML , CS3, Jquery and Python.
+
+.Showed to ABC. 
+
+ABC is not happy with new amendments and wants previous version
+
+
+Folder version 1 :  
+
+Folder Version 2 : new changes 
+
+create another folder :
+
+
+Each folder takes  2GB  , after few months , Hard disk is full
+
+
+git and github
+
+
+HTML 
+
+500 lines  V1
+
+510 lines  V2  [ lines added, modified and deleted are tracked ]
+===========================================================================================================
+
+Founder of Linux , His name is Trevold Linus , Finland desined git and github
+
+
+Git is a version control system.
+
+Git helps you keep track of code changes.
+
+Git is used to collaborate on code.
+
+
+c> git  --version
+
+
+
+c>git config --global user.name   doss                                       urname  [ write in a paper ]            
+C>git config --global user.email  doss74us@gmail.com                         gmail account 
+
+
+
+
+git commit -m     "First release !"
+
+
+
+
+
+1. downloaded git 
+
+2. installed git
+
+3. checking git installed or not  git --version
+
+4. git global --user.name doss
+   git global --user.email my email id
+
+5. create folder B4127PROJ
+
+6. we moved to this folder B4172PROJ
+
+7. B4172PROJ> git init
+
+8. we saved index.html under B4172PROJ
+
+======================================================================================
+
+1. downloaded git 
+
+2. installed git
+
+3. checking git installed or not  git --version
+
+4. git global --user.name doss
+   git global --user.email my email id
+
+5. create folder B4127PROJ
+
+6. we moved to this folder B4172PROJ
+
+7. B4172PROJ> git init
+
+8. we saved index.html under B4172PROJ
+
+
+==================================================================
+
+staging area :
+
+Staged files are files that are ready to be committed to the repository you are working on.
+
+
+============================================================
+
+

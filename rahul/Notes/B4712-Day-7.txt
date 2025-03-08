@@ -1,0 +1,1014 @@
+Day 7:
+
+Date : 10th Feb 2025
+
+Topics To be covered Today:
+
+Python - Date & Time Completed
+Python - Maths       Completed
+Python - Recursions- Completed
+Python - Iterators - Completed
+Python - Generators- Completed
+Python - Closures
+Python - Local , nonlocal and global variables-completed
+Python - Formating and Tmeplating-completed
+Python - Decorators
+Python - SQlite3 almost done 
+
+Generators:
+
+Generators are a special type of function that allow us to generate a sequence of values over time,
+
+rather than computing them all at once and storing them in memory. They're like magical factories
+
+that produce values on-demand.
+
+Why Use Generators?
+
+Memory Efficiency: Generators are memory-friendly. They don't store all values in memory at once.
+
+without generators:
+
+for i in range(1000000):  # all values are stored as list under I. Chances memory gets full
+    print(i)                 
+
+Performance: They can improve the performance of your code, especially when dealing with large datasets.
+
+Simplicity: Generators can make your code cleaner and more readable.
+
+Creating Generators:
+
+There are two main ways to create generators in Python:
+
+Using a generator function
+
+Using a generator expression
+
+
+Generator Functions:
+
+A generator function looks just like a normal function, but instead of using the return keyword,
+
+it uses yield. Here's a simple example:
+
+def count_up_to(n):
+    i = 1
+    while i <= n:
+        yield i
+        i += 1
+
+# Using our generator
+for number in count_up_to(5):
+    print(number)
+
+In this example, count_up_to is a generator function. Every time it yields a value,
+it pauses its execution and remembers its state. The next time it's called, it resumes from where it left off.
+
+
+return is the last statement in the function. once it is executed , control goes to main program.
+all variables defined in the functions are destroyed and not available .
+
+==========================================================================================
+
+Generator Expressions:
+
+Generator expressions are like list comprehensions, but with parentheses instead of square brackets. 
+
+They're a compact way to create generators. Here's an example:
+
+# Generator expression
+
+squares = (x**2 for x in range(5))
+
+# Using our generator
+for square in squares:
+    print(square)
+
+=========================================================================================
+
+Normal Function vs Generator Function
+
+Let's compare a normal function with a generator function to see the difference:
+
+# Normal function
+def get_squares(n):
+    squares = []
+    for i in range(n):
+        squares.append(i**2)
+    return squares
+
+# Generator function
+def gen_squares(n):
+    for i in range(n):
+        yield i**2
+
+# Using the normal function
+print(get_squares(5))  # Prints: [0, 1, 4, 9, 16]
+
+# Using the generator function
+for square in gen_squares(5):
+    print(square)  # Prints each square on a new line
+
+The main differences are:
+
+Memory usage: The normal function creates and stores all values at once, while the generator produces them one at a time.
+
+Syntax: The normal function uses return, while the generator uses yield.
+
+Iteration: The generator can be iterated over directly, while the normal function's result needs to be stored in a variable first
+
+===============================================================================================================================
+
+recursion:
+
+!n=1*2*3.....n
+
+!n=n*!(n-1)  
+
+!(n-1) =(n-1)* !(n-2)
+
+
+
+!2 = 2 * !1
+
+!1 = 1 !0
+
+A function calls itself.
+
+
+Components of Recursion:
+
+Every recursive function has two main components:
+
+Base Case: This is the condition that stops the recursion.
+
+Recursive Case: This is where the function calls itself.
+
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+print(factorial(5))  # Output: 120
+
+Here's what's happening:
+
+If n is 0 or 1, we return 1 (this is our base case).
+
+Otherwise, we multiply n by the factorial of n - 1 (this is our recursive case).
+
+So, factorial(5) becomes: 
+
+5 factorial(4) 
+
+5 (4 factorial(3))
+
+ 5 (4 (3 factorial(2))) 
+
+5 (4 (3 (2 factorial(1))))
+
+ 5 (4 (3 (2 1))) 5 4 3 2 1 = 120
+
+============================================================================================================================
+
+0 1 1 2 3 5 8 13  21 34
+
+Write python script using recursion  for the fibo series for 10 terms
+
+
+fib(i)=f(i-1)+f(i-2)
+
+
+Script:
+
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+
+for i in range(10):
+    print(fibonacci(i), end=" ")
+
+# Output: 0 1 1 2 3 5 8 13 21 34
+======================================================================================================================
+
+Linear search :
+
+we start from the index 0 and try to match given no against no stored in the array.
+
+Process continues till either we find it or end of the array.
+
+
+it is simple to understand and very easy to write.
+
+Good if the dataset is limited size
+
+if dataset is too big , linear search is not optimum
+
+a=[1,4,6,8, 0,45,67]
+
+x=int(input("Enter value  to search " ))
+
+flag=False
+
+for i in a:
+    if x==i:
+       print(x , " Is found ")
+       print("It is index is " ,a.index(x))
+       flag=True
+       break
+
+if  flag==False:
+    print("Not  Found ")
+
+=======================================================================
+
+demerits of Linear search
+
+ 
+1.4 billion
+
+1 billion vechicles.
+
+traffic police scan vechile no , we get full details.
+
+if we use linear search based on  vechile no , linear search takes day to find out or machine gets crashed
+
+===================================================================================================
+
+
+Binary Search: 
+
+Requirement : values must be in sorted order
+
+  12  34  56  79 90 120 
+
+case 1: 34
+mid =3
+a[mid] =56
+
+if a[mid]==x
+   return mid=3
+
+if x <=a[mid]
+
+
+
+def binary_search(arr, low, high, x):
+
+    if high >= low:
+        mid = (high + low) // 2
+
+
+        if arr[mid] == x:
+            return mid
+
+        elif x < arr[mid]:
+
+            return binary_search(arr, low, mid - 1, x)
+        else:
+            return binary_search(arr, mid + 1, high, x)
+    else:
+        return -1
+
+arr = [2, 3, 4, 10, 40]
+x = 10
+
+result = binary_search(arr, 0, len(arr)-1, x)
+
+if result != -1:
+    print(f"Element is present at index {result}")
+else:
+    print("Element is not present in array")
+========================================================================================================================
+
+This function works by repeatedly dividing the search interval in half.
+
+If the value of the search key is less than the item in the middle of the interval, narrow the interval 
+
+to the lower half. Otherwise, narrow it to the upper half. Repeatedly check until the value is found or the interval is empty.
+=========================================================================================================================
+
+When to Use Recursion:
+
+Recursion is particularly useful for:
+
+Problems that can be broken down into similar sub-problems
+
+Tree-like data structures (e.g., file systems, HTML DOM)
+
+Algorithms like QuickSort, MergeSort, etc.
+
+However, recursion isn't always the best solution. It can be memory-intensive for very deep recursions, and 
+
+sometimes a simple loop can be more efficient and easier to understand.
+
+
+=======================================Time 11.00 am to 11.15 am============================================
+
+
+def countdown(n):
+    if n <= 0:
+        print("Blastoff!")
+    else:
+        print(n)
+        countdown(n - 1)
+
+countdown(5)
+
+Now, let's break this down:
+
+We define a function called countdown that takes a number n.
+
+If n is 0 or less, we print "Blastoff!"
+
+Otherwise, we print n and then call countdown again with n - 1.
+
+This is recursion in action! The function keeps calling itself with a smaller number until it reaches zero.
+
+
+=======================================================================================================================
+
+Direct Recursion	A function calls itself directly [ 
+
+Tail Recursion		The recursive call is the last thing executed by the function [Our countdown example]
+
+Non-tail Recursion	The recursive call is not the last thing executed by the function[Our factorial example]
+
+Indirect Recursion	Function A calls function B, which then calls function A
+
+
+def is_even(n):
+    if n == 0:
+        return True
+    else:
+        return is_odd(n - 1)
+
+def is_odd(n):
+    return not is_even(n)
+
+
+
+print(is_even(4))  # Output: True
+print(is_odd(4))   # Output: False	
+
+
+=========================================================================================
+
+x.  What are you searching on the  ground
+
+Y.  what is lost , i am searching
+
+======================================================================================
+
+what is odd numbers
+
+nos which are not even .
+
+what is even  nos
+
+nos which are not odd nos are even os
+
+============================================================================================
+Iterators:
+
+
+Iterators in Python are objects that implement two special methods: __iter__() and __next__(). 
+
+
+The __iter__() method returns the iterator object itself.
+
+The __next__() method returns the next item in the sequence. 
+
+
+# Creating a list 
+
+my_list = [1, 2, 3, 4, 5]
+
+# Getting an iterator from the list
+
+my_iterator = iter(my_list)
+
+# Using next() to get items one by one
+
+print(next(my_iterator))  # Output: 1
+print(next(my_iterator))  # Output: 2
+print(next(my_iterator))  # Output: 3
+
+
+In this example, iter(my_list) creates an iterator object for our list. 
+
+Then, each call to next(my_iterator) retrieves the next item from the list.
+
+=============================================================================================================
+
+
+my_list = ["apple", "banana", "cherry"]
+
+for fruit in my_list:
+    print(f"I love {fruit}!")
+
+# Output:
+# I love apple!
+# I love banana!
+# I love cherry!
+
+
+Python automatically creates an iterator from my_list and uses __next__() to get each item for the loop. 
+
+===============================================================================================================
+
+When an iterator is exhausted (no more items left), it raises a StopIteration exception. Let's see this in action:
+
+my_list = [1, 2, 3]
+my_iterator = iter(my_list)
+
+print(next(my_iterator))  # Output: 1
+print(next(my_iterator))  # Output: 2
+print(next(my_iterator))  # Output: 3
+print(next(my_iterator))  # Raises StopIteration exception
+
+==================================================================================================================
+
+my_list = [1, 2, 3]
+
+my_iterator = iter(my_list)
+
+try:
+
+    while True:
+        item = next(my_iterator)
+        print(item)
+except StopIteration:
+    print("End of iterator reached!")
+
+# Output:
+# 1
+# 2
+# 3
+# End of iterator reached!
+
+__iter__()	Returns the iterator object	Regular Iterators
+
+__next__()	Returns the next item in the sequence	Regular Iterators
+
+==================================================================================================================
+
+
+math.ceil()	Rounds up to the nearest integer	math.ceil(4.2) returns 5
+
+math.floor()	Rounds down to the nearest integer	math.floor(4.8) returns 4
+
+math.sqrt()	Returns the square root of a number	math.sqrt(16) returns 4.0
+
+math.pow()	Raises a number to a power	math.pow(2, 3) returns 8.0
+
+math.pi		Returns the value of π (pi)	math.pi returns 3.141592653589793
+
+================================================================================================================
+
+import math
+
+# abs() - Returns the absolute value
+print(math.abs(-5))  # Output: 5
+
+# ceil() - Rounds up to the nearest integer
+print(math.ceil(4.2))  # Output: 5
+
+# floor() - Rounds down to the nearest integer
+print(math.floor(4.8))  # Output: 4
+
+
+import math
+
+# pow() - Raises a number to a power
+print(math.pow(2, 3))  # Output: 8.0
+
+# sqrt() - Returns the square root
+print(math.sqrt(16))  # Output: 4.0
+
+# log() - Returns the natural logarithm
+print(math.log(10))  # Output: 2.302585092994046
+
+https://w3schools.tech/tutorial/python/python_date_time
+
+==================================================================================================
+
+local , nonlocal and global variable:
+
+1. Local Variables
+
+A variable declared inside a function is local to that function.
+
+It can only be accessed within that function.
+
+If a variable with the same name exists outside the function, the local variable inside the function does not affect it.
+
+
+def my_function():
+    x = 10  # Local variable
+    print("Inside function:", x)
+
+my_function()
+print(x)  # This will cause an error because x is local to my_function
+
+=======================================================================================================
+
+2. Global Variables
+
+A variable declared outside any function is global.
+
+It can be accessed anywhere in the program.
+
+If you want to modify a global variable inside a function, you must use the global keyword.
+
+
+x = 20  # Global variable
+
+def my_function():
+    global x  # Using the global variable
+    x = 30  # Modifying the global variable
+    print("Inside function:", x)
+
+my_function()
+
+print("Outside function:", x)  # x is modified globally
+
+
+=======================================================================================================
+
+3. Nonlocal Variables
+
+The nonlocal keyword is used inside a nested function to modify a variable in the enclosing (but not global) scope.
+
+It is useful when dealing with closures or nested functions.
+
+def outer_function():
+
+    x = 50  # Enclosing variable
+
+    def inner_function():
+
+        print("Inside inner function:", x)
+
+    inner_function()
+
+    print("Inside outer function:", x)
+
+outer_function()
+
+
+====================================After noon===================================================================
+
+Why use generators in Python?:
+
+Generators are used in Python for memory-efficient iteration, particularly with large datasets. 
+
+They allow for lazy evaluation, reducing memory consumption and improving performance in scenarios 
+
+where the entire sequence doesn’t need to be generated upfront.
+
+=============================================================================================================
+
+Which is faster list comprehension or generator?
+
+Generators are generally faster than list comprehensions for large datasets because
+
+they produce values on the fly without storing them in memory. 
+
+List comprehensions construct the entire list in memory before use.
+
+===========================================================================================================
+
+What is the difference between generator and comprehension?
+
+Generators in Python produce values lazily, while comprehensions produce a sequence all at once. 
+
+Generators are memory-efficient for large datasets, whereas comprehensions are better suited for smaller
+
+===========================================================================================================
+
+What is a generator expression in Python?
+
+A generator expression in Python is a concise way to create a generator object, allowing for efficient
+
+iteration over large datasets without storing the entire sequence in memory.
+
+========================================================================================================
+
+
+Closure function
+
+formating-  
+
+Using String Modulo Operator (%)
+
+The string modulo operator % is one of the oldest formatting methods in Python. 
+
+It's like the vintage car of formatting – a bit old-school, 
+
+but still gets the job done.
+
+name = "Alice"
+age = 25
+print("My name is %s and I am %d years old." % (name, age))
+
+==========================================================================================================================
+Using the format() Method
+The format() method is like the cooler, younger sibling of the modulo operator. It's more flexible and easier to read.
+
+name = "Bob"
+age = 30
+print("My name is {} and I am {} years old.".format(name, age))
+
+=========================================================================================================================
+
+You can also use numbered placeholders:
+
+
+print("The {0} in the {1} weighs {2} pounds.".format("cat", "hat", 5))
+
+Output: The cat in the hat weighs 5 pounds.
+
+==========================================================================================================================
+Using F-Strings:
+
+F-strings, introduced in Python 3.6, are the new kids on the block. 
+
+They're fast, readable, and my personal favorite!
+
+name = "Charlie"
+age = 35
+print(f"My name is {name} and I am {age} years old.")
+
+===========================================================================================================================
+
+Format Conversion Rule in Python:
+
+Sometimes, you need to convert data types for formatting. Python's got you covered!
+
+pi = 3.14159
+print(f"Pi to two decimal places: {pi:.2f}")
+
+==========================================================================================================================
+Database connectivity:
+----------------------
+
+How to connect Database like MySql , Sqlite and nosql
+======================================================
+
+SQLite is a lightweight and highly reliable SQL database engine.
+
+It is widely used due to its simplicity, ease of setup and zero-configuration nature.
+
+
+import sqlite3
+
+try:
+    with sqlite3.connect("my.db") as conn:
+        print("Opened SQLite database  successfully.")
+
+except sqlite3.OperationalError as e:
+   print("Failed to open database:", e)
+
+===========================================================================================
+import sqlite3
+
+sql_statements = [ 
+    """CREATE TABLE IF NOT EXISTS projects (
+            id INTEGER PRIMARY KEY, 
+            name text NOT NULL, 
+            begin_date DATE, 
+            end_date DATE
+        );""",
+
+    """CREATE TABLE IF NOT EXISTS tasks (
+            id INTEGER PRIMARY KEY, 
+            name TEXT NOT NULL, 
+            priority INT, 
+            project_id INT NOT NULL, 
+            status_id INT NOT NULL, 
+            begin_date DATE NOT NULL, 
+            end_date DATE NOT NULL, 
+            FOREIGN KEY (project_id) REFERENCES projects (id)
+        );"""
+]
+
+# create a database connection
+try:
+    with sqlite3.connect('my.db') as conn:
+        # create a cursor
+        cursor = conn.cursor()
+
+        # execute statements
+        for statement in sql_statements:
+            cursor.execute(statement)
+
+        # commit the changes
+        conn.commit()
+
+        print("Tables created successfully.")
+except sqlite3.OperationalError as e:
+    print("Failed to create tables:", e)
+
+
+
+Use the execute() method of a Cursor object to execute the CREATE TABLE statement for creating 
+
+a new table in the SQLite database file.
+
+=====================================break time 3.15 pm to 3.30 pm ====================================
+
+How SQLite Databases Work:
+
+Unlike most other database systems, SQLite is a serverless database. 
+
+This means that it doesn’t require setting up or managing a server, making it lightweight and easy to use. 
+
+All the data is stored in a single file on your computer, which you can easily move, share, or back up.
+
+ Despite its simplicity, SQLite is powerful enough to handle many common database tasks and 
+
+is widely used in mobile apps, embedded systems, and small to medium-sized projects.
+
+
+
+How to Create a New SQLite Database:
+
+Let’s create a new SQLite database and learn how to interact with it using Python’s sqlite3 library.
+
+Connecting to the Database
+
+Since sqlite3 is pre-installed, you just need to import it in your Python script. 
+
+To create a new database or connect to an existing one, we use the sqlite3.connect() method.
+
+ This method takes the name of the database file as an argument. If the file doesn’t exist, SQLite will automatically create it.
+
+
+
+import sqlite3:
+
+
+# Connect to the SQLite database (or create it if it doesn't exist)
+
+connection = sqlite3.connect('my_database.db')
+
+In this example, a file named my_database.db is created in the same directory as your script
+
+If the file already exists, SQLite will just open the connection to it.
+
+
+Creating a Cursor:
+
+Once you have a connection, the next step is to create a cursor object. 
+
+The cursor is responsible for executing SQL commands and queries on the database
+
+
+
+# Create a cursor object
+
+cursor = connection.cursor()
+
+Closing the Connection
+
+After you’ve finished working with the database, it’s important to close the connection to free up any resources.
+
+ You can close the connection with the following command:
+
+# Close the database connection
+
+connection.close()
+
+
+
+How to Use Context Manager to Open and Close Connections:
+
+Python provides a more efficient and cleaner way to handle database connections using the with statement,
+
+also known as a context manager. The with statement automatically opens and closes the connection, 
+
+ensuring that the connection is properly closed even if an error occurs during the database operations.
+
+This eliminates the need to manually call connection.close().
+
+Here’s how you can use the with statement to handle database connections:
+
+
+
+import sqlite3
+
+# Step 1: Use 'with' to connect to the database (or create one) and automatically close it when done
+
+with sqlite3.connect('my_database.db') as connection:
+
+    # Step 2: Create a cursor object to interact with the database
+
+    cursor = connection.cursor()
+
+    print("Database created and connected successfully!")
+
+# No need to call connection.close(); it's done automatically!
+
+
+==========================================================================================================
+
+import sqlite3
+
+# Use 'with' to connect to the SQLite database and automatically close the connection when done
+
+with sqlite3.connect('my_database.db') as connection:
+
+    # Create a cursor object
+    cursor = connection.cursor()
+
+    # Write the SQL command to create the Students table
+
+    create_table_query = '''
+    CREATE TABLE IF NOT EXISTS Students (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        age INTEGER,
+        email TEXT
+    );
+    '''
+
+    # Execute the SQL command
+    cursor.execute(create_table_query)
+
+    # Commit the changes
+    connection.commit()
+
+    # Print a confirmation message
+    print("Table 'Students' created successfully!")
+
+IF NOT EXISTS: This ensures that the table is only created if it doesn’t already exist, preventing errors if the table has been created before.
+
+connection.commit(): This saves (commits) the changes to the database.
+
+When you run the Python code above, it will create the Students table in the my_database.db database file. You’ll also see a message 
+
+in the terminal confirming that the table has been created successfully.
+
+How to connect mysql , sqlite from python
+
+=======================================================================================================
+
+Insering record:
+
+
+import sqlite3
+
+# Use 'with' to open and close the connection automatically
+
+with sqlite3.connect('my_database.db') as connection:
+
+    cursor = connection.cursor()
+
+    # Insert a record into the Students table
+    insert_query = '''
+    INSERT INTO Students (name, age, email) 
+    VALUES (?, ?, ?);
+    '''
+
+    student_data = ('Doss', 45, 'murugadoss@yahoo.com')
+
+    cursor.execute(insert_query, student_data)
+
+    # Commit the changes automatically
+    connection.commit()
+
+    # No need to call connection.close(); it's done automatically!
+    print("Record inserted successfully!")
+
+The ? placeholders represent the values to be inserted into the table. 
+
+The actual values are passed as a tuple (student_data) in the cursor.execute() method.
+=======================================================================================================================
+How to fetch record:
+
+import sqlite3
+
+# Use 'with' to connect to the SQLite database
+with sqlite3.connect('my_database.db') as connection:
+
+    # Create a cursor object
+    cursor = connection.cursor()
+
+    # Write the SQL command to select all records from the Students table
+    select_query = "SELECT * FROM Students;"
+
+    # Execute the SQL command
+    cursor.execute(select_query)
+
+    # Fetch all records
+    all_students = cursor.fetchall()
+
+    # Display results in the terminal
+    print("All Students:")
+    for student in all_students:
+        print(student)
+
+===============================================================================================================================
+
+How to Insert Multiple Records:
+
+If you want to insert multiple records at once, you can use the executemany() method in Python. 
+
+This method takes a list of tuples, where each tuple represents one record.
+
+To make our example more dynamic, we can use the Faker library to generate random student data. 
+
+This is useful for testing and simulating real-world scenarios.
+
+
+import sqlite3
+
+
+# Use 'with' to open and close the connection automatically
+
+with sqlite3.connect('my_database.db') as conn:
+
+    cursor = conn.cursor()
+
+    # List of records to insert
+
+    records = [
+    ("Alice", 25 ,"doss@yahoo.com"),
+    ("Bob", 30 ,  "muru@yahoo.com"),
+    ("Charlie", 35 ,"doss@gmail.com")
+]
+
+# Insert multiple records using executemany()
+cursor.executemany("INSERT INTO Students (name, age ,email ) VALUES (?, ?, ?)", records)
+
+# Commit and close
+conn.commit()
+print("Student records inserted successfully!")
+conn.close()
+
+==================================================================================================================
+
+Tomorrow : Day 8:
+
+Date  :11th feb 2025
+
+
+Continuation from sqlite [ update, delete ]
+
+
+Continuation of oops
+
+nested function
+
+Decorator
+
+closure
+
+============================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+decorators
+
+====================================================================================================================
+
+
+
+
+
+
+
+
+
+https://www.freecodecamp.org/news/work-with-sqlite-in-python-handbook/
+
+
+
+https://www.guvi.in/blog/tcs-xplore-python-coding-questions/
+
+
+
+https://www.sqlitetutorial.net/sqlite-python/insert/
+
+https://w3schools.tech/tutorial/python/python_dynamic_binding
+
+https://w3schools.tech/tutorial/python/python_docstrings
+
+https://www.freecodecamp.org/news/work-with-sqlite-in-python-handbook/

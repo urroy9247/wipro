@@ -1,0 +1,111 @@
+Day :  14
+
+Date : 18th Feb 2025
+
+What is a Doubly Linked List?
+
+Doubly Linked List (DLL) is a special type of linked list in which each node contains a pointer to the previous node
+
+as well as the next node of the linked list. In a Doubly Linked List, we can traverse in forward and backward direction 
+
+using the next and previous pointer respectively.
+
+====================================================================
+How to Create a Doubly Linked List in Python?
+
+To create a doubly linked list in python, we will first create a node for a doubly linked list as shown below.
+
+class Node:
+    def __init__(self, value):
+        self.previous = None
+        self.data = value
+        self.next = None
+======================================================================================
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+==================================================================================================================
+Check if a Doubly Linked List Is Empty in Python
+
+def isEmpty(self):
+        if self.head is None:
+            return True
+        return False
+==============================================================================================
+Find the Length of a Doubly Linked List in Python
+
+def length(self):
+        temp = self.head
+        count = 0
+        while temp is not None:
+            temp = temp.next
+            count += 1
+        return count
+==================================================================================================
+Search an Element in a Doubly Linked List in Python:
+
+def search(self, value):
+        temp = self.head
+        isFound = False
+        while temp is not None:
+            if temp.data == value:
+                isFound = True
+                break
+            temp = temp.next
+        return isFound
+
+=========================================================================================================
+
+Insert an Element in a Doubly Linked List in Python
+
+
+Insert at the Beginning of a Doubly Linked List
+
+To insert an element at the beginning of a doubly linked list in python, we will first check if the linked list is empty. 
+
+You can check if the linked list is empty using the isEmpty()
+
+
+If the doubly linked list is empty, we will simply create a new node with the given data and assign 
+
+it to the head attribute of the linked list.
+
+
+If the linked list is not empty, we will follow the following steps.
+
+
+
+First, we will create a new node with the given data that has to be inserted into the linked list.
+
+After that, we will assign the node referred by the head attribute of the linked list to the next attribute of the new node.
+
+Then, we will assign the new node to the previous attribute of the node referred by the head attribute of the linked list.
+ 
+Finally, we will assign the new node to the head attribute of the linked list.
+
+
+def insertAtBeginning(self, value):
+        new_node = Node(value)
+        if self.isEmpty():
+            self.head = new_node
+        else:
+            new_node.next = self.head
+            self.head.previous = new_node
+            self.head = new_node
+
+===========================================================================================================
+
+https://pythonexamples.org/data-structures/singly-linked-list-delete-head
+
+
+https://pythonexamples.org/data-structures/circular_linked_list
+
+
+
+https://medium.com/@dillawarnwl/a-comprehensive-guide-to-circular-linked-lists-in-python-76f5e7879316
+
+
+https://www.pythonforbeginners.com/basics/doubly-linked-list-in-python#htoc-how-to-create-a-doubly-linked-list-in-python
+
+
+https://www.pythonforbeginners.com/basics/doubly-linked-list-in-python#htoc-how-to-create-a-doubly-linked-list-in-python

@@ -1,0 +1,604 @@
+Day 1 :
+
+Date Feb 3rd 2025
+
+Instruction to Python
+
+1. Python is Open source. [ No license required ]
+
+2. Case sensitive [ A and a are different ]
+
+3. lot of libraries are available for data science , data engineering , big data, data analytics
+  
+   web framework.
+
+4. Easy to learn not like java , C++ etc.
+
+
+Lab 1 :
+
+print("welcome to first day")
+
+
+Lab 2 :
+
+    read name from the console and print name:
+
+    type() will return type of the variable
+
+
+types:
+
+1. str
+2. int
+3. float
+4. Boolean  True , False
+
+
+name=input("Enter your name  ")
+print(name)
+print(type)
+
+====================================================================
+
+lab 3:
+
+age=input("Enter your age  ")
+print("My age is   " , age  )
+print(type(age))
+
+===================================================================
+lab 4:
+
+# int() is a method converts given argument/value into integer
+age=int(input("Enter your age  "))
+print("My age is   " , age  )
+print(type(age))
+print("My Age by next year is " , age+1)
+
+===============================================================
+
+lab 5:
+
+
+score=float(input("Enter your score  "))
+print(type(score))
+
+married=True
+print(type(married))
+
+===============================================================
+
+lab 6:
+
+# read three marks , print total and average
+
+m1=int(input("Enter marks 1 ")
+m2=int(input("Enter marks 2 ")
+m3=int(input("Enter mars  3 ")
+
+total=m1+m2+m3
+
+avg=total/3
+
+print("Total      = " , total)
+print("Average    = " , avg)
+
+=====================================================================
+
+Conditional Statement:
+
+# read marks from the console , print pass if  marks>=50 , otherwise fail
+
+marks=int(input("Enter marks "  ))
+
+if marks>=50:
+   print("Pass")
+else:
+   print("Fail")
+=========================================================================
+
+# read two values , Print max of this no
+
+a=int(input("Enter value for a  "))
+b=int(input("Enter value for b  "))
+
+if a >=b :
+   print(a, " is bigger  ")
+else:
+   print(b, " is bigger  ")
+
+==========================================================================
+
+# read three values from the console, print biggest of three
+
+a=int(input("Enter value for  a   " ))
+b=int(input("Enter value for  b   "))
+c=int(input("Enter value for  c   "))
+
+if a >=b:
+   biggest=a
+else
+   biggest=b
+
+if biggest <=c:
+   biggest=c
+
+print("Biggest   =" , biggest)
+
+=========================We have break 11.00 am to 11.15 am==================
+
+//  returns quotient
+
+print(5//2) returns 2 
+
+/ real division
+
+print(5/2) returns 2.5
+
+% moduls operator , returns remainder
+
+print(5%2) returns 1
+
+=================================================================================
+
+# eval
+
+score=eval(input("Enter score  "))
+
+print(score)
+
+print(type(score))
+
+==================================================================================
+
+# A shop keeper gives discount based on the  amount purchased and rule is given below 
+
+Amount          Disc
+
+<1000           5%
+
+1000-5000       7%
+
+>5000           10%
+
+we have to print amount , discount and netamount
+
+
+
+amt=int(input("Enter amount value     "))
+
+if amt < 1000:
+   disc= 0.05*amt
+
+if amt>=1000 and amt <=5000 :
+   disc=0.07 * amt
+
+if amt >5000:
+   disc=0.1*amt
+
+netamt=amt-disc
+
+print("Amount         =" ,amt)
+print("Discount       =" ,disc)
+print("Net amount     = ",netamt)
+=============================================================================
+
+looping: A set of statements executed for a fixed no of times or as long as the condition is true
+
+
+range(5)  , starts from 0 and ends with 4 , increment is 1
+
+range(1,5)  sv=1  , fv=4 , incr is 1
+
+range(1,10,2) iv=1,  fv=9, increment is 2
+
+ 
+for x in range(5):  # 0,1,2,3,4
+    print(x)
+
+print("\n")  # \n makes one line spaces
+for x in range(2,10):
+    print(x)
+    
+print("\n") 
+for x in range(1,10,2): # 1,3,5,7,9
+    print(x)
+    
+==================================================================================
+
+print nos from 1 to 10 using while loop
+
+i=1
+while i<=10:
+      print(i)
+      i=i+1
+
+print(" Program ends  ")
+
+
+==================================================================================
+
+read value for n and print nos from 1 to n
+
+1. Using for range
+
+2. while
+
+
+
+n=int(input("Enter value for n  "))
+for i in range(1,n+1):
+    print(i)
+
+======================================================================================
+
+i=1
+n=int(input("Enter value for n  "))
+while i <=n:
+      i=i+1
+      print(i)
+
+=============================================================================
+
+# task 
+
+# read marks and print grade based on the rule given below
+
+
+marks                Grade
+
+>80                  First Grade
+
+
+60-80                Second grade
+
+>=40 and <60         third Grade
+
+< 40                 Fail
+
+=====================================================================================
+
+marks=int(input("Enter marks   "))
+
+if marks>80:
+   print("First Grade   ")
+
+if marks>=60 and marks <=80:
+   print("Second Grade  ")
+
+if marks>=40 and marks <60 :
+   print("Third Grade  ")
+
+if marks <40:
+   print("Fail")
+
+======================================================================================
+
+Task :
+
+
+read an integer value and print is it divisible by 5 or not
+
+n=int(input("Enter value for   n  "))
+if n%5==0:
+   print(n , " is divisible by 5 ")
+else:
+   print(n , " is not divisible by 5 ")
+
+===================================================================================
+
+read an integer value , print is it odd or even
+
+n=int(input("Enter value for   n  "))
+if n%2==0:
+   print(n , " is an even no  ")
+else:
+   print(n , " is an odd number ")
+
+
+=================================Lunch time 1.00 pm to 2.00 pm========================
+
+
+Task :
+
+ read nos from the console.
+
+ count no of positive nos
+ 
+ count no of negative nos
+
+ print both postive and negative 
+
+ to stop enter 0 
+
+
+nopos=0
+noneg=0
+while True:
+   x=int(input("Enter value for x , To stop enter 0 "))
+   if x==0:
+      break               # break is used to exit from the loop
+
+   if x < 0 :
+      noneg=noneg+1
+
+   if x > 0 :
+      nopos=nopos+1
+
+ print("Total no of positive  nos  = " , nopos)
+ print("Total no of negative  nos  = ",  noneg)
+
+=================================================================
+# break is used to exit from the  loop
+for i in range(1,14):
+    if i==10:
+    # results are negative
+       break
+    else:
+       print(i)
+
+=================================================================
+
+
+break : this statement is used to exit from the loop
+
+
+
+
+continue : this ignores current iteration and control goes to next iteration
+
+
+# i want to print nos frm 1 to 12 , except 8
+
+for i in range(1,13):
+    if i==8:
+       continue
+    else:
+       print(i)
+
+==================================================================================
+
+# i want to print nos from 1 to 12 , except  5 and 8
+
+ 
+# i want to print nos frm 1 to 12 , except 5 and 8
+for i in range(1,13):
+    if i==5 or i==8 :
+       continue  # continue ignores current iteration and executes next iteration
+    else:
+       print(i)
+
+
+====================================================================================
+
+Task :
+
+ 45 55  -65 -75  5  - 10   [ to stop enter 0 ]
+
+
+Sum of pos nos  : 105
+Sum of neg nos  : -150
+
+
+psum=0
+nsum=0
+while True:
+  x=int(input("Enter value for  x, To stop enter 0 " ))
+
+  if x==0:
+     break
+
+  if x > 0:
+     psum=psum+x 
+
+  if x < 0
+     nsum=nsum+x
+
+
+print("Sum of  positive nos  " ,  psum)
+print("Sum of  negative nos  " ,  nsum)
+
+=====================================================================================
+string
+
+It is sequence of characters enclosed in  "  "
+
+name="Keerthi s"
+for i in name :   # we can iterate a string
+    print(i)
+
+============================================================================
+
+read name from the console .
+
+1. print the length of name
+
+2. convert into upper case
+
+
+name=input("Enter name  ")  # string is an object
+print("Length  " , len(name))
+print("Name  is in upper  " , name.upper())
+print("Name  is in lower  " , name.lower())
+
+===============================================================================
+
+Task :
+
+  Read name from the console .
+  count how many vowels in the string
+
+ input murugadoss
+
+ output : 4
+
+name=input("Enter name  ")  # string is an object
+str=name.lower()
+cnt=0
+for i in str:
+    if i=='a' or i=='e' or i=='i' or i=='o' or i=='u':
+       cnt=cnt+1 
+print("No of vowels in "  , name , " is  " , cnt )
+
+==============================================================================
+
+name=input("Enter name  ")  # string is an object
+str=name.lower()
+cnt=0
+for i in str:
+    if i=='a' or i=='e' or i=='i' or i=='o' or i=='u':
+       cnt=cnt+1 
+print("No of vowels in "  , name , " is  " , cnt )
+================================================================================
+#split(" ") we can use split based on spaces or "," or ";"
+name="Murugadoss Natarajan Bangalore"
+str=name.split(" ") #spliting string based on spaces.
+print("My name       is       ", str[0])
+print("My father's   name  is ", str[1])
+print("My location is         ", str[2])
+===============================================================================
+
+str="Doss 50 60"
+
+doss is name
+
+50 and 60 are scores of two subjects
+
+
+i need the following output
+
+Name    : doss
+Marks1  : 50
+Marks2  : 60
+Total   : 110
+
+str="doss,50,60"
+st=str.split(",")
+print("Name   =" , st[0])
+print("Marks 1   = " , st[1])
+print("Marks 2   = " , st[2])
+print("Total     =" , int(st[1])+int(st[2]))
+===================================================================================
+
+The isdigit() method is a built-in Python function that checks if all characters in a string are digits. 
+
+This method returns True if each character in the string is a numeric digit (0-9), and False otherwise.
+
+Let’s start with a simple example of isdigit() method.
+
+s = "12345"
+print(s.isdigit())  
+
+s2 = "1234a5"
+print(s2.isdigit())
+
+================================================================================
+
+read  number say 4567  , print total of its digits 
+
+Example : 4567 = 4+5+6+7 = 22
+
+nos=input("Enter value for nos  ")
+tot=0
+for i in nos:
+    tot=tot+int(i)
+    
+print("total of digits  " , tot)    
+
+
+===============================================================================
+
+The rstrip() method removes trailing whitespace characters from a string.
+
+The lstrip() method removes leading whitespace characters from a string. 
+
+strip() removes whitespaces from both ends
+
+nos=input("Enter value for nos  ")
+nos=nos.strip()
+tot=0
+for i in nos:
+    tot=tot+int(i)
+    
+print("total of digits  " , tot)
+
+=============================================================================
+The isalpha() method checks if all characters in a given string are alphabetic.
+
+ It returns True if every character in the string is a letter and False 
+
+if the string contains any numbers, spaces, or special characters.
+
+
+s1 = "HelloWorld"
+res1 = s1.isalpha()
+print(res1)
+
+s2 = "Hello123"
+res2 = s2.isalpha()
+print(res2)
+
+===================================================================================================
+
+The count() method in Python returns the number of times a specified substring appears in a string.
+
+ It is commonly used in string analysis to quickly check how often certain characters or words appear.
+
+Let’s start with a simple example of using count().
+
+s = "hello world"
+res = s.count("o")
+print(res)
+
+========================================================================================================
+
+str="Python#$123"
+
+Task is print sum of digits
+
+
+str="Python#$123"
+tot=0
+for i in str:
+    if i.isdigit():
+       tot=tot+int(i)
+print(tot)       
+=======================================================================================================
+
+1 . read temp in celcius , convert ito fahren ( fah = 1.8 * cel +32 )
+
+cel =float(input("Enter value for temp in celcius "))
+fah =1.8 * cel +32
+print("Temp in celcius   =" , cel)
+print("Temp in fahren    =" , fah)
+
+
+2.  read temp in fahren  , convert into cel   cel=(fah-32)/1.8
+
+fah=float(input("Enter temp in fahren   "))
+cel=(fah-32)/1.8
+print("Temp in fahren    =" , fah)
+print("Temp in celcius   =" , cel)
+
+
+
+3. Read value for N .[ Max value is 6 ].
+
+   find factorial of N
+
+    !N = 1*2*3 ....(N-1)*N
+
+n=int(input("Enter value for n  "))
+f=1
+for i in range(2,n+1):
+    f=f*i
+
+print("Factorial of " , n , " is   " , f)
+
+======================================================================================================== 
+
+The join() method in Python is used to concatenate the elements of an iterable 
+
+(such as a list, tuple, or set) into a single string with a specified delimiter placed between each element.
+

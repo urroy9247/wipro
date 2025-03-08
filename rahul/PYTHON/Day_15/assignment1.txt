@@ -1,0 +1,20 @@
+1-PS C-/Users/Administrator/Desktop/rahul/PYTHON/Day_14/automation> dir *.py
+2-PS C:\Users\Administrator\Desktop\rahul\PYTHON\Day_14\automation> dir test_*.py
+
+
+Directory:C-/Users/Administrator/Desktop/rahul/PYTHON/Day_14/automation
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        18-02-2025     15:36            313 test_assignment1.py
+-a----        18-02-2025     15:54            325 test_assignment2.py
+-a----        18-02-2025     20:53            307 test_assignment4.py
+-a----        18-02-2025     11:18            139 test_classwork4.py
+-a----        18-02-2025     11:25            212 test_classwork5.py
+-a----        18-02-2025     12:01            163 test_classwork6.py
+-a----        18-02-2025     14:58            157 test_classwork7.py
+-a----        18-02-2025     15:12            262 test_classwork8.py
+
+
+PS C-/Users/Administrator/Desktop/rahul/PYTHON/Day_14/automation

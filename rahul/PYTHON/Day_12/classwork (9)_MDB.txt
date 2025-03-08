@@ -1,0 +1,658 @@
+Microsoft Windows [Version 10.0.26100.3194]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\pravallika>mongosh
+Current Mongosh Log ID: 67b02698bcd4aa81374d7941
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.9
+Using MongoDB:          8.0.4
+Using Mongosh:          2.3.9
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+
+To help improve our products, anonymous usage data is collected and sent to MongoDB periodically (https://www.mongodb.com/legal/privacy-policy).
+You can opt-out by running the disableTelemetry() command.
+
+------
+   The server generated these startup warnings when booting
+   2025-02-15T10:05:49.610+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs
+
+admin   40.00 KiB
+config  12.00 KiB
+local   40.00 KiB
+======================================================
+test> use rps
+switched to db rps
+======================================================
+rps> rps.createCollection("posts")
+ReferenceError: rps is not defined
+rps> db.createCollection("posts")
+{ ok: 1 }
+======================================================
+rps> db.posts.insertOne({
+...   title: "Post Title 1",
+...   body: "Body of post.",
+...   category: "News",
+...   likes: 1,
+...   tags: ["news", "events"],
+...   date: Date()
+... })
+{
+  acknowledged: true,
+  insertedId: ObjectId('67b02c00bcd4aa81374d7942')
+}
+=====================================================
+rps> db.posts.insertMany([
+...   {
+...     title: "Post Title 2",
+...     body: "Body of post.",
+...     category: "Event",
+...     likes: 2,
+...     tags: ["news", "events"],
+...     date: Date()
+...   },
+...   {
+...     title: "Post Title 3",
+...     body: "Body of post.",
+...     category: "Technology",
+...     likes: 3,
+...     tags: ["news", "events"],
+...     date: Date()
+...   },
+...   {
+...     title: "Post Title 4",
+...     body: "Body of post.",
+...     category: "Event",
+...     likes: 4,
+...     tags: ["news", "events"],
+...     date: Date()
+...   }
+... ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67b02c16bcd4aa81374d7943'),
+    '1': ObjectId('67b02c16bcd4aa81374d7944'),
+    '2': ObjectId('67b02c16bcd4aa81374d7945')
+  }
+}
+==================================================================
+rps> db.posts.find()
+[
+  {
+    _id: ObjectId('67b02c00bcd4aa81374d7942'),
+    title: 'Post Title 1',
+    body: 'Body of post.',
+    category: 'News',
+    likes: 1,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:08 GMT+0530 (India Standard Time)'
+  },
+  {
+    _id: ObjectId('67b02c16bcd4aa81374d7943'),
+    title: 'Post Title 2',
+    body: 'Body of post.',
+    category: 'Event',
+    likes: 2,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:30 GMT+0530 (India Standard Time)'
+  },
+  {
+    _id: ObjectId('67b02c16bcd4aa81374d7944'),
+    title: 'Post Title 3',
+    body: 'Body of post.',
+    category: 'Technology',
+    likes: 3,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:30 GMT+0530 (India Standard Time)'
+  },
+  {
+    _id: ObjectId('67b02c16bcd4aa81374d7945'),
+    title: 'Post Title 4',
+    body: 'Body of post.',
+    category: 'Event',
+    likes: 4,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:30 GMT+0530 (India Standard Time)'
+  }
+]
+
+========================================================================
+rps> db.posts.findOne()
+{
+  _id: ObjectId('67b02c00bcd4aa81374d7942'),
+  title: 'Post Title 1',
+  body: 'Body of post.',
+  category: 'News',
+  likes: 1,
+  tags: [ 'news', 'events' ],
+  date: 'Sat Feb 15 2025 11:24:08 GMT+0530 (India Standard Time)'
+}
+========================================================================
+rps> db.posts.find( {category: "News"} )
+[
+  {
+    _id: ObjectId('67b02c00bcd4aa81374d7942'),
+    title: 'Post Title 1',
+    body: 'Body of post.',
+    category: 'News',
+    likes: 1,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:08 GMT+0530 (India Standard Time)'
+  }
+]
+=======================================================================
+rps> db.posts.find()
+[
+  {
+    _id: ObjectId('67b02c00bcd4aa81374d7942'),
+    title: 'Post Title 1',
+    body: 'Body of post.',
+    category: 'News',
+    likes: 1,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:08 GMT+0530 (India Standard Time)'
+  },
+  {
+    _id: ObjectId('67b02c16bcd4aa81374d7943'),
+    title: 'Post Title 2',
+    body: 'Body of post.',
+    category: 'Event',
+    likes: 2,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:30 GMT+0530 (India Standard Time)'
+  },
+  {
+    _id: ObjectId('67b02c16bcd4aa81374d7944'),
+    title: 'Post Title 3',
+    body: 'Body of post.',
+    category: 'Technology',
+    likes: 3,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:30 GMT+0530 (India Standard Time)'
+  },
+  {
+    _id: ObjectId('67b02c16bcd4aa81374d7945'),
+    title: 'Post Title 4',
+    body: 'Body of post.',
+    category: 'Event',
+    likes: 4,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:30 GMT+0530 (India Standard Time)'
+  }
+]
+=============================================================================
+rps> db.posts.find( { title: "Post Title 1" } )
+[
+  {
+    _id: ObjectId('67b02c00bcd4aa81374d7942'),
+    title: 'Post Title 1',
+    body: 'Body of post.',
+    category: 'News',
+    likes: 1,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:08 GMT+0530 (India Standard Time)'
+  }
+]
+==============================================================================
+rps> db.posts.updateOne( { title: "Post Title 1" }, { $set: { likes: 2 } } )
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+================================================================================
+rps> db.posts.find( { title: "Post Title 1" } )
+[
+  {
+    _id: ObjectId('67b02c00bcd4aa81374d7942'),
+    title: 'Post Title 1',
+    body: 'Body of post.',
+    category: 'News',
+    likes: 2,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:08 GMT+0530 (India Standard Time)'
+  }
+]
+================================================================================
+rps> db.posts.updateOne(
+...   { title: "Post Title 5" },
+...   {
+...     $set:
+...       {
+...         title: "Post Title 5",
+...         body: "Body of post.",
+...         category: "Event",
+...         likes: 5,
+...         tags: ["news", "events"],
+...         date: Date()
+...       }
+...   },
+...   { upsert: true }
+... )
+{
+  acknowledged: true,
+  insertedId: ObjectId('67b02f157d8d44985a78bd70'),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+================================================================
+rps>  db.posts.find( { title: "Post Title 5" } )
+[
+  {
+    _id: ObjectId('67b02f157d8d44985a78bd70'),
+    title: 'Post Title 5',
+    body: 'Body of post.',
+    category: 'Event',
+    date: 'Sat Feb 15 2025 11:37:17 GMT+0530 (India Standard Time)',
+    likes: 5,
+    tags: [ 'news', 'events' ]
+  }
+]
+=====================================================================
+rps> db.posts.deleteOne({ title: "Post Title 5" })
+{ acknowledged: true, deletedCount: 1 }
+======================================================================
+rps>  db.posts.find( { title: "Post Title 5" } )
+======================================================================
+rps>  db.posts.find()
+[
+  {
+    _id: ObjectId('67b02c00bcd4aa81374d7942'),
+    title: 'Post Title 1',
+    body: 'Body of post.',
+    category: 'News',
+    likes: 2,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:08 GMT+0530 (India Standard Time)'
+  },
+  {
+    _id: ObjectId('67b02c16bcd4aa81374d7943'),
+    title: 'Post Title 2',
+    body: 'Body of post.',
+    category: 'Event',
+    likes: 2,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:30 GMT+0530 (India Standard Time)'
+  },
+  {
+    _id: ObjectId('67b02c16bcd4aa81374d7944'),
+    title: 'Post Title 3',
+    body: 'Body of post.',
+    category: 'Technology',
+    likes: 3,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:30 GMT+0530 (India Standard Time)'
+  },
+  {
+    _id: ObjectId('67b02c16bcd4aa81374d7945'),
+    title: 'Post Title 4',
+    body: 'Body of post.',
+    category: 'Event',
+    likes: 4,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:30 GMT+0530 (India Standard Time)'
+  }
+]
+============================================================================
+rps> db.createCollection("student")
+{ ok: 1 }
+
+rps> show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    40.00 KiB
+rps      80.00 KiB
+
+=============================================================================
+rps> db.posts.find()
+[
+  {
+    _id: ObjectId('67b02c00bcd4aa81374d7942'),
+    title: 'Post Title 1',
+    body: 'Body of post.',
+    category: 'News',
+    likes: 2,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:08 GMT+0530 (India Standard Time)'
+  },
+  {
+    _id: ObjectId('67b02c16bcd4aa81374d7943'),
+    title: 'Post Title 2',
+    body: 'Body of post.',
+    category: 'Event',
+    likes: 2,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:30 GMT+0530 (India Standard Time)'
+  },
+  {
+    _id: ObjectId('67b02c16bcd4aa81374d7944'),
+    title: 'Post Title 3',
+    body: 'Body of post.',
+    category: 'Technology',
+    likes: 3,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:30 GMT+0530 (India Standard Time)'
+  },
+  {
+    _id: ObjectId('67b02c16bcd4aa81374d7945'),
+    title: 'Post Title 4',
+    body: 'Body of post.',
+    category: 'Event',
+    likes: 4,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:30 GMT+0530 (India Standard Time)'
+  }
+]
+===========================================================================
+rps> db.student.find()
+===========================================================================
+rps> db.student.insertOne({
+... name:"Alice",
+... age:25,
+... city:"New York"
+... })
+{
+  acknowledged: true,
+  insertedId: ObjectId('67b030bdbcd4aa81374d7946')
+}
+======================================================================
+rps> db.student.find()
+[
+  {
+    _id: ObjectId('67b030bdbcd4aa81374d7946'),
+    name: 'Alice',
+    age: 25,
+    city: 'New York'
+  }
+]
+
+
+=======================================================================
+rps> db.student.findOne({name:"Alice"})
+{
+  _id: ObjectId('67b030bdbcd4aa81374d7946'),
+  name: 'Alice',
+  age: 25,
+  city: 'New York'
+}
+==========================================================================
+rps>
+... db.student.insertMany([
+...     {"name": "Bob", "age": 30, "city": "San Francisco"},
+...     {"name": "Charlie", "age": 28, "city": "Los An
+geles"}
+... ])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67b032b5bcd4aa81374d7947'),
+    '1': ObjectId('67b032b5bcd4aa81374d7948')
+  }
+}
+============================================================================
+rps> db.student.find()
+[
+  {
+    _id: ObjectId('67b030bdbcd4aa81374d7946'),
+    name: 'Alice',
+    age: 25,
+    city: 'New York'
+  },
+  {
+    _id: ObjectId('67b032b5bcd4aa81374d7947'),
+    name: 'Bob',
+    age: 30,
+    city: 'San Francisco'
+  },
+  {
+    _id: ObjectId('67b032b5bcd4aa81374d7948'),
+    name: 'Charlie',
+    age: 28,
+    city: 'Los Angeles'
+  }
+]
+==================================================================
+rps> db.student.find({"name": "Bob"})
+[
+  {
+    _id: ObjectId('67b032b5bcd4aa81374d7947'),
+    name: 'Bob',
+    age: 30,
+    city: 'San Francisco'
+  }
+]
+==================================================================
+rps> db.student.find({name: "Bob"})
+[
+  {
+    _id: ObjectId('67b032b5bcd4aa81374d7947'),
+    name: 'Bob',
+    age: 30,
+    city: 'San Francisco'
+  }
+]
+===================================================================
+rps> db.student.find({"age": {"$gt": 25}})
+[
+  {
+    _id: ObjectId('67b032b5bcd4aa81374d7947'),
+    name: 'Bob',
+    age: 30,
+    city: 'San Francisco'
+  },
+  {
+    _id: ObjectId('67b032b5bcd4aa81374d7948'),
+    name: 'Charlie',
+    age: 28,
+    city: 'Los Angeles'
+  }
+]
+====================================================================
+rps> db.student.find({name:"Bob"})
+[
+  {
+    _id: ObjectId('67b032b5bcd4aa81374d7947'),
+    name: 'Bob',
+    age: 30,
+    city: 'San Francisco'
+  }
+]
+=====================================================================
+rps> db.student.update({name: "Bob"}, {$set: {"age": 31}})
+DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+========================================================================
+rps> db.student.find({name:"Bob"})
+[
+  {
+    _id: ObjectId('67b032b5bcd4aa81374d7947'),
+    name: 'Bob',
+    age: 31,
+    city: 'San Francisco'
+  }
+]
+============================================================
+rps> db.student.updateMany({},{$set:{age:35}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 3,
+  modifiedCount: 3,
+  upsertedCount: 0
+}
+================================================================
+rps> db.student.find()
+[
+  {
+    _id: ObjectId('67b030bdbcd4aa81374d7946'),
+    name: 'Alice',
+    age: 35,
+    city: 'New York'
+  },
+  {
+    _id: ObjectId('67b032b5bcd4aa81374d7947'),
+    name: 'Bob',
+    age: 35,
+    city: 'San Francisco'
+  },
+  {
+    _id: ObjectId('67b032b5bcd4aa81374d7948'),
+    name: 'Charlie',
+    age: 35,
+    city: 'Los Angeles'
+  }
+]
+
+=================================================================
+rps> db.student.update({name:"Alice"},{$set:{age:25}})
+
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+====================================================================
+rps> db.student.find()
+[
+  {
+    _id: ObjectId('67b030bdbcd4aa81374d7946'),
+    name: 'Alice',
+    age: 25,
+    city: 'New York'
+  },
+  {
+    _id: ObjectId('67b032b5bcd4aa81374d7947'),
+    name: 'Bob',
+    age: 35,
+    city: 'San Francisco'
+  },
+  {
+    _id: ObjectId('67b032b5bcd4aa81374d7948'),
+    name: 'Charlie',
+    age: 35,
+    city: 'Los Angeles'
+  }
+]
+
+=================================================================================
+rps> db.student.updateMany({"city": "Los Angeles"}, {"$set": {"city": "San Diego"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+================================================================
+rps> db.student.find()
+[
+  {
+    _id: ObjectId('67b030bdbcd4aa81374d7946'),
+    name: 'Alice',
+    age: 25,
+    city: 'New York'
+  },
+  {
+    _id: ObjectId('67b032b5bcd4aa81374d7947'),
+    name: 'Bob',
+    age: 35,
+    city: 'San Francisco'
+  },
+  {
+    _id: ObjectId('67b032b5bcd4aa81374d7948'),
+    name: 'Charlie',
+    age: 35,
+    city: 'San Diego'
+  }
+]
+====================================================================
+
+rps> db.posts.updateOne(
+...   { title: "Post Title 5" },
+...   {
+...     $set:
+...       {
+...         title: "Post Title 5",
+...         body: "Body of post.",
+...         category: "Event",
+...         likes: 5,
+...         tags: ["news", "events"],
+...         date: Date()
+...       }
+...   },
+...   { upsert: true }
+... )
+{
+  acknowledged: true,
+  insertedId: ObjectId('67b047de7d8d44985a78bd71'),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+=====================================================================
+rps> db.posts.find()
+[
+  {
+    _id: ObjectId('67b02c00bcd4aa81374d7942'),
+    title: 'Post Title 1',
+    body: 'Body of post.',
+    category: 'News',
+    likes: 2,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:08 GMT+0530 (India Standard Time)'
+  },
+  {
+    _id: ObjectId('67b02c16bcd4aa81374d7943'),
+    title: 'Post Title 2',
+    body: 'Body of post.',
+    category: 'Event',
+    likes: 2,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:30 GMT+0530 (India Standard Time)'
+  },
+  {
+    _id: ObjectId('67b02c16bcd4aa81374d7944'),
+    title: 'Post Title 3',
+    body: 'Body of post.',
+    category: 'Technology',
+    likes: 3,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:30 GMT+0530 (India Standard Time)'
+  },
+  {
+    _id: ObjectId('67b02c16bcd4aa81374d7945'),
+    title: 'Post Title 4',
+    body: 'Body of post.',
+    category: 'Event',
+    likes: 4,
+    tags: [ 'news', 'events' ],
+    date: 'Sat Feb 15 2025 11:24:30 GMT+0530 (India Standard Time)'
+  },
+  {
+    _id: ObjectId('67b047de7d8d44985a78bd71'),
+    title: 'Post Title 5',
+    body: 'Body of post.',
+    category: 'Event',
+    date: 'Sat Feb 15 2025 13:23:02 GMT+0530 (India Standard Time)',
+    likes: 5,
+    tags: [ 'news', 'events' ]
+  }
+]
+rps>

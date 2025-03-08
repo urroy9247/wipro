@@ -1,0 +1,146 @@
+Editors :
+````````````
+It is used to create or edit files.
+
+Types :
+```````````
+vi,sed,ed,ex,pico
+
+ed editors
+--------------
+It is a line editor. Usually all commands in ed have single characters. It is invoked by typing ed followed by the filename at the $ prompt.
+
+P = takes u to the command mode. It can be ensured by the character *.
+a= To type the text. After typing use (.) in the new line to come to *.
+w= To save the file.
+H= to get the help
+q= to quit
+f= displays the name of the current file
+u=to undo a command
+d= to delete a desired line
+1t3=copies 1st  line to 3rd  line
+1m3=moves 1st  line to 3rd  line
+1,3p=displays from the first line of the file to the third line
+3.$p= displays from the third line
+
+
+Vi editor
+==========
+Vi editor was developed by BillJoy at University of California.
+``````````````
+It is Case Sensitive. It is a powerful interaction full screen editor built on top of the ex line editor.
+
+Editing with vi
+================
+The structure of vi is based on units of the text and the operators.  The main focus behind vi is single keystroke commands to move around the file and the user of operators to allow text manipulations based on these commands. 
+
+ Modes
+----------
+1)Command mode: With in the command mode, signals from the keyboard are interpreted as editing commands.
+
+2) Insert mode: It can be entered by typing any of the vi insert, append, open , substitute, change or replace commands. Here the letters typed at the keyboard are inserted in to the editing buffer.Once we save then the text from the buffer will be replaced in the editor.
+
+3) Escape mode: To use the escape mode type colon(:). The colon is echoed on the status line as a prompt for the commands.
+
+syntax :
+````````````
+ vi [filename]
+  vi +5 filename -goes to the fifth line
+
+Adding and Replacing text :
+`````````````````````````````````````````
+1.esc + i ->inserts text to the left of cursor
+2. I ->Inserts text at the beginning of the Line.
+3. a ->Appends text to right of  cursor
+4. A ->Appends text at the end of the line
+5. o ->Opens line below
+6. O ->Opens line above
+7. r ->Replace single character under cursor with character ch.
+8. R ->Replace text from cursor to Right
+9. s ->replace single char under cursor with any number of character.
+10. S ->Replace the entire line.
+
+Movements in Editor :
+```````````````````````````````
+1. esc +h or Backspace  -->move left 
+2. esc +l  --->move right
+3. esc +k or -(hyphen)  -->move up
+4. esc + j or +                  -->move down
+5. L -->Last line of the file
+6. G -->Go to  eg: 2G ->go to line no 2
+7. w or W --> moves forward by word.
+8. e or E  -->last character of the word.
+9. b or B  -->moves Backward by word.
+10. ^ -->beginning of the line.
+11. $ -->end of the line.
+12. 2w ->moves by two words.
+13. 4$ -->end of the fourth line.
+14. 5b -->moves  5words backward.
+
+Paging and Scrolling :
+`````````````````````````````````
+esc +
+ctrl +f  ->fullpage forward
+ctrl +b ->fullpage backward
+ctrl +d ->halfpage forward
+ctrl +u ->halfpage backward
+ctrl +l ->redraw the page screen
+
+Search and Repeat commands
+``````````````````````````````````Here pattern denotes a character or a string to be searched.
+
+esc :
+1. / pattern ->searches forward for pattern pat
+eg:  /hello
+2. ?pattern ->searches backward for pattern pat
+eg: ?hello
+3.  n ->repeat the search in the same direction along with the previous search.
+4. N ->repeats search in the direction opposite & previous search.
+5. f ch ->moves cursor forward to first occurance of character ch in the current line.
+
+Delete :
+``````````
+1.  esc dd or D->delete the entire     line
+2.   d$ ->deletes from the cursor to the end of the line.
+3.   5 dd ->deletes 5 lines
+4.   d /pattern ->deletes from the cursor upto end if         in the forward direction
+5.   d 9 G ->deletes from cursor upto the line no 9.
+6.    d f .  ->deletes upto . dot
+7.    d (  ->begining of the line
+8.    d) ->end of the line
+9.    d{  ->from the cursor till beginning of the file
+10.  d} -> from the cursor till end of the file
+11   esc + u  ->undo
+12   x to delete a character
+
+Change :
+````````````
+1. c$ or C -->change  till the end of the line.
+2. c0 -> change from cursor to the line.
+3.  cc --> changes the current line
+4. cG  -->changes from the cursor to the end of the file.
+5. 3cw or c3w --> changes 3 words
+
+Copy :
+````````
+esc :
+1.  4 co 6
+4th line will be copied to 6th line
+
+Saving Text and Quit :
+``````````````````````
+esc : mode
+1.esc :r ->reads file note into the present cursor.
+2.esc : w ->saves buffer and remains in the editing mode.
+3. esc :w filename ->creates a file named file1 and writes the content into it.
+4. w! filename ->Overwrites the file.
+5. w >> filename1 ->Appends buffer contents to file1 .
+6. x ->saves file and quits the existing mode.
+7. wq ->same as above.
+8. q! ->quit without save.
+9. e file1 ->edits the file named file1
+10. e n ->edits the next file
+11. rew ->rewind
+
+
+		

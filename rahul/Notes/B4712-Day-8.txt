@@ -1,0 +1,701 @@
+Day 8: 
+
+Date : 11th Feb 2025
+
+Morning session:
+
+1.Continuation of OOPS
+ 
+  polymorphism
+
+ 
+   len("Doss")
+
+   len( [ 1, 2,3, 4] )   - polymorphism
+
+   len( (1,5,6,"doss" , False) ) - polymorphism
+
+
+  i ask when  is the next delivery    - Postman -- 3 pm
+
+  i ask when  is the next delivery   - Pregnant-- woman
+================================================================================
+
+  x=4+5  =9      Operator is +
+
+  a= "Lord shiva" + " I Love you  "  +
+  
+     "Lord Shiva i  love yupu    - Operator overloading - Concatenating
+
+  x=4+5.0 = 9.0
+
+  a and b are complex nos
+
+  c=a+b    additions of two complex nos
+
+=================================================================
+
+class Animal:
+    def speak(self):
+        pass
+
+class Dog(Animal):
+    def speak(self):
+        return "Woof!"
+
+class Cat(Animal):
+    def speak(self):
+        return "Meow!"
+
+def animal_sound(animal):
+    print(animal.speak())
+
+# Creating objects
+dog = Dog()
+cat = Cat()
+
+# Using polymorphism
+animal_sound(dog)  # Output: Woof!
+animal_sound(cat)  # Output: Meow!
+
+In this example, both Dog and Cat are derived from the Animal class.
+
+ The animal_sound function doesn't care what type of animal it receives - it just calls the speak method.
+ This is polymorphism in action!
+=======================================================================================================
+
+Duck Typing in Python
+
+Duck typing is a concept in Python that focuses on the behavior of an object rather than its type. 
+
+As the saying goes, "If it looks like a duck, swims like a duck, and quacks like a duck, then it probably is a duck."
+
+Here's an example:
+
+class Duck:
+    def quack(self):
+        print("Quack, quack!")
+
+class Person:
+    def quack(self):
+        print("I'm pretending to be a duck!")
+
+def make_it_quack(thing):
+    thing.quack()
+
+# Creating objects
+duck = Duck()
+person = Person()
+
+# Using duck typing
+make_it_quack(duck)    # Output: Quack, quack!
+make_it_quack(person)  # Output: I'm pretending to be a duck!
+
+================================================================================================
+
+Method Overriding in Python:
+
+Method overriding is when a derived class provides a specific implementation for a method that is already defined in its base class. 
+
+It's like telling your parent, "I know you do it this way, but I'm going to do it my way!"
+
+Here's an example:
+
+class Vehicle:
+    def move(self):
+        print("I'm moving!")
+
+class Car(Vehicle):
+    def move(self):
+        print("I'm driving on the road!")
+
+class Boat(Vehicle):
+    def move(self):
+        print("I'm sailing on the water!")
+
+# Creating objects
+vehicle = Vehicle()
+car = Car()
+boat = Boat()
+
+# Using method overriding
+vehicle.move()  # Output: I'm moving!
+car.move()      # Output: I'm driving on the road!
+boat.move()     # Output: I'm sailing on the water!
+
+==================================================================================================================
+
+Overloading Operators in Python:
+
+Python allows you to define how operators behave when applied to objects of your custom classes. 
+
+This is called operator overloading.
+
+Here's an example:
+
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other):
+        return Point(self.x + other.x, self.y + other.y)
+
+    def __str__(self):
+        return f"({self.x}, {self.y})"
+
+# Creating objects
+p1 = Point(1, 2)
+p2 = Point(3, 4)
+
+# Using operator overloading
+p3 = p1 + p2
+print(p3)  # Output: (4, 6)
+
+Python __add__() function is one of the magic methods in Python that returns a new object(third)
+
+ i.e. the addition of the other two objects. It implements the addition operator “+” in Python.
+
+=========================================================================================================================
+
+
+class Person:
+    def __init__(self, first_name, last_name, age):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+
+person = Person('John', 'Doe', 25)
+print(person)
+
+
+Output:
+
+<__main__.Person object at 0x0000023CA16D13A0>
+
+
+
+When you use the print() function to display the instance of the Person class, 
+the print() function shows the memory address of that instance.
+
+
+
+
+Sometimes, it’s useful to have a string representation of an instance of a class. 
+
+To customize the string representation of a class instance, the class needs to implement the __str__ magic method.
+
+
+Internally, Python will call the __str__ method automatically when an instance calls the str() method.
+
+Note that the print() function converts all non-keyword arguments to strings by passing them to the str() before displaying the string values.
+
+The following illustrates how to implement the __str__ method in the Person class:
+
+class Person:
+    def __init__(self, first_name, last_name, age):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+
+    def __str__(self):
+
+        return f'Person({self.first_name},{self.last_name},{self.age})'
+
+And when you use the print() function to print out an instance of the Person class, Python calls the __str__ method defined in the Person class.
+
+================================================================================================================================
+
+super() : refer to parent class
+
+Python super() to delegate to the parent class when overriding methods.
+
+class Employee:
+    def __init__(self, name, base_pay, bonus):
+        self.name = name
+        self.base_pay = base_pay
+        self.bonus = bonus
+
+    def get_pay(self):
+        return self.base_pay + self.bonus
+
+
+
+Second, define the SalesEmployee class that inherits from the Employee class:
+
+class SalesEmployee(Employee):
+    def __init__(self, name, base_pay, bonus, sales_incentive):
+        self.name = name
+        self.base_pay = base_pay
+        self.bonus = bonus
+        self.sales_incentive = sales_incentive
+
+    def get_pay(self):
+        return self.base_pay + self.bonus + self.sales_incentive
+
+
+The SalesEmployee class has four instance variables name, base_pay, bonus, and sales_incentive. 
+
+It has the get_pay() method that overrides the get_pay() method in the Employee class.
+
+
+super().__init__()
+
+The __init__() method of the SalesEmployee class has some parts that are the same as the ones in the __init__() method of the Employee class.
+
+To avoid duplication, you can call the __init__() method of Employee class from the __init__() method of the SalesEmployee class.
+
+To reference the Employee class in the SalesEmployee class, you use the super(). The super() returns a reference of the parent class from a child class.
+
+The following redefines the SalesEmployee class that uses the super() to call the __init__() method of the Employee class:
+
+
+class SalesEmployee(Employee):
+    def __init__(self, name, base_pay, bonus, sales_incentive):
+        super().__init__(name, base_pay, bonus)
+        self.sales_incentive = sales_incentive
+
+    def get_pay(self):
+        return super().get_pay() + self.sales_incentive
+
+==============================================================================================
+
+class Employee:
+    def __init__(self, name, base_pay, bonus):
+        self.name = name
+        self.base_pay = base_pay
+        self.bonus = bonus
+
+    def get_pay(self):
+        return self.base_pay + self.bonus
+
+
+class SalesEmployee(Employee):
+    def __init__(self, name, base_pay, bonus, sales_incentive):
+        super().__init__(name, base_pay, bonus)
+        self.sales_incentive = sales_incentive
+
+    def get_pay(self):
+        return super().get_pay() + self.sales_incentive
+
+
+sales_employee = SalesEmployee('John', 5000, 1000, 2000)
+
+print(sales_employee.get_pay())  # 8000
+
+
+
+===============================Break 10.40 am to 10.55 am=========================================================================
+
+Assignment :
+
+1. Read two complex numbers  a and b from the console
+
+2. method 1 to add two complex nos
+
+3. method 2 to subtract  b from a
+
+4. displayComplex() to display complex no
+
+ 
+
+ a=  4+5i
+ b=  4+3i
+
+sum=8+8i
+
+use Operator overloading
+
+upload this assignment in your github
+
+
+======================================================================================================================================
+
+Connecting to the Database:
+
+Since sqlite3 is pre-installed, you just need to import it in your Python script.
+
+To create a new database or connect to an existing one, we use the sqlite3.connect() method.
+
+This method takes the name of the database file as an argument.
+
+If the file doesn’t exist, SQLite will automatically create it.
+
+
+import sqlite3
+
+# Connect to the SQLite database (or create it if it doesn't exist)
+
+connection = sqlite3.connect('rps_database.db')
+
+In this example, a file named my_database.db is created in the same directory as your script.
+
+If the file already exists, SQLite will just open the connection to it.
+
+
+
+Creating a Cursor:
+
+Once you have a connection, the next step is to create a cursor object. 
+
+The cursor is responsible for executing SQL commands and queries on the database.
+
+
+# Create a cursor object
+
+cursor = connection.cursor()
+
+
+
+Closing the Connection:
+
+After you’ve finished working with the database, it’s important to close the connection to free up any resources.
+
+You can close the connection with the following command:
+
+# Close the database connection
+
+connection.close()
+
+
+======================================================================================
+
+How to Use Context Manager to Open and Close Connections
+
+Python provides a more efficient and cleaner way to handle database connections using the with statement,
+
+also known as a context manager. The with statement automatically opens and closes the connection,
+
+ ensuring that the connection is properly closed even if an error occurs during the database operations.
+ 
+This eliminates the need to manually call connection.close().
+
+
+
+ 
+Here’s how you can use the with statement to handle database connections:
+
+import sqlite3
+
+# Step 1: Use 'with' to connect to the database (or create one) and automatically close it when done
+
+with sqlite3.connect('rps_database.db') as connection:
+
+    # Step 2: Create a cursor object to interact with the database
+
+    cursor = connection.cursor()
+
+    print("Database created and connected successfully!")
+
+# No need to call connection.close(); it's done automatically!
+
+
+==============================================================================================================
+
+import sqlite3
+
+# Use 'with' to connect to the SQLite database and automatically close the connection when done
+
+with sqlite3.connect('rps_database.db') as connection:
+
+    # Create a cursor object
+
+    cursor = connection.cursor()
+
+    # Write the SQL command to create the Students table
+
+    create_table_query = '''
+    CREATE TABLE IF NOT EXISTS Students (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        age INTEGER,
+        email TEXT
+    );
+    '''
+
+    # Execute the SQL command
+    cursor.execute(create_table_query)
+
+    # Commit the changes
+    connection.commit()
+
+    # Print a confirmation message
+    print("Table 'Students' created successfully!")
+
+==================================================================================================
+
+IF NOT EXISTS: This ensures that the table is only created if it doesn’t already exist,
+ preventing errors if the table has been created before.
+
+connection.commit(): This saves (commits) the changes to the database.
+=====================================================================================================
+
+If you’re using Visual Studio Code, you can install the SQLite Viewer extension to view SQLite databases.
+
+
+import sqlite3
+
+# Use 'with' to open and close the connection automatically
+
+with sqlite3.connect('rps_database.db') as con:
+
+    cursor = con.cursor()
+
+    # Insert a record into the Students table
+    stmt= " INSERT INTO Students (name, age, email)   VALUES ('Jane Doe', 23, 'jane@example.com'); "
+
+    cursor.execute(stmt)
+
+    # Commit the changes automatically
+    connection.commit()
+
+    # No need to call connection.close(); it's done automatically!
+    print("Record inserted successfully!")
+======================================================================================================
+
+how to display Data:
+
+import sqlite3
+
+# Use 'with' to connect to the SQLite database
+
+with sqlite3.connect('rps_database.db') as con:
+
+    # Create a cursor object
+    cursor = con.cursor()
+
+    # Write the SQL command to select all records from the Students table
+    query = "SELECT * FROM Students;"
+
+    # Execute the SQL command
+    cursor.execute(query)
+
+    # Fetch all records
+    all_students = cursor.fetchall()
+
+    # Display results in the terminal
+    print("All Students:")
+
+    for student in all_students:
+        print(student)
+
+=============================================================================================
+
+import sqlite3
+
+# Use 'with' to connect to the SQLite database
+with sqlite3.connect('rps_database.db') as connection:
+    cursor = connection.cursor()
+
+    # SQL command to update a student's age
+    update_query = " UPDATE Students  SET age = ?   WHERE name = ?; "
+    
+
+    # Data for the update
+    new_age = 25
+    student_name = 'Murugadoss'
+
+    # Execute the SQL command with the data
+    cursor.execute(update_query, (new_age, student_name))
+
+    # Commit the changes to save the update
+    connection.commit()
+
+    # Print a confirmation message
+    print(f"Updated age for {student_name} to {new_age}.")
+
+=====================================================================================================
+
+ pandas : It is a library  used for data analysis 
+ numpy  : it is a library  used for mathematical calculations( matrix , determinants ,etc)
+
+ wiprolabs> cd scripts
+
+ scripts> pip install  pandas 
+
+ how to read csv , xls  , json file in python and do some data analysis
+
+ data may be from rdbms such Oralce --> OBIEE - used for data analysis
+                             SQLServer--->SSAS -used for data analysis
+                             SAP BI   ---> data analaysis
+
+ data must be structured. 
+
+
+
+licence is very expensive
+
+sometime i have data such as txt , csv  , but i need to have data analysis without license , then we can
+use padas in python
+
+we order food from zomato , all data is stored in csv format such as name,mobno,email,payment,loc, time , food type , day
+
+every day we get say 20,0000 orders only from bangalore .
+
+after few months we have millions of records
+
+now we want some data analysis
+
+1. which type of food gets max order on week ends
+2. which location gets max order on weekday and weekends
+3. which location gets lowest order
+4. list delivery boy details who did max delivery for the last months
+
+Here data may be semi structured , some times unstructured
+
+semi - json , xml
+
+unstru-log file , audio and video files
+
+
+========================================================================================================
+ 
+import pandas as pd
+import numpy  as np
+
+import matplotlib.pyplot as mtp
+
+df=pd.read_csv('sl.csv')  
+
+# read_csv() method to read csv and convert into data frame
+# dataframe is a kind of data set like RDBMS table having rows and columns
+
+print(df.columns) # returns column names from s1.csv
+
+#describe returns column names  , types etc
+
+print(df.describe())
+
+print(df.info())  # returns column name and its types , null and not null
+
+==========================break time 3.30 pm to 3.45  pm ============================================
+
+data is structured , we can store  data in RDBMS and we can use SQL query to analyse.
+
+1. structured
+2. pushed to RDBMS
+3. sql license
+
+They were doing till late 2000.
+
+once smart phone came , lot of apps came . Hence data is semi and unstrucutred.
+
+industry wants two
+
+1. now days data is not structed.
+2. company wants open soure tool
+
+python is OS and pandas.
+
+
+
+fb
+
+wife/gf : how are you
+hus/bf  : i am fine
+
+wife    : do you really miss me
+Hus     : yes
+wife    : you are lier
+
+these data are examples for unstructured
+
+FB stores around 10 TB of data every day.
+
+Data analyst analsysis data  . if find something fuzzy , u will be monitored.
+
+
+python is OS  , pandas is OS
+
+X developed Pandas.
+
+how does he make money
+
+
+================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                         
+
+
+
+
+
+
+
+
+
+
+
+
+#Years-of-experience is Independant variable [x]
+#salary is dependant variable [ y ]
+
+x=data.iloc[:, :-1]
+y=data.iloc[:, 1  ]
+print(x)
+print(y)
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ nested  Functions:
+
+
+  A nested function is simply a function within another function, and is sometimes called an "inner function". 
+
+
+
+
+def greeting(first, last):
+
+  # nested helper function
+
+      def getFullName():
+
+          return first + " " + last
+
+     print("Hi, " + getFullName() + "!")
+
+greeting('Quincy', 'Larson')
+
+
+many valid reasons to use nested functions, among the most common are encapsulation and closures / factory functions.
+
+
+def outer():
+  print("I'm the outer function.")
+  def inner():
+    print("And I'm the inner function.")
+    inner()
+
+inner()
+
+=============================================================================================
+

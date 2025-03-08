@@ -1,0 +1,572 @@
+Day: 10
+
+Date : 13th Feb
+
+Topics covered yesterday
+=========================
+
+1. arrays  [ fixed , dynamic ]  sorted , reverse , del
+
+2. Linear data and Nonlinear data
+
+   Examples for linear data: stack , queue , linked list
+
+                nonlinear data:Tress, graphs, hashtable
+
+3. Sorting :
+
+    bubble sorting : swap neighbouring values --> moves highest value to the right
+
+    select sorting : find min value and swap with first element of unsorted array
+                   
+                      Here we have sorted and unsorted arrays
+
+4. Introduction to tree and Graph
+
+5. installed mysql and few labs 
+
+   show databases
+   show tables
+   create table customers
+
+
+================================================================================== 
+
+select * from T1 where username= "abc" and pwd ="abc123"
+
+select * from t1 where  1==1 and 1==1
+
+========================================================================
+
+ 
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="root",
+  database="rps"
+)
+
+mycursor = mydb.cursor()  # cursor is an  object to execute sql statements
+
+
+sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
+
+val = ("John", "Highway 21")
+
+mycursor.execute(sql, val)
+
+mydb.commit()
+
+print(mycursor.rowcount, "record inserted.")
+====================================================================================
+goto mysql and check record .
+================================================================================
+
+Insert Multiple Rows
+
+To insert multiple rows into a table, use the executemany() method.
+
+The second parameter of the executemany() method is a list of tuples, containing the data you want to insert:
+
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword",
+  database="mydatabase"
+)
+
+mycursor = mydb.cursor()
+
+sql = "INSERT INTO customers (name, address) VALUES (%s, %s)"
+val = [
+  ('Peter', 'Lowstreet 4'),
+  ('Amy', 'Apple st 652'),
+  ('Hannah', 'Mountain 21'),
+  ('Michael', 'Valley 345'),
+  ('Sandy', 'Ocean blvd 2'),
+  ('Betty', 'Green Grass 1'),
+  ('Richard', 'Sky st 331'),
+  ('Susan', 'One way 98'),
+  ('Vicky', 'Yellow Garden 2'),
+  ('Ben', 'Park Lane 38'),
+  ('William', 'Central st 954'),
+  ('Chuck', 'Main Road 989'),
+  ('Viola', 'Sideway 1633')
+]
+
+mycursor.executemany(sql, val)
+
+mydb.commit()
+
+print(mycursor.rowcount, "was inserted.")
+
+========================================================================================
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword",
+  database="mydatabase"
+)
+
+mycursor = mydb.cursor()
+
+mycursor.execute("SELECT * FROM customers")
+
+myresult = mycursor.fetchall()
+
+for x in myresult:
+  print(x)
+
+
+Note: We use the fetchall() method, which fetches all rows from the last executed statement.
+
+
+===========================================================================================
+
+Selecting Columns:
+
+To select only some of the columns in a table, use the "SELECT" statement followed by the column name(s):
+
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword",
+  database="mydatabase"
+)
+
+mycursor = mydb.cursor()
+
+mycursor.execute("SELECT name, address FROM customers")
+
+myresult = mycursor.fetchall()
+
+for x in myresult:
+  print(x)
+===============================================================================================
+
+Using the fetchone() Method
+
+If you are only interested in one row, you can use the fetchone() method.
+
+The fetchone() method will return the first row of the result:
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword",
+  database="mydatabase"
+)
+
+mycursor = mydb.cursor()
+
+mycursor.execute("SELECT * FROM customers")
+
+myresult = mycursor.fetchone()
+
+print(myresult)
+
+
+=========================================================================================
+
+Select With a Filter:
+
+When selecting records from a table, you can filter the selection by using the "WHERE" statement:
+
+Select record(s) where the address is "Park Lane 38": result:
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword",
+  database="mydatabase"
+)
+
+mycursor = mydb.cursor()
+
+sql = "SELECT * FROM customers WHERE address ='Park Lane 38'"
+
+mycursor.execute(sql)
+
+myresult = mycursor.fetchall()
+
+for x in myresult:
+  print(x)
+
+=========================================================================
+
+Wildcard Characters
+
+You can also select the records that starts, includes, or ends with a given letter or phrase.
+
+Use the %  to represent wildcard characters:
+
+Select records where the address contains the word "way":
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword",
+  database="mydatabase"
+)
+
+mycursor = mydb.cursor()
+
+sql = "SELECT * FROM customers WHERE address LIKE '%way%'"
+
+mycursor.execute(sql)
+
+myresult = mycursor.fetchall()
+
+for x in myresult:
+  print(x)
+=================================================================================
+
+Prevent SQL Injection
+
+When query values are provided by the user, you should escape the values.
+
+This is to prevent SQL injections, which is a common web hacking technique to destroy or misuse your database.
+
+The mysql.connector module has methods to escape query values:
+
+Example
+
+Escape query values by using the placholder %s method:
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword",
+  database="mydatabase"
+)
+
+mycursor = mydb.cursor()
+
+sql = "SELECT * FROM customers WHERE address = %s"
+adr = ("Yellow Garden 2", )
+
+mycursor.execute(sql, adr)
+
+myresult = mycursor.fetchall()
+
+for x in myresult:
+  print(x)
+
+==============================================================================
+
+Sort the Result
+
+Use the ORDER BY statement to sort the result in ascending or descending order.
+
+The ORDER BY keyword sorts the result ascending by default. To sort the result in descending order, use the DESC keyword.
+
+Sort the result alphabetically by name: result:
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword",
+  database="mydatabase"
+)
+
+mycursor = mydb.cursor()
+
+sql = "SELECT * FROM customers ORDER BY name"
+
+mycursor.execute(sql)
+
+myresult = mycursor.fetchall()
+
+for x in myresult:
+  print(x)
+
+======================================================================================
+
+ORDER BY DESC
+
+Use the DESC keyword to sort the result in a descending order.
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword",
+  database="mydatabase"
+)
+
+mycursor = mydb.cursor()
+
+sql = "SELECT * FROM customers ORDER BY name DESC"
+
+mycursor.execute(sql)
+
+myresult = mycursor.fetchall()
+
+for x in myresult:
+  print(x)
+
+==============================================================================================
+
+Delete Record
+
+You can delete records from an existing table by using the "DELETE FROM" statement:
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword",
+  database="mydatabase"
+)
+
+mycursor = mydb.cursor()
+
+sql = "DELETE FROM customers WHERE address = 'Mountain 21'"
+
+mycursor.execute(sql)
+
+mydb.commit()
+
+print(mycursor.rowcount, "record(s) deleted")
+
+===============we can have break from 10.40 am to 10.55 am=======================
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword",
+  database="mydatabase"
+)
+
+mycursor = mydb.cursor()
+
+sql = "UPDATE customers SET address = 'Canyon 123' WHERE address = 'Valley 345'"
+
+mycursor.execute(sql)
+
+mydb.commit()
+
+print(mycursor.rowcount, "record(s) affected")
+
+
+========================================================================
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword",
+  database="mydatabase"
+)
+
+mycursor = mydb.cursor()
+
+mycursor.execute("SELECT * FROM customers LIMIT 5")
+
+myresult = mycursor.fetchall()
+
+for x in myresult:
+  print(x)
+================================================================================
+
+Assignments
+
+1. Create table dept with deptid and deptname . deptiId is Pm Key
+
+2. insert the following records
+
+   100   IT
+   200   HR
+   300   Sales
+   400   Admin
+
+3. create table emp (empid int , empname varchar(10) , deptId int )
+
+   empid is PK
+   deptId is FK
+
+   1   A   100
+   2   B   100
+   3   C   200
+   4   D   400
+   5   E   NULL
+
+Q1 . list all emp who works in some dept
+
+Q2   list deptname who does not have employee
+
+Q3   List empname who does work under any deparments
+
+
+write python script to connnect mysql and do the task given above
+
+==============================================================================
+
+Relational:
+
+columns are fixed
+
+rows keep adding - vertical based.
+
+every row has same schema
+
+schema on write : when we insert record , it checks schema and writes.
+
+max 255 columns in any table
+
+
+nosql:
+
+1. columns are not fixed 
+
+2. can keep adding columns - horizontal scaling
+
+3. every row has differnt schema
+
+4. schema on read.[At the time of inserting records , does not check schema  , when reading checks schema]
+
+5. there is no limt
+
+
+Examples : Mongodb , Dynamodb, Cassandra  , Hbase etc 
+
+ we use methods to access , read , write , etc
+
+our smart phone chip has 2500 parameters . that is 2500 columns
+
+Each row has differnt schema
+
+
+c1   c2   c3   c4  c5                              c100
+
+**                 **
+***       **      ***
+
+**   ***  ***                                      ****
+
+
+======================================================================
+
+RDBMS:
+
+Table is a collection of related rows
+Rows  is a collection of related columns
+
+NoSQL
+
+DB -collections-items--- attributes  
+
+    Table       rows     columns
+
+
+
+MongoDB is a No SQL database. It is an open-source, cross-platform, document-oriented database written in C++.
+
+MongoDB database such as insert documents, update documents, delete documents, query documents, 
+
+projection, sort() and limit() methods, create a collection, drop collection, etc. 
+
+
+MongoDB is a document-oriented NoSQL database system that provides high scalability,
+
+flexibility, and performance. Unlike standard relational databases, MongoDB stores
+
+data in a JSON document structure form. This makes it easy to operate with dynamic 
+
+and unstructured data and MongoDB is an open-source and cross-platform database System.
+
+==============================================================================================
+
+Database
+
+Database is a container for collections.
+
+Each database gets its own set of files.
+
+A single MongoDB server can has multiple databases.
+
+Collection
+
+Collection is a group of documents.
+
+Collection is equivalent to RDBMS table.
+
+A collection consist inside a single database.
+
+Collections do not enforce a schema.
+
+A Collection can have different fields within a Documents.
+
+=============================================================================================
+
+json  url
+
+# import urllib library 
+from urllib.request import urlopen 
+
+# import json 
+import json 
+# store the URL in url as 
+# parameter for urlopen 
+url = "https://api.github.com"
+
+# store the response of URL 
+response = urlopen(url) 
+
+# storing the JSON response 
+# from url in data 
+data_json = json.loads(response.read()) 
+
+# print the json response 
+print(data_json) 
+
+================================================================================================
+
+
+
+we study Mongodb
+
+how to connect Mongodb thru Python
+
+Section 1: Introduction to MongoDB
+Section 2: Installation and Setup
+Section 3: Basics of MongoDB
+Section 4: Tools and Interfaces
+Section 5: CRUD Operations in MongoDB
+Section 6: MongoDB Operators
+Section 7: Aggregation
+Section 8: Indexing
+Section 9: Transactions and Data Modeling
+Section 10: Replication and Sharding
+Section 11: Security
+
+================================================================================================
+
+
+

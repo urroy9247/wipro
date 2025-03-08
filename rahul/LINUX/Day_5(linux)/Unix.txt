@@ -1,0 +1,594 @@
+Unix=Uniplexed information computing system
+Multics=Multiplexed information computing system
+
+FileSystem in Unix
+`````````````````````````
+dev -it stores files related to I/O devices.
+exe ->All excecutable files
+lib ->Library files
+usr ->Homedirectory usernames
+etc -> commands related to System administration
+tmp -> all temporary files 
+unix-> is the main O/S responsible for booting of system
+mnt-> is a blank dir often used for mounting the file system
+
+To clear the screen
+clear
+
+To create a file
+cat=concatenate and display files
+cat  >  <file name> 
+cat > mahe
+
+ctrl + d to save and exit
+
+To see the content of the file
+cat  <file name>
+cat  mahe
+
+To append to the file
+cat >> <filename>
+cat >> mahe
+ctrl + d to save and exit
+cat  mahe
+
+To  create a directory
+
+mkdir <directory name>
+mkdir mahe
+
+To change a directory
+cd <directory name>
+cd mahe
+
+To see the current directory
+pwd (present working directory)
+
+To come out of a directory
+cd ..
+
+To get a help for a command
+man <command>
+man date
+man cal
+q=to quit from help
+
+To list the files
+===========
+ls  	 ->To list all the files in the directory
+ls -l 	->To list all the files with full information 
+ls -u	->To list all the files in the  ascending order 
+ls -r	->To list all the files in the  reverse order 
+ls -a	->To list all the files which are hidden
+lc	->To list all the files in column wise
+ls -t	 (modification time)
+ls -l -t -> full info with modification time
+ls -p (puts a slash after each directory)
+ls -x (columnwise )
+ls -C (columnwise)
+
+Wwild card characters
+1. *  -> To replace a set of characters
+
+2. ? ->To replace a single character
+
+eg:
+ls *.*
+ls *.c
+ls *.?
+ls ?.*
+
+To create a hidden file
+cat > .filename
+
+To copy a file
+cp <source filename> <target filename>
+
+To copy a file from one directory to another
+cp /usr/guest/<filename>  /usr/guest/<directory name>
+
+To move a file
+
+mv <source filename> <target filename>
+
+To move a file from one directory to another
+mv /usr/guest/<filename> /usr/guest/<directory name>
+
+To remove a file
+rm <filename>
+
+options
+rm -i ->It will ask for confirmation
+rm -r ->To delete the file recursively
+
+To remove the directory
+
+rmdir <directory name>
+First delete the content of the directory  then remove the directory.
+
+To change to another user
+su -u <user name>
+
+To change the password
+passwd
+
+To see the current user
+who
+
+To see all the users who logged in
+who am i
+
+To see all the users with full information who logged in
+finger
+
+To see the current date
+date
+date +%D		=>mm/dd/yy format
+date +%T		=hh/mm/ss
+date +%w		=day of the week
+date +%r		=time in am/pm
+
+To see the calendar
+
+cal <year>
+cal <month> <year>
+
+cal 2003
+cal 3 2003
+cal mar 2003
+
+banner
+eg
+banner i love india
+
+
+Redirection:
+````````````````
+Redirection allows the output to come from places other than standard input/output.
+
+1.Input Redirection   <
+2.Output Redirection  >
+3.I/O redirection    < >
+
+eg:
+1. cat < mahe
+2. date > mahe
+3. cat <mahe> hello
+cat hello
+
+Pipes:
+`````````
+It is a mechanism in which  output of one command can be redirected to another command.
+
+ls -l | pg  To list the files in page wise
+
+pg <filename> To see the content of a file in page wise
+
+ls -l | more (Same as pg)
+more <filename>
+
+To know the file types
+
+There are 3 types of files namely ordinary, directory and device.
+
+file <filename>
+file <directory>
+file /* To see the file types from a root.
+
+File access permission
+==================
+File permissions are the second level of system security.  The security is viewed in terms of read, write and execute permissions for the owner, group and the others.
+
+Each file and directory has an owner.  The Owner is the user who created the file.
+
+Three types of file access can be granted or denied
+
+Read	 -r   octal value 4
+write	 -w  octal value 2
+Execute     -x   octal value 1  
+
+To change permission 
+
+chmod <mode> <file name>
+
+ls -l <file name>
+-rwx      rwx        rwx
+owner   group     others
+
+read write execute =7
+read write=6
+read execute=5
+write execute=3
+
+eg
+chmod 777  <filename>
+chmod 641  <filename>
+chmod 650  <filename>
+
+To change the owner
+
+chown <username> <filename>
+
+To change the group
+
+chgrp <groupname> <filename>
+
+
+To compare 2 files
+ 
+cmp <file1> <file2>
+
+The two files are compared byte by byte and the location of the first
+mismatch is echoed to the  screen.
+
+To find the common of two files
+
+comm <file1> < file2>
+
+To differentiate 2 files
+
+diff <file1> <file2>
+
+To link 2 files
+
+ln <existing file name> < new file name>
+
+
+Filters:
+``````````
+Filters accept input from standard input .It process the input and send the output to the std output .It also takes the output from the file.
+
+
+1. wc <filename>
+
+wc - l=lines
+wc -c=characters
+wc -w=words
+
+
+2. head
+head [-pos] <filename>
+
+  head -3 <filename> ->first 3 lines will be displayed
+	
+
+3. tail 
+tail [+/- pos] <filename>
+tail-3 <list> ->last 3 lines will be displayed
+tail +2 <list> ->First 2 lines will be skipped remaining will 	       be displayed
+
+
+4. sort :
+		sort <options ><filename>
+	-r  reverse
+	-f  fold uppercase into Lowercase
+	-b ignores blank space
+	-n numeric sorting
+	-u no duplicates
+	-o <target file><source file>   stores the output to the specified file
+	-m <file1><file2>   merge
+	-d  alphanumeric sorting
+
+use the files country and country1
+
+cat > country
+======
+india 111 asia
+srilanka 111 asia
+china 222 asia
+chile 333 Africa
+pakistan 444 Asia
+Kenya 555 Africa
+Canada 6666 America
+Sydney 777 Australia
+
+cat > cutting
+=====             
+001:mahend:8000
+002:linus:9000
+003:sumeh:7000
+004:sarav:10000    
+005:sathya:12000    
+
+sort country
+sort -r country
+sort -u country
+sort -n <file name>
+sort -f country
+
+Sorting by fields
+
+sort [ ] [+pos] [-pos]
+
+sort -n  +1 -2 country =sort by second field
+sort +2 -3 country =sort by third field
+sort -t ":" +2 -3 cutting=sort by third field using special characters as field seperator.
+
+
+5.grep(Global regular expression Printer)
+It searches through one or more files for lines  
+containing a target and then prints all of the matching lines it finds.
+
+options
+-n ->each line preceded by line no
+-c -> only the no of lines found are displayed
+-i -> ignores case of matching
+-v ->displays lines except those containing the match
+-l -> displays only the names of files  containing the pattern
+-h-> grep several files with a single command
+eg:
+
+grep "asia" country
+
+grep -n "asia" country
+
+grep -v "asia" country
+
+grep -c "asia" country
+
+
+Symbols
+=======
+. -> Matches any character 
+* -> Matches one or more character
+[ ] -> Matches any of the character enclosed in the bracket
+[a-z] ->Matches any character in the specified range
+^ ->Begins with the character
+$ ->Ends with the character
+[254] Matches 2, 5 or 4
+X-[180] Matches X-1, X-8 or X-0
+
+
+grep "^c" country
+grep "a$" country
+grep "[abc]" country
+grep "[a-c]" country
+grep "[1-3][0-9][0-9]" employ =>the value between 100 to 300
+cat employ | grep "[4-5][0-9][0-9][0-9]" =>the value between 4000 to 5000
+ls -l | grep 'Sep' - to see the files modified in september
+ls -l  | grep "^d"- to list out the directories
+
+cat > hamlet
+To be or not to be
+That is the question
+Or may be not
+
+grep -i 'T' hamlet
+
+grep '[Oo]r' hamlet
+
+grep '[Tt]' hamlet
+
+grep -h 'or' hamlet lear
+ 
+
+6.fgrep(Fixed Global regular expression printer)
+
+It is similar to grep, but with three main differences
+
+. u can use it to search for several targets at once
+. it does not allow u to use regular expressions to search  for  patterns
+. It is faster than grep
+
+fgrep "asia" country
+fgrep "hello how are u " mahe
+cat >abc
+asia
+africa
+fgrep -f "abc" country 
+ 
+7.egrep(Extended Global regular expression printer)
+
+It is the most powerful one . It is search for multiple targets. U can use regular expressions like grep but it provides  more powerful set of regular expressions than grep.
+
+egrep "india | Germany | 006" country
+egrep "(ica)$" country
+egrep "^(s)|(er)$" employ
+//egrep -f  file1 file2
+	where file1 contains the required patterns.
+
+8. cut 
+
+It does not delete columns from a table.  It copies the specified columns to the standard output file.  It can be used to cut out parts of a file.  We should use the delimiter in the file. The delimiter are like special character like (:,;) etc.
+
+syn
+cut[<options>] [ <character of field > ] <file name>
+d-> delimiter
+f -> fields
+c ->column
+
+cut -d  ":" -f1 cutting
+cut -d  ":" -f2  cutting
+cut -d  ":" -f2  cutting > hello
+cut  -c -10 cutting
+cat country |sort|head| cut -d " " -f1    
+
+9. Paste :
+It takes two tables and combines then side by side to form a single wide table as output
+	
+	paste file1 file2
+	paste -d ":" cutting pasting
+	paste -d "| " employ dept
+	paste one two  
+	ls |paste - - - - -
+
+10. Uniq :
+This filter is used to provide the uniq records by avoiding the duplicate records.
+
+	uniq <option> <filename>
+	-u displays only non repeated lines
+	-c displays the frequency of occurrence of all lines
+	-d display one copy of the repeated lines.
+
+uniq country
+uniq -u country
+
+cat unique
+apple
+apple
+bat
+apple
+ccat 
+
+
+11. tr
+It is used to translate characters taken from the standard input.
+
+cat country | tr "[a-z]" "[A-Z]" 
+cat country | tr "[A-Z]" "[a-z]" 
+banner Mighty |tr "#" "*"
+
+cat  >  items
+shoes
+socks
+pants
+
+tr s z < items
+tr 0 9 < items
+tr -d s < items -> delete the specified character
+
+
+
+12.Find
+It is used to locate files within the directory structure, 
+based upon  a wide range of search criteria.It is not a filter.
+
+syntax
+
+find pathname list expression
+
+options
+
+-print => 	prints the names of the files found.
+-name=>	specific files in all directories.
+-type=>	to know the name of the files or ordinary files or directory.
+-mtime=>to find file modified before or after specified time.
+-exec=>	to execute some command.
+
+find  . -<option> <filename> -print
+
+
+find . -print
+find . -name "cutting" -print
+find . -name "*.c" -print -exec clear
+find . -name "c*" -type f -print
+find . -name "m*" -type d -print
+find . -name "*.txt"  -type f -mtime +3 -print 
+
+13.Split
+To split a big file into small files
+
+syn
+
+split [-n] [filename] [splitfilename]
+
+-n stands for line nos
+
+split  -10 hello.c  sp1
+
+cat sp1aa
+cat sp1ab
+
+
+Communication
+=============
+a)         mail <username>
+
+1. + ->prints next message
+2. - ->prints previous message
+3. h ->prints the headers of all messages.
+4. n ->prints the nth message
+5. d n ->deletes nth message
+6. u n ->undeletes nth message
+7. s filename ->	saves the message into the file 
+	        with headers
+8. w filename ->saves without headers.
+9. !<cmd> ->runs unix commands
+10. p : n -> displays all new messages
+11. p : r-> displays all read messages
+12. p : o-> displays all old messages
+
+tty
+It displays the terminal type.
+
+Now login in 2 different users of same or different in the same or different machine
+
+Give mesg y for 2 users to accept the message
+
+Now u can use the talk or write command
+
+b) write  username tty
+
+c) talk username tty
+
+
+Processes and multitasking(multiprogramming)
+=====================
+
+ps 
+
+It gives the process id, terminal type, time etc.
+
+Multitasking 
+=========
+More than one task or job can be done simultaneously. We can differentiate them by background and foreground process.  The background process can be followed by the & symbol. The & provides the process id.
+
+wc *.c > count &
+
+To kill the process
+
+kill <pid no>
+
+Multiline commands
+------------------------------
+wc hello ; who
+wc hello ; who | wc
+(wc hello ; who) | wc
+
+In the above example the 2 commands still execute in the foreground on after the another but their outout is combined by wc filter and the result will be produced.
+
+
+tee - > it is used to copy a std input to std output
+
+The t pipe has one input and 2 identical outputs. Placing a tee in a pipe allows two copies of the input data to be tapped. One output must go to the file; the identical output carries on down through the filter.
+
+who | wc => Back ground procees
+who | tee save.txt | wc
+will display the wc of who 
+cat save.txt 
+it displays the result of the who command.
+
+who | tee <filename> |wc
+
+
+who > whodata & date
+here the who runs in the background while date is the foreground process.
+
+
+Sleep command
+===========
+To put sequence of commands in the background. 
+
+sleep n wimply cycles idly for n seconds
+
+sleep 5
+date
+
+(sleep 10; date) & date
+
+
+At command
+===========
+To run the job at future
+
+at time [date] [increment] (followed by this give the command)
+
+at 10:30am  Aug 3 
+at 11:30pm
+at now + 2 days
+at tomorrow +3 hours
+at 11:00am Monday next week
+at 11:00am  Aug 3 next year
+
+
+

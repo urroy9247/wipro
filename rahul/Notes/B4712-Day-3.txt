@@ -1,0 +1,779 @@
+Day 3:
+
+Date : 5th Feb 2025
+
+1. Functions
+
+   1.1  built in functions
+    
+        sin(x) , cos(x) , sqrt(x)          
+
+   1.2  User defind function
+        1.2.1 Synomous Function
+       
+        1.2.1 Anonymous Function
+
+1.2 Synomous function- Function with Name
+
+ Syntax :
+
+ def fn_name([ parameters list ] ):
+     statement(s)
+
+     [ return  ]
+
+======================================================================
+def greet():
+    print("welcome to third day session")
+    
+greet()
+greet()
+    
+=======================================================================
+def greet(name):
+    print("welcome to third day session " , name)
+greet("Reddy")
+greet("Doss")
+=======================================================================
+
+def ctof(cel):
+    return cel*1.8+32
+def ftoc(fah):
+    return (fah-32)/1.8    
+    
+print("Temp in Fahren  " , ctof(40)) 
+print("Temp in cel     " , ftoc(104))
+========================================================================
+
+def netamt(amt, gst=18):     # default value , it is taken when we dont pass value
+    return amt+amt*gst/100
+    
+print("Laptop price " , netamt(40000))  
+print("Cake         " , netamt(300, 5))
+
+============================================================================
+def netamt(amt, gst=18):  # default value , it is taken when we dont pass value
+    return amt+amt*gst/100
+    
+print("Laptop price " , netamt(40000))  
+print("Cake         " , netamt(300, 5))
+print("Food Items   " , netamt(500, 7))
+=============================================================================
+def addtwo(x,y):
+    return x+y 
+def prodtwo(x,y):
+    return x*y
+    
+a=int(input("Enter values for a ")) 
+b=int(input("Enter values for b "))
+
+print("Sum   " , addtwo(a,b))
+print("Prod  " , prodtwo(a,b))
+============================================================================
+
+Lambda function :
+
+syntax : lambda parameters list : expression
+
+
+1.light weight function
+
+2. takes any no of parameters and only one expression
+
+x=lambda a,b : a+b
+
+==================================================================================
+Assignment 1
+
+
+Syntax : map(fn, iterable)   iterable means  list, tuple , dictionary , sequence etc
+
+      map  function applies fn  to each element of the iterable and returns an object
+
+x=[2,3,4,5]
+
+i need output say  y=[4,5,6,7]
+
+x=[2,3,4,5]
+y=[]
+for i in x:
+    va=i+2
+    y.append(va)
+print(x)
+print(y)
+
+Method 2 :
+
+x=[2,3,4,5]
+y=map(lambda a:a+2, x)
+
+
+========================================================================================
+
+x=[1,2,3,4,5]
+
+create a list sqx which is square of each element [1,4,9,16,25]
+create a list cubx which contains cubes of each element from x [  cubx =[1,8,27,64,125]
+
+use map function
+
+x=[1,2,3,4,5]
+sqx=map(lambda a:a*a , x)
+cubx=map(lambda a:a*a*a , x)
+print("Squares  " , list(sqx))
+print("Cubes    " , list(cubx))
+
+=================================================================================================
+f(x)=x*x
+g(x)=x*x*x
+================================================================================================
+
+filter(fn , iterable)
+
+this filter function applies fn to each element of the iterable and returns element for which the cond is True
+
+marks=[12,45,56,78,09]
+
+pmarks=filter(lambda a: a>=50 , marks)
+
+print(list(pmarks)
+
+====================================================================================================
+# create two lists pmarks and fmarks contains pass marks and fail marks respectively
+
+To pass condition 50 and above
+To fail condition less than 50
+
+
+marks=[12,45,56,78,9]
+pmarks=filter(lambda a: a>=50 , marks)
+fmarks=filter(lambda a: a<50  , marks)
+print(list(pmarks))
+print(list(fmarks))
+
+========================================================================================================
+
+marks=[12,45,56,78,9]
+pmarks=filter(lambda a: a>=50 , marks)
+fmarks=filter(lambda a: a<50  , marks)
+print(list(pmarks))
+print(list(fmarks))
+
+# In the case of map , values are changed and no of elements remain same 
+# In the case of filter, values are not changed , but no of elements are reduced
+# in the fiter we check condtion , if cond true , elements are returned, otherwise
+# it is ignore.
+# map is like mirror 
+======================================================================================================
+
+marks=[45,55,60,75,90,35]
+
+BOE says due some wrong questions , each student gets extra  5 marks
+
+and newmarks=[50,50,65,80,95,40]
+
+In i wrote Differentcial 
+
+2 marks is not correct
+
+
+marks=[45,55,60,75,90,35]
+newmarks=map(lambda x:x+5, marks)
+print(marks)
+print(list(newmarks))
+============================================================================
+
+Task : 
+
+cel =[23,25,27,29,31]
+
+create list fah containing fah equivalent of cel defined in the list cel=[23,25,27,29,31]
+
+
+
+Task :
+
+fah=[80,85,90,95,100]
+
+create new list cel containing cel equivalent of temp in fah in the list  fah
+
+
+=======================================11.00 am to 11.15 am=========================
+2. Files
+
+2.1 text files
+
+2.2 Binary files
+
+Flat file : File such as .txt .csv . rtf 
+
+we order food from zomato:
+
+our detials such foods, loc , email , mob , time , mode of payment all are stored in text file.
+
+In Cities around 10K to 20K foods are odered .
+
+all these data stored in flat files.
+
+We can do data analysis such as
+
+1. which loc more number of  foods are ordered
+
+2. which food ordered more in week ends
+
+
+Labs:
+
+1. write  data into text file format
+2. how to read data from the text file
+3. How to append data into  textfile
+
+==========================================================================
+# r for reading modes, which is default
+# w for writing modes
+# a for appending 
+# write names of five into names.txt 
+f=open("names.txt", "w") #names.txt is physical file and f is the logical file
+# pointing to physical file 
+for i in range(5):
+    name=input("Enter name   ")
+    f.write(name+"\n") 
+
+f.close()    
+
+=========================================================================
+
+Lab 2 : Reading names.txt
+
+# read() method reads entire file
+
+# readline() method reads single line
+
+# read(x)  method reads x bytes from the file
+
+=================================================================
+f=open("names.txt" ) # r mode is the default 
+print(f.read())   # read() reads entire file 
+===============================================================
+f=open("names.txt" ) # r mode is the default 
+print(f.readline())   # readline() reads oneline at  a time 
+f.close()
+===================================================================
+f=open("names.txt" ) # r mode is the default 
+print(f.read(3))   # read(3) reads three bytes 
+f.close()
+=======================================================
+Task :
+
+1 Read name and marks for 3 students from the console and store in stud.txt
+
+2.Read names and marks from the stud.txt and print onto the console in the following format
+
+
+***************************************************
+Name        marks
+***************************************************
+***          55
+***************************************************
+****         60
+***************************************************
+
+f=open("stud.txt", "w")
+for i in range(3):
+    name=input("Enter value for name  ")
+    marks=input("Enter marks         ")
+    f.write(name+" "+marks+"\n")
+f.close()
+
+f=open("stud.txt")
+print("************************")
+print("Name   Marks          ")
+print("************************")
+for i in f:
+    str=i.split(" ")
+    name=str[0]
+    marks=str[1]
+    print(name+"  "+marks)
+
+print("************************")
+f.close()
+==================================================
+
+Task 2 :
+
+read name , m1 and m2 from the console for 3 students and store it in marks.txt
+
+read name and marks m1 and m2 from marks.txt and print in the following format
+
+
+Name   m1   m2   total
+****   50   60   110
+****   80   70   150
+****   60   60   120
+
+================================================================================
+
+f=open("marks.txt" ,"w")
+for i in range(2):
+    name=input("Enter name   ")
+    m1=input("Enter value for marks 1  ")
+    m2=input("Enter value for marks 2   ")
+    f.write(name+" "+m1+" "+m2+"\n")
+f.close()
+
+f=open("marks.txt" )
+print("\n\n******************")
+for i in f:
+    str=i.split(" ")
+    name=str[0]
+    m1=str[1]
+    m2=str[2]
+    total=int(m1)+int(m2)
+    print("Name    " , name)
+    print("Mark1   " , m1)
+    print("Mark2   " , m2)
+    print("Total   " , total)
+    print("******************")
+f.close()    
+
+==========================================================================================================
+
+append mode : adds records at the end of the file
+
+txt is sequentical file
+
+f=open("marks.txt" ,"a")
+for i in range(2):
+    name=input("Enter name   ")
+    m1=input("Enter value for marks 1  ")
+    m2=input("Enter value for marks 2   ")
+    f.write(name+" "+m1+" "+m2+"\n")
+f.close()
+
+f=open("marks.txt" )
+print("\n\n******************")
+for i in f:
+    str=i.split(" ")
+    name=str[0]
+    m1=str[1]
+    m2=str[2]
+    total=int(m1)+int(m2)
+    print("Name    " , name)
+    print("Mark1   " , m1)
+    print("Mark2   " , m2)
+    print("Total   " , total)
+    print("******************")
+f.close()    
+
+
+==========================================================================================================
+
+Binary File:
+
+Binary files are usually thought of as being a sequence of bytes, which means the binary digits (bits)
+
+are grouped in eights. Binary files typically contain bytes that are intended to be interpreted as 
+
+something other than text characters. Compiled computer programs are typical examples; indeed, 
+
+compiled applications are sometimes referred to, particularly by programmers, as binaries.
+
+But binary files can also mean that they contain images, sounds, compressed versions of other files, etc.
+
+==================================================================================================
+
+"r" - Read - Default value. Opens a file for reading, error if the file does not exist
+
+"a" - Append - Opens a file for appending, creates the file if it does not exist
+
+"w" - Write - Opens a file for writing, creates the file if it does not exist [ if file exists , all data removed ]
+
+"x" - Create - Creates the specified file, returns an error if the file exists [if file exists , returns error    ]
+
+In addition you can specify if the file should be handled as binary or text mode
+
+"t" - Text - Default value. Text mode
+
+"b" - Binary - Binary mode (e.g. images)
+
+=====================================================================================
+How to open a file using the with statement
+
+
+The with keyword in Python is used as a context manager. As in any programming language, 
+
+the usage of resources like file operations or database connections is very common. 
+
+But these resources are limited in supply. Therefore, the main problem lies in making 
+
+sure to release these resources after usage. If they are not released, then it will 
+
+lead to resource leakage and may cause the system to either slow down or crash.
+
+
+As we know, the open() function is generally used for file handling in Python. 
+
+But it is a standard practice to use context managers like with keywords to handle
+
+files as it will automatically release files once its usage is complete.
+
+
+=======================================================================================
+# appending string to file
+
+with open("names.txt","a") as f :
+
+f.write("\nDoss")
+f.write("\nBangalore")
+
+
+===================================================================
+
+
+
+Example 1: Writing Bytes to a File
+
+data = b'Hello, Binary World!'         # A bytes object
+
+#with open('binary_file.bin', 'wb') as file:
+#    file.write(data)
+
+f=open('binary_file.bin', 'wb')
+f.write(data)
+
+print("Binary file written successfully.")
+
+
+The b'...' notation represents bytes.
+The file is opened in wb mode to write in binary format.
+The write() method writes the bytes to the file.
+
+=======================================================================================================
+
+Example 2: Writing Binary Data from an Image
+
+with open('B4172.jpg', 'rb') as img_file:  # Read the image as binary
+    img_data = img_file.read()
+
+with open('output.jpg', 'wb') as new_img_file:  # Write binary data
+    new_img_file.write(img_data)
+
+print("Image copied successfully.")
+
+
+The rb mode reads an image file in binary format.
+The wb mode writes the binary data to a new image file.
+
+==========================================================================================================
+
+Example 3: Example 3: Writing a List of Integers as Binary Data
+
+import struct
+
+numbers = [10, 20, 30, 40]  # List of integers
+
+with open('numbers.bin', 'wb') as file:
+    for num in numbers:
+        file.write(struct.pack('i', num))  # Convert each integer to 4-byte binary format
+
+print("Binary numbers written successfully.")
+
+Explanation:
+
+The struct.pack('i', num) converts an integer into a 4-byte binary representation.
+The wb mode is used to store these bytes in a binary file.
+
+=======================================================================================================
+
+Example 4: Writing a String to a Binary File
+
+text = "Python Binary Write"
+encoded_text = text.encode('utf-8')  # Convert string to bytes
+
+with open('text.bin', 'wb') as file:
+    file.write(encoded_text)
+
+print("Text written to binary file successfully.")
+
+
+encode('utf-8') converts the string into binary format.
+The binary data is then written to a file.
+
+
+=====================================================================================================
+
+Reading the Binary File
+
+You can read the binary file using the rb mode:
+
+with open('text.bin', 'rb') as file:
+    data = file.read()
+    print("Read from binary file:", data.decode('utf-8'))  # Decode back to string
+
+=====================================================================================================
+
+3. Exceptional Handling
+
+
+4. Modules and pacakges:
+
+Module : Any  python program with .py extension is called module.
+
+        Module contains functions, class , variables etc
+
+packages is a collection of related modules.
+
+difference between function and methods
+
+Both are same , but function can be called independently like sin(x)
+but methods are called against objects
+
+
+how to create module and use it another program
+
+================tempcon.py==============================
+
+def ctof(cel):
+    return cel*1.8+32
+
+def ftoc(fah):
+    return (fah-32)/1.8
+=======================Day-3-2.py===================================
+
+import tempcon
+
+print("Fahren equivalent  of 40 " , tempcon.ctof(40))
+print("Celcius equivalent of 104 " ,tempcon.ftoc(10))
+
+====================================================================
+
+random module:
+
+import random
+print(random.randint(3, 9))  #returns a number between 3 and 9 both included
+
+==============================================================================
+
+import random
+print(random.random())  #returns a number >0 and < 1 
+
+================================================================================
+
+import random
+print(int(random.random()*7))   #returns a number > 0*7and < 1*7  >0 and < 7
+#int(4.6) trunctes decimal values
+
+==============================================================================
+
+choice
+
+The choice() method returns a randomly selected element from the specified sequence.
+
+The sequence can be a string, a range, a list, a tuple or any other kind of sequence.
+
+import random
+
+mylist = ["apple", "banana", "cherry"]  # discrete values 
+
+print(random.choice(mylist))
+
+
+#choice returns randomly select an element from the sequence
+
+=============================================================================
+
+sample: 
+
+The sample() method returns a list with a specified number of randomly selected items from a sequence.
+
+Note: This method does not change the original sequence.
+
+Note: The specified number (k=2) cannot be longer than the length of the original sequence.
+
+
+import random
+
+mylist = ["apple", "banana", "cherry" ,"strawberry" , "kiwi" , "orange"]
+
+print(random.sample(mylist, k=4))  #k=2 returns two items selected randomly
+
+==================================================================================
+
+What is random.seed()?
+
+When generating random numbers in Python using functions like random.random() or randint(),
+
+the results are typically unpredictable.
+
+However, by using seed initialization, we can ensure that the same sequence of random numbers 
+
+is generated each time our program runs.
+
+import random
+random.seed(10)
+print(random.random())
+=================================================================================
+
+To generate fix number
+
+import random
+random.seed(67)
+print(random.randint(5255 ,5255))
+
+============================3.45 pm to 4.00 pm====================================================
+
+Covered today:
+
+1. UDF 
+
+2. Lambda functions
+
+3. Map
+
+4. Filter
+
+5. Files
+
+6. Binary files
+
+7. Modules and packages
+
+8. Some exampes on Random
+
+===================================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Set
+
+Sets are used to store multiple items in a single variable.
+
+Set is one of 4 built-in data types in Python used to store collections of data, 
+
+the other 3 are List, Tuple, and Dictionary, all with different qualities and usage.
+
+A set is a collection which is unordered, unchangeable*, and unindexed.
+
+https://www.geeksforgeeks.org/intersection-function-python/?ref=asr7
+
+=================================================================================
+
+Write a program to add all its elements into a given set.
+
+Given:
+
+sample_set = {"Yellow", "Orange", "Black"}
+
+sample_list = ["Blue", "Green", "Red"]
+
+Expected output:
+
+Note: Set is unordered.
+
+{'Green', 'Yellow', 'Black', 'Orange', 'Red', 'Blue'}
+
+
+sample_set = {"Yellow", "Orange", "Black"}
+sample_list = ["Blue", "Green", "Red"]
+
+sample_set.update(sample_list)
+print(sample_set)
+
+=========================================================================================
+
+Write a Python program to return a new set with unique items from both sets by removing duplicates.
+
+Given:
+
+set1 = {10, 20, 30, 40, 50}
+set2 = {30, 40, 50, 60, 70}
+
+Expected output:
+
+{70, 40, 10, 50, 20, 60, 30}
+
+
+set1 = {10, 20, 30, 40, 50}
+set2 = {30, 40, 50, 60, 70}
+
+print(set1.union(set2))
+===========================================================================================
+
+Check if two sets have any elements in common. If yes, display the common elements
+
+Given:
+
+set1 = {10, 20, 30, 40, 50}
+set2 = {60, 70, 80, 90, 10}
+Expected output:
+
+Two sets have items in common
+{10}
+
+
+set1 = {10, 20, 30, 40, 50}
+
+set2 = {60, 70, 80, 90, 10}
+
+
+if set1.isdisjoint(set2):
+  print("Two sets have no items in common")
+else:
+  print("Two sets have items in common")
+  print(set1.intersection(set2))
+
+==========================================================================================
+
+
+2. UDF
+
+3. Lambda
+
+4. built in modules such as os, sys, random
+
+5. files
+
+5. Exceptional handling
+
+==========================================================================================================

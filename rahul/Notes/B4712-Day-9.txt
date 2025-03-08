@@ -1,0 +1,1125 @@
+Day 9:
+
+Date : 12th Feb 2025
+
+1. sorting
+
+2. stack and queue
+
+3. MySQL connection
+
+4. read csv, json etc
+
+5. Graph Theory
+
+
+
+
+In Python, arrays can be handled using different data structures, depending on your needs.
+
+Here are some common ways to work with arrays in Python:
+
+arrays have elements of same type and no of elements in arrays is fixed
+
+
+1. Lists (Built-in)
+
+Python's built-in list type can be used as a dynamic array.
+
+arr = [1, 2, 3, 4, 5]
+arr.append(6)  # Adds an element
+arr.remove(2)  # Removes an element
+print(arr)  # Output: [1, 3, 4, 5, 6]
+
+
+2. array Module (Fixed-Type Arrays or static Array )
+
+The array module provides an array data structure that stores elements of the same type.
+
+import array
+
+arr = array.array('i', [1, 2, 3, 4, 5])  # 'i' means integer type
+arr.append(6)
+print(arr)  # Output: array('i', [1, 2, 3, 4, 5, 6])
+
+
+
+arr = [10, 20, 30, 40, 50]
+arr[2] = 99  # Update the 3rd element
+print(arr)  # Output: [10, 20, 99, 40, 50]
+
+
+arr.remove(20)  # Remove element by value
+print(arr)  # Output: [10, 99, 40, 50]
+
+del arr[1]  # Remove element by index
+print(arr)  # Output: [10, 40, 50]
+
+
+arr.reverse()
+print(arr)  # Output: [50, 40, 10]
+
+# Alternative way using slicing:
+print(arr[::-1])  # Output: [50, 40, 10]
+
+
+import array
+
+arr = array.array('i', [10, 20, 30, 40, 50])
+arr[2] = 99  # Update 3rd element
+print(arr)  # Output: array('i', [10, 20, 99, 40, 50])
+
+
+arr.remove(20)  # Remove by value
+print(arr)  # Output: array('i', [10, 99, 40, 50])
+
+del arr[1]  # Remove by index
+print(arr)  # Output: array('i', [10, 40, 50])
+
+
+arr.reverse()
+print(arr)  # Output: array('i', [50, 40, 10])
+
+================================================================================================
+
+Assignment 1:
+
+Create list  containing 10 values [ values can be int , float ]. All these 10 values must be read 
+
+from the console . Read value for x from the console. Print x is in list or not in the list
+
+use linear search  algorithm
+
+
+===================================================================================================== 
+a=[]
+for i in range(10):
+    b=float(input("Enter values for a "))
+    a.append(b)
+x=float(input("Enter values for  x to be searched  " ))
+flag=False
+for i in range(10):
+    if a[i]==x:
+       flag=True   
+       break
+if flag:
+   print(x ," Is found and its index pos  " , i )
+else:
+   print(" Not Found  ")
+======================================================================================================
+
+1. Linear Data Structure
+
+A linear data structure arranges data sequentially, meaning each element is connected to its previous and next elements.
+
+Characteristics:
+✅ Elements are stored in a contiguous manner.
+✅ Traversed in a single run (one after another).
+✅ Simple to implement.
+
+Examples:
+
+Array → Elements stored in a continuous block.
+
+Linked List → Elements connected via pointers.
+
+Stack → Follows LIFO (Last In, First Out).
+
+Queue → Follows FIFO (First In, First Out).
+
+Example: Linear Traversal (Array)
+
+arr = [10, 20, 30, 40, 50]
+for item in arr:
+    print(item)  # Accessing elements sequentially
+
+
+
+2. Nonlinear Data Structure
+
+A nonlinear data structure arranges data hierarchically or in a complex, non-sequential manner.
+
+Characteristics:
+✅ Elements are not in a strict sequence.
+✅ Can be traversed in multiple ways (e.g., tree traversal).
+✅ More complex than linear structures but efficient in some cases.
+
+Examples:
+
+Trees → Data organized in a hierarchical manner (e.g., Binary Tree, BST).
+
+Graphs → Nodes connected in a non-sequential way.
+
+Hash Tables → Data is stored with key-value pairs for quick lookup.
+
+Example: Nonlinear Traversal (Tree)
+
+
+
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.left = None
+        self.right = None
+
+# Creating a simple binary tree
+root = Node(10)
+root.left = Node(20)
+root.right = Node(30)
+
+print(root.value)  # 10 (Root)
+print(root.left.value)  # 20 (Left Child)
+print(root.right.value)  # 30 (Right Child)
+
+=================================================================================
+
+Key Differences Between Linear and Nonlinear Structures
+
+Feature			Linear Structure				Nonlinear Structure
+
+Data Arrangement	Sequential (one after another)			Hierarchical or complex
+
+Traversal		Single run from start to end			Multiple traversal methods
+
+Memory Utilization	Usually requires more memory 
+                        (contiguous storage)				Can be optimized with pointers
+
+Examples		Array, Linked List, Stack, Queue		Trees, Graphs, Hash Tables
+
+
+When to Use Which?
+
+Use linear structures when data needs to be processed sequentially (e.g., stacks, queues).
+
+Use nonlinear structures for complex relationships (e.g., trees for hierarchical data, graphs for networks).
+
+=============================================================================================================
+
+1. Implementing Stack Using List
+
+Python lists can be used as stacks with append() and pop().
+
+
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, data):
+        self.stack.append(data)  # Add element to the top
+
+    def pop(self):
+        if not self.is_empty():
+            return self.stack.pop()  # Remove the top element
+        return "Stack is empty"
+
+    def peek(self):
+        if not self.is_empty():
+            return self.stack[-1]  # Return top element without removing it
+        return "Stack is empty"
+
+    def is_empty(self):
+        return len(self.stack) == 0
+
+    def display(self):
+        print(self.stack)
+
+# Usage
+s = Stack()
+s.push(10)
+s.push(20)
+s.push(30)
+s.display()  # Output: [10, 20, 30]
+print(s.pop())  # Output: 30
+print(s.peek())  # Output: 20
+
+✅ Time Complexity:
+
+Push: O(1)
+Pop: O(1)
+Peek: O(1)
+
+==================================================================================================
+       
+ A deque stands for Double-Ended Queue. It is a data structure that allows adding and removing elements 
+
+from both ends efficiently. Unlike regular queues, which are typically operated on using FIFO (First In, First Out) 
+
+principles, 
+
+a deque supports both FIFO and LIFO (Last In, First Out) operations.
+
+
+2. Implementing Stack Using collections.deque (More Efficient)
+
+Python's deque is optimized for fast appends and pops.
+
+
+from collections import deque
+
+class Stack:
+    def __init__(self):
+        self.stack = deque()   # creating empty deque
+
+    def push(self, data):
+        self.stack.append(data)
+
+    def pop(self):
+        return self.stack.pop() if self.stack else "Stack is empty"
+
+    def peek(self):
+        return self.stack[-1] if self.stack else "Stack is empty"
+
+    def is_empty(self):
+        return len(self.stack) == 0
+
+    def display(self):
+        print(list(self.stack))
+
+# Usage
+s = Stack()
+s.push(5)
+s.push(15)
+s.display()     # Output: [5, 15]
+print(s.pop())  # Output: 15
+
+===============================Break from 10.40 am  to 10.55 am =================================================   
+
+A deque (short for "double-ended queue") is a data structure in Python provided by the collections module.
+
+It allows fast append and pop operations from both ends (O(1) time complexity) and is more efficient 
+
+than a list for certain use cases.
+
+
+Importing and Creating a Deque
+
+from collections import deque
+
+# Creating an empty deque
+dq = deque()
+
+# Creating a deque with initial elements
+dq = deque([1, 2, 3, 4])
+print(dq)  # Output: deque([1, 2, 3, 4])
+
+========================================================================
+Operations on Deque:
+
+1. Appending Elements
+
+append(x): Adds x to the right end.
+
+appendleft(x): Adds x to the left end.
+
+dq.append(5)      # deque([1, 2, 3, 4, 5])
+
+dq.appendleft(0)  # deque([0, 1, 2, 3, 4, 5])
+
+
+==========================================================================
+
+2. Removing Elements:
+
+pop(): Removes and returns the rightmost element.
+
+popleft(): Removes and returns the leftmost element.
+
+
+dq.pop()      # Removes 5
+dq.popleft()  # Removes 0
+
+============================================================================
+
+3. Extending Deque
+
+extend(iterable): Adds elements from an iterable to the right.
+
+extendleft(iterable): Adds elements from an iterable to the left (in reverse order).
+
+dq.extend([5, 6, 7])  # deque([1, 2, 3, 4, 5, 6, 7])
+
+dq.extendleft([-2, -1])  # deque([-1, -2, 1, 2, 3, 4, 5, 6, 7])
+
+================================================================================
+
+4. Rotating Deque
+
+rotate(n): Rotates elements n steps to the right (negative for left rotation).
+
+dq.rotate(2)  # Right rotation by 2
+print(dq)
+
+dq.rotate(-1)  # Left rotation by 1
+
+print(dq)
+
+================================================================================
+
+5. Limiting Deque Size
+
+deque(iterable, maxlen=n): Creates a deque with a fixed maximum length.
+
+dq = deque([1, 2, 3], maxlen=5)  # Max size = 5
+
+dq.append(4)
+
+dq.append(5)
+
+dq.append(6)  # Oldest element (1) is removed automatically
+
+print(dq)  # Output: deque([2, 3, 4, 5, 6], maxlen=5)
+
+When to Use deque:
+
+When you need fast append/pop operations from both ends.
+
+==============================================================================
+
+Sorting  :
+
+1. selection sorting
+
+2. bubble sorting
+
+selection sorting: 5 15 3 12 17  0
+
+
+  5      15  3   12   17   0   [ unsorted array ]
+
+                           min
+
+ swap min with first position
+
+
+  0        15  3  12  17  5
+
+ sorted    unsorted
+ 
+               min
+
+0  3       15  12  17  5
+   
+                       min
+0  3  5   12    17  15
+                     min
+0  3  5  12    15  17
+
+          
+============== ===================================================================
+
+Example 2 :
+
+            23 45 67 12  9 3
+
+                          min 
+
+            S       Un
+            3       45  67 12 9 23
+                             min
+
+            3 9     67  12 45 23
+                        min
+
+            3 9 12   67  45 23
+                            min
+                       
+            3 9 12 23   45 67
+
+Every iteration finds min value of unsorted array and swap with  first element of unsorted array 
+
+===================================================================================
+bubble sorting [ find max value and push towards right ]
+
+ 5 15 3 12 17  0
+
+ 5 3 15  12 17  0
+
+ 5 3  12 15  17 0
+ 5 3  12 15  0  17 [ moves max value towards right ]
+
+ 5  3  12 15  0
+ 3  5  12 15  0
+ 3  5  12 0   15 [ second max value ]
+
+
+ 3  5  0   12 
+
+ 3  0  5 
+
+ 0 3  5 12 15 17
+
+===================================================================================
+
+
+
+
+
+  
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Selection Sort in Python
+
+sort algorithm in Python. 
+
+
+It is quite straightforward algorithm using the less swapping.
+
+In this algorithm, we select the smallest element from an unsorted array in each pass and swap with the beginning of the 
+
+unsorted array. This process will continue until all the elements are placed at right place. It is simple and an in-place 
+
+comparison sorting algorithm.
+
+Working of Selection Sort
+
+The following are the steps to explain the working of the Selection sort in Python.
+
+Let's take an unsorted array to apply the selection sort algorithm.
+
+[30, 10, 12, 8, 15, 1]
+
+Step - 1: Get the length of the array.
+
+length = len(array) → 6
+
+Step - 2: First, we set the first element as minimum element.
+
+Step - 3: Now compare the minimum with the second element. If the second element is smaller than the first,
+
+ we assign it as a minimum.
+
+Again we compare the second element to the third and if the third element is smaller than second, 
+
+assign it as minimum. This process goes on until we find the last element.
+
+Step - 4: After each iteration, minimum element is swapped in front of the unsorted array.
+
+Step - 5: The second to third steps are repeated until we get the sorted array.
+
+
+30 10 12 8  15 1 
+
+min=30
+
+min 10
+
+30 10 12 8 15 1
+
+1  10 12 8 15 30
+
+    
+
+
+
+
+
+The Brute Force method for sorting an array typically involves using Bubble Sort or Selection Sort, 
+
+as these are simple and directly compare each element.
+
+1. Brute Force Sorting Using Bubble Sort
+
+Bubble Sort repeatedly swaps adjacent elements if they are in the wrong order.
+
+
+Which one to use?
+
+Bubble Sort → Simple, but slow. Best when data is nearly sorted.
+
+Selection Sort → More efficient for small lists, but still O(n²).
+
+suppose i have n=10 elements , no of comparison is 100:
+
+1000000 one millon values. 1000000 * 1000000 
+
+================================================================================================
+
+
+
+A deque stands for Double-Ended Queue. It is a data structure that allows adding and removing elements from both ends
+
+efficiently. Unlike regular queues, which are typically operated on using FIFO (First In, First Out) principles, 
+
+a deque supports both FIFO and LIFO (Last In, First Out) operations.
+
+
+2. Implementing Stack Using collections.deque (More Efficient)
+
+Python's deque is optimized for fast appends and pops.
+
+from collections import deque
+
+class Stack:
+    def __init__(self):
+        self.stack = deque()
+
+    def push(self, data):
+        self.stack.append(data)
+
+    def pop(self):
+        return self.stack.pop() if self.stack else "Stack is empty"
+
+    def peek(self):
+        return self.stack[-1] if self.stack else "Stack is empty"
+
+    def is_empty(self):
+        return len(self.stack) == 0
+
+    def display(self):
+        print(list(self.stack))
+
+# Usage
+s = Stack()
+s.push(5)
+s.push(15)
+s.display()  # Output: [5, 15]
+print(s.pop())  # Output: 15
+
+===========================================================================================
+3. Implementing Stack Using Linked List
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class Stack:
+    def __init__(self):
+        self.top = None
+
+    def push(self, data):
+        new_node = Node(data)
+        new_node.next = self.top  # New node points to previous top
+        self.top = new_node  # Update top
+
+    def pop(self):
+        if self.is_empty():
+            return "Stack is empty"
+        data = self.top.data
+        self.top = self.top.next  # Move top to next node
+        return data
+
+    def peek(self):
+        return self.top.data if self.top else "Stack is empty"
+
+    def is_empty(self):
+        return self.top is None
+
+    def display(self):
+        temp = self.top
+        while temp:
+            print(temp.data, end=" -> ")
+            temp = temp.next
+        print("None")
+
+# Usage
+s = Stack()
+s.push(50)
+s.push(100)
+s.push(150)
+s.display()  # Output: 150 -> 100 -> 50 -> None
+print(s.pop())  # Output: 150
+
+
+Which one to use?
+✅ Use List or deque if you need quick stack operations.
+✅ Use Linked List if memory efficiency is a concern.
+
+====================================================================
+
+selection sort:
+
+def selection_sort(array):  
+    length = len(array)  
+    for i in range(length-1):  
+        minIndex = i  
+        for j in range(i+1, length):  
+            if array[j]<array[minIndex]:  
+                minIndex = j  
+                  
+        array[i], array[minIndex] = array[minIndex], array[i]  
+          
+          
+    return array      
+array = [21,6,9,33,3]  
+  
+print("The sorted array is: ", selection_sort(array)
+
+======================================================================
+bubble sorting:
+==============
+
+def bubble_sort(sequence):
+    n = len(sequence)
+    for i in range(n-1):
+        for j in range(n-i-1):
+            if(sequence[j] > sequence[j+1]):
+                sequence[j], sequence[j+1] = sequence[j+1], sequence[j]
+
+seq=[2,1,4,56,78 ,0 ,-5]
+bubble_sort(seq)
+print(seq)
+
+=============================================================================================================
+
+Assignment 2 :
+
+create stack using list . do some operations like  push ,pop , peek and display all elements in the stack
+
+Assignment 3 :
+
+create stack using deque. do some opeations like append ,appendleft , pop , popleft , rotate left and right 
+
+and print stack
+
+Assignment 4: For the given list of values  , write python script to sort  using selection sort and display
+
+============================================================================================================
+
+Priority Queue in Python:
+
+A Priority Queue is a data structure where elements are processed based on their priority rather
+
+than their insertion order. The element with the highest (or lowest) priority is dequeued first.
+
+Common Use Cases of Priority Queue
+✅ Task Scheduling (CPU scheduling, job scheduling)
+✅ Dijkstra’s Algorithm (Shortest path in graphs)
+✅ Huffman Encoding (Data compression)
+
+
+1. Implementing Priority Queue Using heapq (Min-Heap)
+
+Python's heapq module provides an efficient min-heap, where the smallest element has the highest priority.
+
+Implementation:
+
+import heapq
+
+# Create an empty priority queue
+pq = []
+
+# Insert elements (heapq uses a Min-Heap by default)
+
+heapq.heappush(pq, (2, "Task 2"))  # (Priority, Value)
+heapq.heappush(pq, (1, "Task 1"))  # Higher priority (smaller number)
+heapq.heappush(pq, (3, "Task 3"))
+
+# Remove the element with the highest priority (lowest number)
+print(heapq.heappop(pq))  # Output: (1, "Task 1")
+print(heapq.heappop(pq))  # Output: (2, "Task 2")
+print(heapq.heappop(pq))  # Output: (3, "Task 3")
+
+Explanation:
+heappush() inserts elements while maintaining heap order.
+heappop() removes the smallest (highest-priority) element.
+
+✅ Time Complexity:
+
+Insertion: 
+𝑂(log𝑛)
+
+Removal: 
+𝑂(log𝑛)
+
+======================================================================================
+
+2. Implementing a Max-Heap (Highest Number as Priority)
+
+Since heapq is a Min-Heap by default, we can use negative priorities to simulate a Max-Heap.
+
+
+import heapq
+
+pq = []
+
+# Insert elements with negative priority to simulate max-heap
+heapq.heappush(pq, (-2, "Task 2"))
+heapq.heappush(pq, (-1, "Task 1"))
+heapq.heappush(pq, (-3, "Task 3"))
+
+# Remove the element with the highest priority (largest number)
+print(heapq.heappop(pq)[1])  # Output: Task 3
+print(heapq.heappop(pq)[1])  # Output: Task 2
+print(heapq.heappop(pq)[1])  # Output: Task 1
+
+======================================================================================
+
+3. Implementing Priority Queue Using queue.PriorityQueue
+
+Python's queue.PriorityQueue is a thread-safe way to implement priority queues.
+
+from queue import PriorityQueue
+
+pq = PriorityQueue()
+
+# Insert elements
+pq.put((2, "Task 2"))
+pq.put((1, "Task 1"))
+pq.put((3, "Task 3"))
+
+# Remove elements (automatically dequeues based on priority)
+print(pq.get())  # Output: (1, "Task 1")
+print(pq.get())  # Output: (2, "Task 2")
+print(pq.get())  # Output: (3, "Task 3")
+
+✅ Automatically maintains priority order
+✅ Thread-safe but slower than heapq
+==============================================================================
+
+4. Implementing Priority Queue Using a Custom Class
+
+If you want more control (e.g., custom comparator), use a class with a list and sorting.
+
+class PriorityQueue:
+    def __init__(self):
+        self.queue = []
+
+    # Insert element
+    def enqueue(self, priority, value):
+        self.queue.append((priority, value))
+        self.queue.sort(reverse=True)  # Sort by priority (highest first)
+
+    # Remove highest priority element
+    def dequeue(self):
+        if not self.is_empty():
+            return self.queue.pop()[1]  # Return value (remove highest priority)
+        return "Queue is empty"
+
+    # Check if queue is empty
+    def is_empty(self):
+        return len(self.queue) == 0
+
+# Example Usage
+pq = PriorityQueue()
+pq.enqueue(2, "Task 2")
+pq.enqueue(1, "Task 1")
+pq.enqueue(3, "Task 3")
+
+print(pq.dequeue())  # Output: Task 3
+print(pq.dequeue())  # Output: Task 2
+print(pq.dequeue())  # Output: Task 1
+
+
+Simple but inefficient (Sorting takes 
+𝑂(𝑛log𝑛)
+✅ Good for small datasets
+
+
+
+Implementation		Best For			Performance
+
+heapq			General use (efficient)		O(log n) for insert/remove
+PriorityQueue		Multi-threading	O(log n) 	(but slower)
+Custom Class		Small datasets			O(n log n) (sorting)
+
+===============================================================================================
+
+Afternoon :
+
+1. reading json file using python
+
+json format :
+
+it is similar to html format.
+
+html is used how to represent data , but json is data itself
+
+html has predefined tags such as Head , Title, Body etc.
+
+json has user defined tags
+
+HTML is not case sensitive , jason is case sensitive.
+
+Json file can be open using notepad.
+
+json is example for  semi structured format
+
+
+import json
+
+dog_data = {
+  "name": "Frieda",
+  "is_dog": True,
+  "hobbies": ["eating", "sleeping", "barking",],
+  "age": 8,
+  "address": {
+    "work": None,
+    "home": ("Berlin", "Germany",),
+  },
+  "friends": [
+    {
+      "name": "Philipp",
+      "hobbies": ["eating", "sleeping", "reading",],
+    },
+    {
+      "name": "Mitch",
+      "hobbies": ["running", "snacking",],
+    },
+  ],
+}
+
+with open("hello_frieda.json", mode="w", encoding="utf-8") as write_file:
+    json.dump(dog_data, write_file)
+
+
+The json.dump() function has two required arguments:
+
+The object you want to write
+
+The file you want to write into
+
+
+
+=================================================================
+
+ import json
+ with open("hello_friend.json", mode="r", encoding="utf-8") as read_file:
+       data = json.load(read_file)
+  type(data)
+ print( ["name"])
+ print(data)
+
+======================================================================
+
+In Python, read_json() is a function from the pandas library that reads JSON data and converts it into a DataFrame.
+
+
+[
+    {"name": "Alice", "age": 25, "city": "New York"},
+    {"name": "Bob", "age": 30, "city": "San Francisco"}
+]
+
+
+
+import pandas as pd
+
+# Read JSON file into a Pandas DataFrame
+df = pd.read_json("data.json")
+
+# Display DataFrame
+print(df)
+print("\n Columns are  \n" , df.columns)
+
+print("\n No of columns and rows \n" ,df.shape)
+
+
+
+Reading JSON from a URL
+
+we will do later
+
+import pandas as pd
+url = "https://api.example.com/data.json"
+df = pd.read_json(url)
+print(df.head())
+
+===========================================================================================
+   
+Install MySQL:
+
+scripts > pip install   mysql-connector-python
+
+
+====================break 3.20 pm to 3.35 pm =============================================
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="yourusername",
+  password="yourpassword"
+)
+
+mycursor = mydb.cursor()
+
+mycursor.execute("SHOW DATABASES")
+
+for x in mycursor:
+  print(x)
+
+==========================================================
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host= "localhost",
+  user="root" ,
+  password=root",
+  database="rps"
+)
+
+mycursor = mydb.cursor()
+
+mycursor.execute("CREATE TABLE customers (name VARCHAR(15), address VARCHAR(15))")
+
+========================Day-9-6.py===================================================
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="root",
+  database="rps"
+)
+
+mycursor = mydb.cursor()
+
+mycursor.execute("SHOW TABLES")
+
+for x in mycursor:
+  print(x)
+
+===========================================================================================
+
+Topics covered:
+
+1. arrays fixed arrays [ reverse , delete, update , add ]
+
+2. stack: implementation using list , deque [ rotate , popleft, appendleft, rotate ]
+
+3. Sorting [ selection , buble ]
+
+4. json [ dictionary-->json , json-->DF ]
+
+5. linear and nonlinear datastructure
+   
+   stack , queue and arrays [LS]
+   graph, binary tree and Hash Table [ NLS]
+   difference between these two , where to use it
+
+6. how to create binary tree
+
+7. how to connect mysql thru python
+
+================================================================================================
+
+10th Day:
+
+1. continuation from mysql python
+
+2. linked list 
+
+3. Queue 
+
+4. Binary Tree , Traversal of BT [ preorder, inorder  ,postorder ]
+
+6. Graph - Spaning Tree, MST-minimum spanning tree 
+
+   prims
+   kruskal
+   dijikistra
+
+=========================================================================================
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1. Singly Linked List (Basic Implementation)
+
+Each node points to the next node, and the last node points to None.
+
+# Node class
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None  # Pointer to the next node
+
+# Linked List class
+class LinkedList:
+    def __init__(self):
+        self.head = None  # First node of the list
+
+    # Insert at the end
+    def append(self, data):
+        new_node = Node(data)
+        if not self.head:  # If list is empty
+            self.head = new_node
+            return
+        temp = self.head
+        while temp.next:
+            temp = temp.next
+        temp.next = new_node  # Set the last node's next pointer
+
+    # Display the linked list
+    def display(self):
+        temp = self.head
+        while temp:
+            print(temp.data, end=" -> ")
+            temp = temp.next
+        print("None")
+
+# Usage
+ll = LinkedList()
+ll.append(10)
+ll.append(20)
+ll.append(30)
+ll.display()  # Output: 10 -> 20 -> 30 -> None
+
+✅ Time Complexity:
+
+Append: O(n) (traverses the list to find the last node)
+Display: O(n)
+
+
+===========================================================
+
+
+
+
+
+
+https://sparkbyexamples.com/pandas/pandas-read-json-with-examples/
+
+https://sparkbyexamples.com/pandas/pandas-read-csv-examples/

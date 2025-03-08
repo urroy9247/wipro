@@ -1,0 +1,194 @@
+import sqlite3
+ 
+try:
+    with sqlite3.connect("my.db") as conn:
+        print("Opened SQLite database  successfully.")
+ 
+except sqlite3.OperationalError as e:
+   print("Failed to open database:", e)
+
+===========================================================================
+import sqlite3
+sql_statements = [ 
+    """CREATE TABLE IF NOT EXISTS projects (
+            id INTEGER PRIMARY KEY, 
+            name text NOT NULL, 
+            begin_date DATE, 
+            end_date DATE
+        );""",
+ 
+    """CREATE TABLE IF NOT EXISTS tasks (
+            id INTEGER PRIMARY KEY, 
+            name TEXT NOT NULL, 
+            priority INT, 
+            project_id INT NOT NULL, 
+            status_id INT NOT NULL, 
+            begin_date DATE NOT NULL, 
+            end_date DATE NOT NULL, 
+            FOREIGN KEY (project_id) REFERENCES projects (id)
+        );"""
+]
+ 
+# create a database connection
+try:
+    with sqlite3.connect('my.db') as conn:
+        # create a cursor
+        cursor = conn.cursor()
+ 
+        # execute statements
+        for statement in sql_statements:
+            cursor.execute(statement)
+ 
+        # commit the changes
+        conn.commit()
+ 
+        print("Tables created successfully.")
+except sqlite3.OperationalError as e:
+    print("Failed to create tables:", e)
+
+====================================================================================
+
+import sqlite3
+ 
+# Use 'with' to connect to the SQLite database and automatically close the connection when done
+ 
+with sqlite3.connect('my_database.db') as connection:
+ 
+    # Create a cursor object
+    cursor = connection.cursor()
+ 
+    # Write the SQL command to create the Students table
+ 
+    str= '''
+    CREATE TABLE IF NOT EXISTS Students (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        age INTEGER,
+        email TEXT
+    );
+    '''
+ 
+    # Execute the SQL command
+    cursor.execute(str)
+ 
+    # Commit the changes
+    connection.commit()
+ 
+    # Print a confirmation message
+    print("Table 'Students' created successfully!")
+
+
+=====================================================================================
+
+import sqlite3
+ 
+# Use 'with' to open and close the connection automatically
+ 
+with sqlite3.connect('my_database.db') as connection:
+ 
+    cursor = connection.cursor()
+ 
+    # Insert a record into the Students table
+    insert_query = '''
+    INSERT INTO Students (name, age, email) 
+    VALUES (?, ?, ?);
+    '''
+ 
+    student_data = ('Doss', 45, 'murugadoss@yahoo.com')
+ 
+    cursor.execute(insert_query, student_data)
+ 
+    # Commit the changes automatically
+    connection.commit()
+ 
+    # No need to call connection.close(); it's done automatically!
+    print("Record inserted successfully!")
+
+====================================================================================
+
+import sqlite3
+ 
+# Use 'with' to connect to the SQLite database
+
+with sqlite3.connect('my_database.db') as connection:
+ 
+    # Create a cursor object
+
+    cursor = connection.cursor()
+ 
+    # Write the SQL command to select all records from the Students table
+
+    select_query = "SELECT * FROM Students;"
+ 
+    # Execute the SQL command
+
+    cursor.execute(select_query)
+ 
+    # Fetch all records
+
+    all_students = cursor.fetchall()
+ 
+    # Display results in the terminal
+
+    print("All Students:")
+
+    for student in all_students:
+
+        print(student)
+
+====================================================================================
+
+import sqlite3
+ 
+ 
+# Use 'with' to open and close the connection automatically
+ 
+with sqlite3.connect('my_database.db') as conn:
+ 
+    cursor = conn.cursor()
+ 
+    # List of records to insert
+ 
+    records = [
+    ("Alice", 25 ,"doss@yahoo.com"),
+    ("Bob", 30 ,  "muru@yahoo.com"),
+    ("Charlie", 35 ,"doss@gmail.com")
+]
+ 
+# Insert multiple records using executemany()
+cursor.executemany("INSERT INTO Students (name, age ,email ) VALUES (?, ?, ?)", records)
+ 
+# Commit and close
+conn.commit()
+print("Fake student records inserted successfully!")
+conn.close()
+
+======================================================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

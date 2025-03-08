@@ -1,0 +1,63 @@
+[4:27 pm, 22/2/2025] +60 16-657 0886: Brute Force Algorithms
+A brute force algorithm is a straightforward approach to solving a problem by trying all possible solutions until the correct one is found. It is often the simplest but least efficient method.
+[4:28 pm, 22/2/2025] +60 16-657 0886: Divide and Conquer Algorithms
+Divide and Conquer is a powerful algorithmic paradigm used to solve complex problems efficiently by breaking them into smaller subproblems, solving them recursively, and combining their results.
+[4:30 pm, 22/2/2025] +60 16-657 0886: Dynamic Programming (DP) Algorithms
+Dynamic Programming (DP) is an optimization technique used to solve complex problems by breaking them into smaller overlapping subproblems and solving each subproblem only once, storing the result to avoid redundant calculations.
+[4:31 pm, 22/2/2025] +60 16-657 0886: Greedy Algorithms
+Greedy Algorithm is an approach where decisions are made step-by-step, choosing the best possible option at each stage, without worrying about future consequences. The goal is to find an optimal solution, but greedy algorithms don't always guarantee a global optimum.
+[4:32 pm, 22/2/2025] +60 16-657 0886: 1. What is Backtracking?
+Backtracking is a brute-force algorithmic technique used to solve problems recursively by trying all possible solutions and eliminating those that fail. It is often used for problems where we need to find all solutions rather than just one.
+
+💡 Think of it as a trial-and-error approach with a systematic way of undoing choices (backtracking) when needed.
+[4:33 pm, 22/2/2025] +60 16-657 0886: 1. What is a Randomized Algorithm?
+A randomized algorithm is an algorithm that makes random choices during execution to solve a problem. This randomness can lead to different outputs or execution times for the same input.
+
+🔹 Why use randomness?
+
+Helps in breaking ties in decision-making.
+Provides better average-case performance than deterministic algorithms.
+Useful for problems where deterministic solutions are inefficient.
+[4:35 pm, 22/2/2025] +60 16-657 0886: cursive algorithm is an approach where a function calls itself to solve a problem by breaking it into smaller subproblems.
+
+🔹 Key Properties of Recursion:
+
+Base Case: Stops recursion when a condition is met.
+Recursive Case: Function calls itself with a smaller input.
+[4:36 pm, 22/2/2025] +60 16-657 0886: What is a Search Algorithm?
+A search algorithm is a method used to find an element in a data structure (array, list, tree, graph, etc.).
+
+🔹 Types of Search Algorithms:
+
+Linear Search (Brute Force) – O(N)
+Binary Search (Divide and Conquer) – O(log N)
+Ternary Search – O(log₃ N)
+Jump Search – O(√N)
+Interpolation Search – O(log log N)
+Exponential Search – O(log N)
+Fibonacci Search – O(log N)
+Tree-Based Search (BFS & DFS)
+Graph-Based Search (Dijkstra, A)*
+[4:38 pm, 22/2/2025] +60 16-657 0886: Time Complexity
+🔹 O(N²) (Quadratic Sorts) – Simple but inefficient for large data:
+
+Bubble Sort
+Selection Sort
+Insertion Sort
+[4:38 pm, 22/2/2025] +60 16-657 0886: O(N log N) (Efficient Sorts) – Used for large datasets:
+
+Merge Sort
+Quick Sort
+Heap Sort
+[4:40 pm, 22/2/2025] +60 16-657 0886: Computational Algorithms
+Computational algorithms are methods designed to solve mathematical, logical, or optimization problems using a step-by-step procedure. These algorithms form the foundation of computer science, artificial intelligence, numerical computing, and data analysis.
+[4:42 pm, 22/2/2025] +60 16-657 0886: Data Compression Algorithms
+Data compression algorithms reduce the size of data without losing information (lossless) or by discarding some data (lossy). They are widely used in file storage, image/video compression, and networking.
+[4:47 pm, 22/2/2025] +60 16-657 0886: Rat in a Maze Problem (Path Finding Algorithm)
+The Rat in a Maze problem is a pathfinding problem where a rat needs to move from the top-left corner (0,0) to the bottom-right corner (N-1, N-1) of a grid while avoiding obstacles.
+[4:47 pm, 22/2/2025] +60 16-657 0886: Problem Explanation
+The maze is represented as a 2D grid where:
+1 → Open path (rat can move)
+0 → Blocked path (rat cannot move)
+The rat can move down, right, up, left (or diagonally, if allowed).
+The goal is to find a path from the start to the destination.

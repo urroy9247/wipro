@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: oracle-express
+  labels:
+    tier: oracle-tier
+spec:
+  containers:
+    - name: oracle-express
+      image: gvenzl/oracle-xe
+      env:
+        - name: ORACLE_PASSWORD
+          value: oraclepassword

@@ -1,0 +1,350 @@
+Day    :  18th
+Date   :  22nd Feb 2025
+
+Python as Web Client
+--------------------
+
+API Client : Application Programming Interface.
+
+
+request : requesting some page:
+
+http   Request : 
+
+http  response :
+
+we request some page and page is not found :
+
+Page 404 not found.
+
+Status code : 200 [ Successful ]
+
+===================================================================
+import requests
+response=requests.get("https://api.github.com")
+print(response)
+
+output:
+
+<Response [200]>
+
+
+The GET method indicates that you’re trying to get or retrieve data from a specified resource. 
+
+To make a GET request using Requests, you can invoke requests.get().
+
+===============Day-18-1.py=====================================================
+
+
+200  (Success/OK)
+
+The HTTP status code 200 represents success which means the page you have requested 
+
+has been fetched. The action made has been accepted and has been delivered to the 
+
+client by delivering the requested page. 
+
+
+===================================================================================
+301 (Permanent Redirect):
+
+The HTTP status code 301 means that the page you have requested has moved to a
+
+new URL and which is permanent. In the future, whenever the user requests the same website, 
+
+it will be redirected to the new URL. 
+
+The modified permanent URL is given by the location filed in response. 
+
+============================================================================================
+
+302 (Temporary Redirect)
+
+The requested URL has been redirected to another website which is temporary. 
+
+Major changes in the URL will be in the future. Other than GET or HEAD, 
+
+if the 302 is received in response to a request. 
+
+The redirection is temporarily redirected to another website. 
+
+==========================================================================================
+
+ import requests
+
+ response = requests.get("https://api.github.com")
+ response.content
+ print(type(response.content))
+ print(response.content)
+
+========================================================================
+The response headers can give you useful information, such as the content 
+
+type of the response payload
+
+
+import requests
+response = requests.get("https://api.github.com")
+headerInfo=response.headers
+print(headerInfo)
+
+=========================================================================
+
+import requests
+
+# Search GitHub's repositories for popular Python projects
+
+response = requests.get(
+    "https://api.github.com/search/repositories",
+    params={"q": "language:python", "sort": "stars", "order": "desc"},
+)
+
+# Inspect some attributes of the first three repositories
+json_response = response.json()
+
+popular_repositories = json_response["items"]
+
+for repo in popular_repositories[:3]:
+    print(f"Name: {repo['name']}")
+    print(f"Description: {repo['description']}")
+    print(f"Stars: {repo['stargazers_count']}")
+    print()
+===========================================================================
+
+HTTP Requests in Python (GET, POST, PUT, PATCH, DELETE)
+
+Get   : To Read
+Post  : To Write
+Put   : Update
+Patch : Partial Update
+Delete: To delete
+
+
+
+
+object to obtain data:
+
+ 
+
+result.encoding - the encoding that the document is using (UTF-8 .etc)
+result.headers - the response headers in JSON format
+result.cookies - the request cookies
+result.status_code - the status of the response in a code format (200, 500, 404 .etc.)
+result.content - the content of the response in binary format
+result.text - the decoded content of the response according to the response encoding header property
+result.is_redirect - True if the response status code is a redirect, False if not
+result.elapsed - the time between sending the request and getting a response
+result.url - the URL of the request
+result.json() - parse JSON content
+
+==========================================================================
+
+Passing Parameters into a Request
+
+It is common to send parameters in an HTTP request, this can be done by
+
+creating a dictionary and passing that as an argument with the value 
+
+params= followed by the parameters.
+
+ 
+
+import requests
+
+url = 'https://www.skillsugar.com/search'
+
+params = {'query': 'python', 'sort': 'date'}
+
+result = requests.get(url, params=params)
+
+print(result.url)
+
+==========================================================================================
+
+HTTP POST Requests
+
+An HTTP POST request is typically used to send a body of data to a server.
+
+ We can create them with the requests package by using the requests.post() method.
+
+ 
+
+import requests
+
+url = 'https://www.skillsugar.com/contact'
+
+params = {'name': 'john', 'subject' : 'Programming', 'message': 'Hello', 'email': 'murugadoss@yahoo.com'}
+
+result = requests.post(url, params=params)
+
+print(result.headers)
+
+
+#data=requests.get(url)
+
+#print(data)
+
+===============================================================================
+
+1. HTTP GET Request   -Assign 1
+
+Fetches data from a server.
+
+
+import requests
+
+url = "https://jsonplaceholder.typicode.com/posts/1"
+
+response = requests.get(url)
+
+if response.status_code == 200:
+
+    print("Response:", response.json())  # JSON response
+else:
+    print("Failed to fetch data")
+
+==================================================================================
+
+2. HTTP PUT Request              Assign  2
+
+Updates a resource on the server.
+
+url = "https://jsonplaceholder.typicode.com/posts/1"
+data = {
+    "title": "Rps  Title",
+    "body": "Updated from Rps",
+    "userId": 1
+}
+
+response = requests.put(url, json=data)
+
+if response.status_code == 200:
+    print("Updated Successfully:", response.json())
+else:
+    print("Update failed")
+
+===================================================================
+
+3. Batch HTTP Requests  -Assign 3
+
+
+Since HTTP does not natively support batch requests, you can:
+
+Use multiple requests in a loop.
+
+
+
+Method 1: Simple Loop
+
+
+urls = [
+    "https://jsonplaceholder.typicode.com/posts/1",
+    "https://jsonplaceholder.typicode.com/posts/2",
+    "https://jsonplaceholder.typicode.com/posts/3"
+]
+
+responses = [requests.get(url).json() for url in urls]  #
+
+print(responses)
+
+=====================================================================
+
+Ass-4  Delete Post/2
+
+      and makes sure it is deleted
+
+=======================================================================
+
+
+
+if you need to access on our webapp 
+
+https://jsonplaceholder.typicode.com/posts/1
+
+                                                 
+1 is numeric type
+
+returns dict , json
+
+===============================================
+
+
+
+http://   it is not secured
+
+https:// 
+
+s -secured  userid and password => encrypted and sent to url ===> 
+
+Job Sequencing with Deadline:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Method 2: Multithreading for Faster Requests
+
+import threading
+
+urls = [
+    "https://jsonplaceholder.typicode.com/posts/1",
+    "https://jsonplaceholder.typicode.com/posts/2",
+    "https://jsonplaceholder.typicode.com/posts/3"
+]
+
+def fetch(url):
+    response = requests.get(url)
+    print(response.json())
+
+threads = []
+for url in urls:
+    thread = threading.Thread(target=fetch, args=(url,))
+    thread.start()
+    threads.append(thread)
+
+for thread in threads:
+    thread.join()
+
+================================End of this chapter======================================
+
+
+Pattern Searching Algorithms:
+
+Pattern searching algorithms are used to find occurrences of a pattern (substring) 
+
+in a text (string) efficiently.
+
+
+text = "ABABCABAB"
+pattern = "ABAB"
+
+index 0 :
+
+index 5
+
+=======================Break 3.00 pm to 3.15 pm============================================
+
+
+
+
+
+
+
+https://realpython.com/python-requests/
+
+https://www.geeksforgeeks.org/exception-handling-of-python-requests-module/
+
+https://testfully.io/blog/http-methods/#get-method
+
+
+https://www.tutorialspoint.com/data_structures_algorithms/job_sequencing_with_deadline.htm

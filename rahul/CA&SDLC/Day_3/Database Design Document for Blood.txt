@@ -1,0 +1,125 @@
+Database Design Document for Blood Bank Management System (BBMS)
+________________________________________
+1. Introduction
+This document provides a detailed database design for the Blood Bank Management System (BBMS). The database ensures efficient handling of data related to donors, patients, blood inventory, and requests while maintaining data integrity and security.
+________________________________________
+2. Functional Requirements
+The database system must support the following functionalities:
+1.	Donor Management:
+o	Add, update, and delete donor records.
+o	Store donor personal and medical details for tracking eligibility.
+2.	Patient Management:
+o	Maintain patient profiles.
+o	Track patient blood requests and fulfillment status.
+3.	Blood Inventory Management:
+o	Record and update blood stock with details such as type, quantity, and expiry date.
+o	Track blood donations linked to specific donors.
+4.	Blood Request Management:
+o	Allow patients to request specific blood types and quantities.
+o	Manage the status of requests (e.g., Pending, Fulfilled).
+5.	Admin Privileges:
+o	Allow admins to oversee and manage donors, patients, inventory, and requests.
+o	Generate reports and statistics related to blood stock and donation trends.
+6.	Data Security and Integrity:
+o	Secure sensitive data such as admin passwords.
+o	Ensure relationships between data are maintained using foreign key constraints.
+________________________________________
+3. Database Schema Overview
+The database schema consists of the following tables to meet the functional requirements:
+3.1 Tables Definition
+3.1.1 Admin Table
+•	Purpose: Stores admin details for system management.
+•	Attributes and Description:
+Attribute Name	Data Type	Constraints	Description
+A_ID	Integer	Primary Key	Unique identifier for each admin.
+A_name	Text	Not Null	Name of the admin.
+A_password	Text	Not Null	Password for admin login. (Hashed)
+			
+________________________________________
+3.1.2 Donor Table
+•	Purpose: Stores details about donors.
+•	Attributes and Description:
+Attribute Name	Data Type	Constraints	Description
+D_ID	Integer	Primary Key	Unique identifier for each donor.
+D_name	Text	Not Null	Name of the donor.
+D_address	Text	Not Null	Address of the donor.
+D_contact	Text	Not Null	Contact number of the donor.
+D_diseases	Text	Nullable	Pre-existing diseases, if any.
+D_dob	Date	Not Null	Date of birth of the donor.
+D_hospital	Text	Nullable	Hospital affiliated with the donor.
+
+________________________________________
+3.1.3 Patient Table
+•	Purpose: Stores patient details and their requirements.
+•	Attributes and Description:
+Attribute Name	Data Type	Constraints	Description
+P_ID	Integer	Primary Key	Unique identifier for each patient.
+P_name	Text	Not Null	Name of the patient.
+P_hospital	Text	Not Null	Hospital where the patient is treated.
+P_units	Integer	Not Null	Number of blood units required.
+________________________________________
+3.1.4 Blood Inventory Table
+•	Purpose: Tracks blood stock availability and donation details.
+•	Attributes and Description:
+Attribute Name	Data Type	Constraints	Description
+B_ID	Integer	Primary Key	Unique identifier for each blood record.
+B_type	Text	Not Null	Blood type (e.g., A+, O-, AB+).
+B_quantity	Integer	Not Null	Available quantity of that blood type.
+B_donor_id	Integer	Foreign Key	References D_ID in Donor Table.
+B_expiry_date	Date	Not Null	Expiry date of the blood unit.
+________________________________________
+3.1.5 Blood Request Table
+•	Purpose: Handles blood requests from patients.
+•	Attributes and Description:
+Attribute Name	Data Type	Constraints	Description
+R_ID	Integer	Primary Key	Unique identifier for each blood request.
+R_patient_id	Integer	Foreign Key	References P_ID in Patient Table.
+R_blood_type	Text	Not Null	Type of blood requested (e.g., A+, O-).
+R_quantity	Integer	Not Null	Quantity of blood requested.
+R_status	Text	Not Null	Status of the request (e.g., Pending).
+________________________________________
+3.2 Relationships Between Tables
+•	Admin Table: Links to the Donor Table and Patient Table for management purposes.
+•	Donor Table: Links to the Blood Inventory Table through B_donor_id for tracking donations.
+•	Patient Table: Links to the Blood Request Table through R_patient_id for managing blood requests.
+________________________________________
+4. Data Integrity and Security
+Data Integrity
+•	Primary Keys: Ensure unique identification of records in each table.
+•	Foreign Keys: Maintain relationships between tables.
+•	Not Null Constraints: Ensure mandatory fields (e.g., names, quantities) are always populated.
+Security Measures
+•	Passwords in the A_password column are hashed for Admin accounts.
+•	Role-based access control is enforced to restrict data access based on user roles.
+________________________________________
+
+
+
+
+5. Entity Relationship Diagram (ERD)
+A textual ERD representation:
+[Admin] --- manages ---> [Donor] ---> contributes ---> [Blood Inventory]
+                       |
+                       +-- makes ----> [Blood Request] ---> [Patient]
+________________________________________
+6. Implementation Considerations
+1.	Database System: MySQL is recommended for its reliability and performance.
+2.	Backup Strategy: Implement regular backups to prevent data loss.
+3.	Indexing: Create indexes on frequently queried fields such as B_type in the Blood Inventory Table.
+________________________________________
+Database Implementation Timeline
+Phase	Duration	Activities
+Requirements Gathering	1 Week	Identify all data requirements and relationships. Collaborate with stakeholders to finalize functional requirements and schema design.
+Schema Design	1 Week	Design the database schema (tables, relationships, and constraints). Create ER diagrams and data flow diagrams for clarity.
+Database Creation	1 Week	Implement the schema in the chosen DBMS (e.g., MySQL). Create tables, set up primary/foreign keys, and constraints.
+Test Data Insertion	2 Days	Populate tables with sample data to validate the schema and test relationships.
+Query Testing	2 Days	Write and execute CRUD queries for donors, patients, blood inventory, and requests to ensure the database supports all functional requirements.
+Optimization	1 Week	Add indexes to optimize frequently queried fields, review foreign key relationships, and refine constraints for better performance.
+Integration Testing	1 Week	Test the database integration with application modules (e.g., Admin, Donor, Patient) and APIs. Resolve any issues related to data flow.
+Deployment	2 Days	Deploy the database on the production server. Ensure backups are configured, and access permissions are set based on user roles.
+Ongoing Maintenance	Continuous	Monitor database performance, address issues, and update the schema as new requirements emerge.
+
+7. Conclusion
+This document outlines the design of the database for the Blood Bank Management System, ensuring support for all functional requirements. The schema is optimized for scalability, security, and maintainability, making it a robust solution for managing donors, patients, and blood inventory efficiently.
+
+

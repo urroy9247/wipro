@@ -1,0 +1,24 @@
+rps> db.restaurant.find({}, {_id: 0, restaurant_id: 1, name: 1})
+[
+  { name: 'Morris Park Bake Shop', restaurant_id: '30075445' },
+  { name: "Wendy'S", restaurant_id: '30112340' },
+  { name: 'Dj Reynolds Pub And Restaurant', restaurant_id: '30191841' },
+  { name: 'Riviera Caterer', restaurant_id: '40356018' },
+  { name: 'Tov Kosher Kitchen', restaurant_id: '40356068' },
+  { name: 'Brunos On The Boulevard', restaurant_id: '40356151' },
+  { name: 'Kosher Island', restaurant_id: '40356442' },
+  { name: "Wilken'S Fine Food", restaurant_id: '40356483' },
+  { name: 'Regina Caterers', restaurant_id: '40356649' },
+  { name: 'Taste The Tropics Ice Cream', restaurant_id: '40356731' },
+  { name: 'Wild Asia', restaurant_id: '40357217' },
+  { name: 'C & C Catering Service', restaurant_id: '40357437' },
+  { name: 'May May Kitchen', restaurant_id: '40358429' },
+  { name: '1 East 66Th Street Kitchen', restaurant_id: '40359480' },
+  { name: 'Seuda Foods', restaurant_id: '40360045' },
+  { name: 'Carvel Ice Cream', restaurant_id: '40360076' },
+  { name: 'Carvel Ice Cream', restaurant_id: '40361322' },
+  { name: 'Nordic Delicacies', restaurant_id: '40361390' },
+  { name: 'Glorious Food', restaurant_id: '40361521' },
+  { name: 'The Movable Feast', restaurant_id: '40361606' }
+]
+Type "it" for more

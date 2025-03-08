@@ -1,0 +1,344 @@
+Day   :12
+Date  :15th Feb 2025
+
+Today Agenda:
+
+1. Continuation from decorator
+
+2. Nosql [ continuation from mongodb ]
+
+------------------------------------------------
+
+After noon:
+
+Graph , Vertex , Edge , Tree, Minimum Spannning Tree[MST]
+
+Algorithms to find the MST
+
+
+3.30 pm
+
+Today  presentation : 5 min for presentation
+                      2 question answering
+                      trainer as well as student ask question.
+
+
+Sri Sandeep Sannapu -Function
+Ramana Yeddu        -for loops
+Charishma B         -list
+Arli Harshitha      -scripting 
+PILLALA Mohan Rao   -conditional statements
+
+Experience:
+
+          Computer Point:
+          SSI
+
+
+
+
+def my_decorator(func):     #func becomes say_hello()
+    def wrapper():
+        print("Something is happening before the function runs.")
+        func()
+        print("Something is happening after the function runs.")
+    return wrapper
+
+@my_decorator  # Applying the decorator
+def say_hello():
+    print("Hello!")
+
+say_hello()
+
+===============================================================================================
+
+How to Add Arguments to Decorators in Python:
+
+Decorators can have arguments passed to them. 
+
+To add arguments to decorators I add *args and _*_*kwargs to the inner functions.
+
+
+def currency(fn):
+    def wrapper(*args):
+        result = fn(*args)
+        return f'${ulrest}'
+    return wrapper
+
+@currency
+def net_price(price, tax):
+    """ calculate the net price from price and tax
+    Arguments:
+        price: the selling price
+        tax: value added tax or sale tax
+    Return
+        the net price
+    """
+    return price * (1 + tax)
+
+
+print(net_price(100, 0.05))
+
+=================================================================================================
+
+Currency Formatter Decorator
+
+def currency_formatter(currency="USD"):
+    symbols = {
+        "USD": "$",
+        "EUR": "€",
+        "INR": "₹",
+        "GBP": "£",
+        "JPY": "¥"
+    }
+
+def decorator(func):
+ 
+        def wrapper(*args):
+            amount = func(*args)
+            symbol = symbols.get(currency)
+            return f"{symbol}{amount:,.2f} {currency}"
+        return wrapper
+
+    return decorator
+
+# Usage examples
+@currency_formatter("USD")
+def get_price_usd():
+    return 1000.50
+
+@currency_formatter("INR")
+def get_price_inr():
+    return 85000
+
+@currency_formatter("EUR")
+def get_price_eur():
+    return 1200.75
+
+print(get_price_usd())  # Output: $1,000.50 USD
+print(get_price_inr())  # Output: ₹85,000.00 INR
+print(get_price_eur())  # Output: €1,200.75 EUR
+
+==============================================break 10.30 am to 10.45 am==========
+
+db.posts.insertOne({
+  title: "Post Title 1",
+  body: "Body of post.",
+  category: "News",
+  likes: 1,
+  tags: ["news", "events"],
+  date: Date()
+})
+
+================================================================================================================
+
+Note: If you try to insert documents into a collection that does not exist, MongoDB will create the collection 
+
+automatically.
+
+=================================================================================================================
+insertMany()
+
+To insert multiple documents at once, use the insertMany() method.
+
+This method inserts an array of objects into the database.
+
+
+When we create db or switch to db
+
+> use rps     [ if rbs exists, it is switched to rbs , it not database rps is created ]
+
+
+db.posts.insertMany([  
+  {
+    title: "Post Title 2",
+    body: "Body of post.",
+    category: "Event",
+    likes: 2,
+    tags: ["news", "events"],
+    date: Date()
+  },
+  {
+    title: "Post Title 3",
+    body: "Body of post.",
+    category: "Technology",
+    likes: 3,
+    tags: ["news", "events"],
+    date: Date()
+  },
+  {
+    title: "Post Title 4",
+    body: "Body of post.",
+    category: "Event",
+    likes: 4,
+    tags: ["news", "events"],
+    date: Date()
+  }
+])
+
+======================================================================================
+
+find()
+
+To select data from a collection in MongoDB, we can use the find() method.
+
+This method accepts a query object. If left empty, all documents will be returned.
+
+Example
+
+db.posts.find()
+
+======================================================================================
+
+Lab 1: create collection student  with the  following " name": "Alice", "age": 25, "city": "New York"
+
+db.createCollection("student")
+
+insert record 
+
+db.student.insertOne({" name": "Alice", "age": 25, "city": "New York"})
+
+db.student.find()
+
+
+db.student.insertMany([
+    {"name": "Bob", "age": 30, "city": "San Francisco"},
+    {"name": "Charlie", "age": 28, "city": "Los Angeles"}
+])
+
+db.student.find({"name": "Bob"})
+
+db.student.find({"age": {"$gt": 25}})  # Age greater than 25
+
+=======================================================================
+
+db.student.update({"name": "Bob"}, {"$set": {"age": 31}})
+
+db.student.updateMany({"city": "Los Angeles"}, {"$set": {"city": "San Diego"}})
+
+=================================================================================
+
+python -m pip install pymongo
+
+
+==============================================================================
+
+Return the _id Field
+
+The insert_one() method returns a InsertOneResult object, which has a property, 
+
+inserted_id, that holds the id of the inserted document.
+
+
+
+
+Example
+
+Insert another record in the "customers" collection, and return the value of the _id field:
+
+mydict = { "name": "Peter", "address": "Lowstreet 27" }
+
+x = mycol.insert_one(mydict)
+
+print(x.inserted_id)
+
+======================================================================================
+
+import pymongo
+
+myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+mydb = myclient["doss"]
+mycol = mydb["customers"]
+
+===================================================================================
+
+import pymongo
+
+myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+mydb = myclient["doss"]
+
+mycol = mydb["customers"]
+
+mylist = [
+  { "name": "Amy", "address": "Apple st 652"},
+  { "name": "Hannah", "address": "Mountain 21"},
+  { "name": "Michael", "address": "Valley 345"},
+  { "name": "Sandy", "address": "Ocean blvd 2"},
+  { "name": "Betty", "address": "Green Grass 1"},
+  { "name": "Richard", "address": "Sky st 331"},
+  { "name": "Susan", "address": "One way 98"},
+  { "name": "Vicky", "address": "Yellow Garden 2"},
+  { "name": "Ben", "address": "Park Lane 38"},
+  { "name": "William", "address": "Central st 954"},
+  { "name": "Chuck", "address": "Main Road 989"},
+  { "name": "Viola", "address": "Sideway 1633"}
+]
+
+x = mycol.insert_many(mylist)
+
+#print list of the _id values of the inserted documents:
+
+print(x.inserted_ids)
+
+===========================================================================
+
+In MongoDB we use the find() and find_one() methods to find data in a collection.
+
+Just like the SELECT statement is used to find data in a table in a MySQL database.
+
+
+import pymongo
+
+myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+mydb = myclient["doss"]
+
+mycol = mydb["customers"]
+
+x = mycol.find_one()
+
+print(x)
+
+===================================================================================
+
+sort the collections customers  on  name in desc and list the top 5 records
+
+===============================================================================
+
+Change the address from "Valley 345" to "Canyon 123":
+
+import pymongo
+
+myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+mydb = myclient["mydatabase"]
+mycol = mydb["customers"]
+
+myquery = { "address": "Valley 345" }
+newvalues = { "$set": { "address": "Canyon 123" } }
+
+mycol.update_one(myquery, newvalues)
+
+#print "customers" after the update:
+for x in mycol.find():
+  print(x)
+
+=====================Break Time 3.05 pm to 3.20 pm===========================
+
+Github :
+
+push  4 to 5 from Nosql  [ crud  ] create , read, update and delete
+
+push  4 to 5 how to connect nosql from python code 
+
+==========================================================================
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,202 @@
+Day  : 16th 
+
+Date : 20th Feb 2025
+
+Sorting:
+
+1. Merge Sorting:
+2. Quick Sorting
+
+Spanning Tree
+
+1. Finding Minimum Spanning Tree [MST ]
+
+   using Prims and Kruskals Algorithms
+
+=================Break 10.30 am to 10.45 am ======================================
+
+The Merge Sort algorithm is a divide-and-conquer algorithm that sorts an array 
+
+by first breaking it down into smaller arrays, and then building the array back
+
+together the correct way so that it is sorted.
+
+
+ 2  [ Sorted ]
+
+
+ 3,1 [ Unsorted ]  first is > second  , we swap. it becomes 1, 3
+
+ Example :
+
+  2  6  5  1  7  4   3   [ divide into half ]
+
+  
+ [ 2 6 5 1]            [ 7 4 3 ]
+
+
+         divide into half
+
+ [2 6] [5 1]           [7 4] [3]
+
+
+          divided into half
+
+ [2] [6] [5] [1]       [7] [4 ] we divide into half till we get single element
+
+ 
+       Merging
+
+
+
+ [2 6] [ 1 5 ]          [4 7]   [3]
+
+ 
+  [1 2 5 6 ]            [3 4 7]
+
+
+        merging
+
+  1 2 3 4 5 6 7
+=====================================================================================
+def mergeSort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    mid = len(arr) // 2
+    leftHalf = arr[:mid]
+    rightHalf = arr[mid:]
+
+    sortedLeft = mergeSort(leftHalf)
+    sortedRight = mergeSort(rightHalf)
+
+    return merge(sortedLeft, sortedRight)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+
+    result.extend(left[i:])
+    result.extend(right[j:])
+
+    return result
+
+unsortedArr = [3, 7, 6, -10, 15, 23.5, 55, -13]
+sortedArr = mergeSort(unsortedArr)
+print("Sorted array:", sortedArr)
+======================================================================
+Quick sorting :
+
+Choose a value in the array to be the pivot element.
+
+Order the rest of the array so that lower values than the pivot element are on the left, and 
+higher values are on the right.
+
+Swap the pivot element with the first element of the higher values so that the pivot element lands in between the lower and higher values.
+
+Do the same operations (recursively) for the sub-arrays on the left and right side of the pivot element.
+
+
+
+we must choose 1 element as pivot element
+
+we can choose 1st element as Pivot or last element as Pivot or can choose randomly 
+
+from the list.
+
+   i choose 1st element Pivot Element [ Here it is  10 ]
+
+   we create two index i and  j 
+
+   10  16  8  12  15  6  3  9  5 Inf
+   
+   i                              j   
+       i                       j
+
+   10  16  8  12  15  6  3  9  5  
+   10  5   8  12  15  6  3  9  16
+       i                       j
+
+              i             j
+
+   10  5   8  9   15  6  3  12
+              i             j
+
+                   i     j
+
+  10  5  8    9    3  6  15 12
+                   i     j
+                      j  i  when j>i swap j value with pivot
+
+
+  6  5  8  9  3 10 15 12
+
+  Index I will search elements  which is  > pivot element , then increment i by 1
+  Index J will search elements  which is  < pivot element , the  decrement j by 1
+
+  quick sorting
+
+================================================================================================
+
+We start with an unsorted array.
+
+[ 11, 9, 12, 7, 3]
+
+use Quick sorting
+
+==================================================================================================
+
+1. Finding Minimum Spanning Tree [MST ]
+
+   using Prims and Kruskals Algorithms
+
+
+Kruskals Algorithm to find minimum Spanning Tree:
+
+
+2. Towers  of hanoi
+
+
+3. Travelling sales man Problem
+
+=========================================================================================
+
+Assignment 3 : 
+
+4  6  0  12  78 45  
+
+Use Merge and quick algorithms to show step by step how shorting is done .
+
+Do in a paper or sheet . Scan and put in ms word  , upload in git under Sorting [ Merge and QUick ]
+
+=======================================================================================
+
+Tomorrow class:
+
+Travelling Sales man problem
+
+1.Dynamic Programming
+
+2.Brute Force Method
+
+================Before 11 am==========
+Presentation til lunch time
+
+===========2 to 5  pm ===============
+
+python web client
+
+==========================================
+
+
+
+
+

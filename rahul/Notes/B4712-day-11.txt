@@ -1,0 +1,778 @@
+
+Day  11th
+Date :14th Feb 2025
+
+RDBMS:
+
+1.Every row has same set of columns ( insert into T1 values(v1 ,v2,v3...vn)
+
+2.Can not change the columns very often
+
+3.Structured 
+
+4.License.
+
+5.SQL
+
+later 2000's
+
+since data is semi and unstructured ,we can not go for RDBMS.
+
+data is not structured like rdbms
+
+
+Case:
+
+we write java[Object Oriented ] program to connect oracle Db [ Relational model]
+
+In java program
+
+  we write sql 
+
+   embedded SQL
+
+I have table emp when it comes to Java,    it bcomes clas Emp
+
+Here we have rows  when it comes to java , objects
+
+columns in emp table  when it comes to java, attributes
+
+insert()                 obj1.insert()
+                         obj1.update()
+
+
+===================================================================
+
+Logging and debuging : 
+
+our program is not executed as we expected.something went wrong somewhere
+
+we want to find out where it went to wrong.
+
+I trained JPMC  
+
+6 months time  to go thru existing programs.
+
+we have program python, flask framework - no lines -60 ,000 lines
+
+simplest debugging Tools:
+
+print()
+
+Using the pdb Debugger (Python Debugger)
+
+The pdb module allows step-by-step execution.
+
+import pdb
+def test():
+    x = 10
+    pdb.set_trace()  # Start debugger
+    y = 20
+    result = x + y
+    print(result)
+test()
+
+
+Common pdb commands:
+
+n (next): Execute the next line
+s (step): Step into function calls
+c (continue): Resume execution
+q (quit): Exit the debugger
+
+===========================================================================
+
+Using breakpoint() (Python 3.7+)
+
+Instead of pdb.set_trace(), you can use:
+
+
+def test():
+    x = 10
+    breakpoint()  # Starts debugging session
+    y = 20
+    print(x + y)
+
+test()
+
+==============================================================================
+
+
+NoSql:
+
+Reasons to use Nosql.
+
+1. Open source
+2. Schemaless
+3. put(),get(), scan() methods to write queries
+4. No limit for records.
+5. Keep adding columns
+
+I AVG [ testing of mobile chips . Each phone has 4 chips , each has 2500 paramenters ]
+
+so i need table has 10,000 columns [ data is semi or unstructured ]
+
+
+1.CosmoDb
+
+2.Casandara
+
+3.Hbase
+
+4.DynamoDb - Aws
+
+5.Graph databases are commonly referred to as NoSQL. Ex: Neo4j, Amazon Neptune, ArangoDB etc.
+
+
+1.SQL server
+2.Mysql
+3.Oracle
+4.Ibm db2
+5.Sqlite
+6.MongoDB
+7.informix
+8.Progress
+9.ingress
+10.dabse III + , DB 4 , DB5 , foxpro, visual foxpro, clipper,SQl Server  7.0
+
+
+Assignment-1:
+
+Discuss merits and demerits of any 4 Nosql database[MongoDb,Casandara,Hbase and any graph database ]
+
+
+=====================================================================================================
+
+
+
+https://www.programiz.com/python-programming/json
+
+https://www.programiz.com/python-programming/closure
+
+https://www.programiz.com/python-programming/decorator
+
+https://www.freecodecamp.org/news/python-decorators-explained-with-examples/
+
+
+========================================================================
+Using the pdb Debugger (Python Debugger)
+
+The pdb module allows step-by-step execution.
+
+import pdb
+
+def test():
+    x = 10
+    pdb.set_trace()  # Start debugger
+    y = 20
+    result = x + y
+    print(result)
+
+test()
+
+
+Common pdb commands:
+
+n (next): Execute the next line
+s (step): Step into function calls
+c (continue): Resume execution
+q (quit): Exit the debugger
+
+===========================================================================
+
+Using breakpoint() (Python 3.7+)
+
+Instead of pdb.set_trace(), you can use:
+
+
+def test():
+    x = 10
+    breakpoint()  # Starts debugging session
+    y = 20
+    print(x + y)
+
+test()
+
+===================================================================
+
+Queue:
+
+it is linear data structure.
+
+it is first-in-first-out(FIFO)
+
+A Queue is a data structure where the first element to be inserted is also the first element popped. 
+
+It’s just like a real-life queue, where the first in line is also the first one out.
+
+
+
+Import the module using:
+
+import queue
+
+To create a Queue object, we can instantiate it using:
+
+q = queue.Queue()
+
+By default, this has a capacity of 0, but if you want to explicitly mention it, you can do so using:
+
+max_capacit=10
+
+q = queue.Queue(max_capacity)
+
+
+In mainframe/Mid range computers we dont run the program directly.
+
+there are 100's users using Mainframe system.
+
+Each  user is given console and keyboard . CPU is somewhere.
+
+we create job :
+
+ jobid :
+
+ Name  :
+
+ Time  :
+
+ priority level : high
+
+ progname : Day11-2.py
+
+ ----------------------------------------------------------------------------------
+ 
+ 1. JMQ - java Messaging Queue. Open Source
+
+ 2. IBM Websphere MQ -Software provided by the IBM - to handle the queue
+
+   W100
+
+    All banks implements Websphere MQ to handle the messages.
+
+    
+    HDFC banking -net banking
+
+     From :Acctno
+     Bank name:
+     ACTO     :
+     amt      :
+     IFSCcode :
+
+    Immediate transfer  Rs 5 extra
+    Transfer      after 2 pm
+    Transfer      midnight
+
+
+ 3. kafka - real time messing - Open source
+
+
+
+
+==================================break 10.45 am to 11.00 am=====================
+
+
+Queue.get() and Queue.put() methods
+
+We can insert and retrieve values into the Queue using the queue.get() and queue.put() methods.
+
+Let’s create a queue and insert numbers from 1 to 5.
+
+import queue
+ 
+# Instantiate the Queue object
+q = queue.Queue()
+ 
+# Insert elements 1 to 5 in the queue
+for i in range(1, 6):
+    q.put(i)
+ 
+print('Now, q.qsize() =', q.qsize())
+ 
+# Now, the queue looks like this:
+# (First) 1 <- 2 <- 3 <- 4 <- 5
+
+for i in range(q.qsize()):
+    print(q.get())
+
+=========================================================================
+
+Empty a Python Queue
+
+We can empty a queue object using q.empty(). 
+
+This sets the size to 0, and empties the queue.
+
+import queue
+ 
+# Instantiate the Queue object
+q = queue.Queue()
+ 
+# Insert elements 1 to 5 in the queue
+for i in range(1, 6):
+
+    q.put(i)
+ 
+print('Now, q.qsize() =', q.qsize())
+ 
+# Empty queue
+q.empty()
+ 
+print('After emptying, size =', q.qsize())
+ 
+for i in range(q.qsize()):
+    print(q.get())
+
+========================================================================================================
+
+The pop() method is used to remove an element from a list at a specified index and return that element. 
+
+So, if you want to pop elements from the queue, you must use a different queue class yourself. 
+
+A simple solution would be to use Python’s list.
+
+We’ll use list.append(value) to insert elements into the queue, since insertion happens at the end,
+
+ and remove elements using list.pop(0), since the first element is removed.
+ 
+class MyQueue():
+
+    # Using Python Lists as a Queue
+    def __init__(self):
+        self.queue = []
+
+ 
+    def enqueue(self, value):
+        # Inserting to the end of the queue
+        self.queue.append(value)
+ 
+    def dequeue(self):
+         # Remove the furthest element from the top,
+         # since the Queue is a FIFO structure
+         return self.queue.pop(0)
+ 
+ 
+my_q = MyQueue()
+ 
+my_q.enqueue(2)
+my_q.enqueue(5)
+my_q.enqueue(7)
+ 
+for i in my_q.queue:
+    print(i)
+ 
+print('Popped,', my_q.dequeue())
+ 
+for i in my_q.queue:
+    print(i)
+
+===================================================================================
+
+suppose two people  MR X and MR Y submittig job at the same time.
+
+MR X has the highest priority than MR Y . In this case MR X is executed first
+
+Priority Level is 1 to 10 . Small numbe has the highest 
+
+
+
+Priority Queues in Python:
+
+Priority Queue is a type of queue that adds to the queue on the basis of an item’s priority,
+
+which is typically an integer value.
+
+Items with a lower priority number are given a higher preference and are at the front of the queue,
+
+while others are behind.
+
+The queue module also supports the Priority Queue structure, so let’s see how we can use it.
+
+import queue
+ 
+priority_q = queue.PriorityQueue()
+ 
+priority_q.put((1, 'Hello'))
+priority_q.put((3, 'AskPython'))
+priority_q.put((2, 'from'))
+priority_q.put((2, 'Doss'))
+
+
+ 
+for i in range(priority_q.qsize()):
+    print(priority_q.get())
+
+
+(1, 'Hello')
+(2, 'from')
+(3, 'AskPython')
+
+As you can see, elements are inserted on the basis of their priority
+
+
+
+===========================================================================
+
+Thread safety
+
+
+Python heapq Queue
+
+We can also use the heapq module to implement our priority queues.
+
+So we are creating a priority queue and popping from it until it is empty. 
+
+The same can also be achieved using the below program
+
+import heapq
+ 
+q = []
+ 
+heapq.heappush(q, (2, 'from'))
+heapq.heappush(q, (1, 'Hello'))
+heapq.heappush(q, (3, 'AskPython'))
+ 
+while q:
+    # Keep popping until the queue is empty
+    item = heapq.heappop(q)
+    print(item)
+
+Use heapq for high-performance, single-threaded priority queues.
+
+Use queue.PriorityQueue for multi-threaded environments where thread safety is required.
+
+==============================================================================================
+
+After noon
+
+1.Decorator 
+
+Rule 1 : Function can be assigned to  a variable [ funcion can be called from the variable  ]
+
+Rule 2  : A function can be nested within another function.
+
+Rule 3  :  Note that the inner_function is not available outside the outer_function. 
+           If I try to execute the inner_function outside of the outer_function 
+           I receive a NameError exception.
+
+Rule 4 :  Since a function can be nested inside another function it can also be returned.
+
+Rule 5  :  A function can be passed to another function as an argument
+
+
+
+
+
+Python decorators allow you to change the behavior of a function without modifying the function itself.
+
+A function is an object. Because of that, a function can be assigned to a variable. 
+
+The function can be accessed from that variable.
+
+
+def my_function():
+
+    print('I am a function.')
+
+
+# Assign the function to a variable without parenthesis. We don't want to execute the function.
+
+descr = my_function
+
+
+print(descr)
+print(descr())
+
+==================================================================================
+
+def outer_function():
+
+    def inner_function():
+
+        print('I came from the inner function.')
+
+    # Executing the inner function inside the outer function.
+
+    inner_function()
+
+outer_function()
+
+=====================================================================================
+Since a function can be nested inside another function it can also be returned.
+
+
+def outer_function():
+    '''Assign task to student'''
+
+
+    task = 'Read Python book chapter 3.'
+
+    def inner_function():
+        print(task)
+
+    return inner_function
+
+homework = outer_function()
+
+homework()
+
+=========================================================================
+
+def friendly_reminder(func):
+
+    '''Reminder for husband'''
+
+    func()
+    print('Don\'t forget to bring your wallet!')
+
+def action():
+
+    print('I am going to the store buy you something nice.')
+
+# Calling the friendly_reminder function with the action function used as an argument.
+
+friendly_reminder(action)
+
+===================================================================================
+
+How to Create a Python Decorator
+
+To create a decorator function in Python,  create an outer function that takes a function as an argument. 
+
+There is also an inner function that wraps around the decorated function.
+
+syntax:
+
+def my_decorator_func(func):
+
+    def wrapper_func():
+
+        # Do something before the function.
+
+        func()
+
+        # Do something after the function.
+
+    return wrapper_func
+
+
+========================================================================
+
+We use a decorator by placing the name of the decorator directly above the function
+
+ we want to use it on. You prefix the decorator function with an @ symbol.
+
+@my_decorator_func
+
+def my_func():
+
+    pass
+
+=====================================================================================
+
+Here is a simple example. This decorator logs the date and time a function is executed:
+
+from datetime import datetime
+
+
+def log_datetime(func):
+
+    '''Log the date and time of a function'''
+
+    def wrapper():
+        print(f'Function: {func.__name__}\nRun on: {datetime.today().strftime("%Y-%m-%d %H:%M:%S")}')
+        print(f'{"-"*30}')
+        func()
+    return wrapper
+
+
+@log_datetime
+def daily_backup():
+
+    print('Daily backup job has finished.')   
+
+
+daily_backup()
+
+
+
+=============================================================================================
+def make_pretty(func):
+
+    def inner():
+        print("********************")
+        func()
+        print("********************")
+    return inner
+
+@make_pretty
+def ordinary():
+    print("I am ordinary")
+
+ordinary()  
+
+=================================================================================================
+Decorting Function with parameters
+--------------------------------
+def smart_divide(func):
+    def inner(a, b):
+        print("I am going to divide", a, "and", b)
+        if b == 0:
+            print("Whoops! cannot divide")
+            return
+
+        return func(a, b)
+    return inner
+
+@smart_divide
+def divide(a, b):
+    print(a/b)
+
+divide(2,5)
+
+divide(2,0)
+
+======================Break Time 3.35 pm to 3.50 pm=========================================
+
+
+2.closure
+
+
+Python closure is a nested function that allows us to access variables of the outer function 
+
+even after the outer function is closed.
+
+
+def greet(name):
+    # inner function
+    def display_name():
+        print("Hi", name)
+    
+    # call inner function
+    display_name()
+
+# call outer function
+greet("John")  
+
+# Output: Hi John
+
+In the above example, we have defined the display_name() function inside the greet() function.
+
+
+Here, display_name() is a nested function. The nested function works similar to the normal function. 
+
+It executes when display_name() is called inside the function greet().
+
+=============================================================================================
+
+Python Closures:
+
+closure is a nested function that helps us access the 
+
+outer function's variables even after the outer function is closed. For example,
+
+def greet():
+
+    # variable defined outside the inner function
+
+    name = "John"
+    
+    # return a nested anonymous function
+    return lambda: "Hi " + name
+
+# call the outer function
+
+message = greet()
+
+# call the inner function
+
+print(message())
+
+# Output: Hi John
+
+====================================================================
+
+Example: Print Odd Numbers using Python Closure
+
+def calculate():
+    num = 1
+    def inner_func():
+        nonlocal num
+        num += 2
+        return num
+    return inner_func
+
+# call the outer function
+odd = calculate()
+
+# call the inner function
+print(odd())
+print(odd())
+print(odd())
+
+# call the outer function again
+odd2 = calculate()
+print(odd2())
+
+
+==================================================================================
+
+3.Json labs
+
+4.UnitTest
+
+
+
+Decorator:
+
+we can modify the behaviour of functinality  without changing its code.
+
+
+
+
+
+
+
+
+
+
+
+============================================================
+  
+
+
+
+
+
+https://www.machinelearningplus.com/python/python-logging-guide/
+================================================================================
+
+https://www.askpython.com/python-modules/python-queue
+
+===============================================================================
+
+Decorators in Python:
+
+Decorators are a powerful feature in Python that allows us to modify the behavior
+
+of functions or methods without changing their code.
+
+1. Basic Function Decorator
+
+A decorator is just a function that takes another function as input and extends its behavior.
+
+def my_decorator(func):
+    def wrapper():
+        print("Something before the function runs.")
+        func()
+        print("Something after the function runs.")
+    return wrapper
+
+@my_decorator  # Applying the decorator
+def say_hello():
+    print("Hello, World!")
+
+say_hello()
+
+
+
